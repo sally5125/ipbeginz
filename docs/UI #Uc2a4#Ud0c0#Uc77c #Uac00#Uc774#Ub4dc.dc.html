@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #faf9fc; }
+  * { box-sizing: border-box; }
+  body { font-family: "Noto Sans KR", system-ui, sans-serif; color: #27252f; -webkit-font-smoothing: antialiased; }
+  button { font: inherit; border: none; background: none; cursor: pointer; }
+  a { color: #6846db; text-decoration: none; }
+  a:hover { color: #5836c4; text-decoration: underline; }
+  .msym { font-family: "Material Symbols Rounded"; font-weight: 400; line-height: 1; }
+</style>
+</helmet>
+
+<div style="width: 100%; padding: 32px 8px 80px; display: flex; flex-direction: column; gap: 26px">
+
+  <div>
+    <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; margin-bottom: 6px">IPBEGINZ</div>
+    <h1 style="font-size: 28px; margin: 0 0 8px; letter-spacing: -0.03em">UI 스타일 가이드</h1>
+    <p style="margin: 0; font-size: 13.5px; color: #6f6879; line-height: 1.7">모든 화면이 같은 글자 크기 · 색 · 간격을 쓰도록 정한 기준입니다. 새 화면을 만들 때 이 표의 값을 그대로 사용합니다.</p>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">1. 페이지 헤더</h2>
+    <p style="margin: 0 0 18px; font-size: 12.5px; color: #8d8399; line-height: 1.7">프로필 편집 · 소식 올리기 · 새 프로젝트 프로필 등 모든 작업 화면 상단에 동일하게 적용합니다.</p>
+
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 18px 20px; background: #faf9fc; margin-bottom: 16px">
+      <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; margin-bottom: 6px">계정 설정</div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 6px">
+        <h3 style="font-size: 25px; margin: 0; letter-spacing: -0.03em; min-width: 0">프로필 편집</h3>
+        <div style="display: flex; gap: 7px; flex: none; margin-left: auto">
+          <button style="min-width: 82px; border: 1px solid #dad6e1; border-radius: 9px; padding: 8px 14px; font-size: 13px; color: #7e6a93; background: #fff">취소</button>
+          <button style="min-width: 82px; background: #6846db; color: #fff; border-radius: 9px; padding: 8px 14px; font-size: 13px; font-weight: 700">저장하기</button>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 14px; color: #6f6879; line-height: 1.7">안내 문구는 제목 바로 아래 한 줄로, 무엇을 하는 화면인지 설명합니다.</p>
+    </div>
+
+    <sc-for list="{{ headerRows }}" as="r" hint-placeholder-count="4">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ r.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ r.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ r.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">2. 폼 항목</h2>
+    <p style="margin: 0 0 18px; font-size: 12.5px; color: #8d8399; line-height: 1.7">라벨 → (필요하면) 안내 문구 → 입력 요소 순서. 안내 문구는 입력 전에 알아야 하면 라벨 아래, 보조 설명이면 입력 아래에 둡니다.</p>
+
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 18px 20px; background: #faf9fc; margin-bottom: 16px">
+      <div style="display: flex; align-items: baseline; gap: 6px">
+        <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.02em">항목 라벨</span>
+        <span style="font-size: 13.5px; font-weight: 700; color: #c0392b">*</span>
+      </div>
+      <div style="font-size: 14px; color: #8d8399; line-height: 1.7; margin-top: 5px; margin-bottom: 8px">라벨 아래 안내 문구 — 입력 전에 알아야 할 규칙을 적습니다.</div>
+      <input value="{{ demoValue }}" onChange="{{ setDemo }}" placeholder="입력 예시" style="width: 100%; max-width: 380px; border: 1px solid #dad6e1; border-radius: 10px; padding: 10px 13px; font-size: 13px; font-family: inherit; outline: none; background: #fff" style-focus="border-color: #9276dc" />
+      <div style="font-size: 14px; color: #8d8399; line-height: 1.7; margin-top: 8px">입력 아래 보조 설명 — 규격 · 예시 · 결과를 적습니다.</div>
+    </div>
+
+    <sc-for list="{{ formRows }}" as="r" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ r.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ r.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ r.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">3. 제목 · 소개 입력 필드</h2>
+    <p style="margin: 0 0 18px; font-size: 12.5px; color: #8d8399; line-height: 1.7">한 줄 제목은 단일 입력, 소개는 글자수 제한이 있는 여러 줄 입력입니다. 글자수는 라벨 오른쪽 끝에 표시하고 남은 양에 따라 색이 바뀝니다.</p>
+
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 18px 20px; background: #faf9fc; display: flex; flex-direction: column; gap: 20px; margin-bottom: 16px">
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px">
+          <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.02em">한 줄 제목</span>
+          <span style="font-size: 13.5px; font-weight: 700; color: #c0392b">*</span>
+          <span style="{{ titleCountStyle }}">{{ titleCount }}</span>
+        </div>
+        <input value="{{ titleValue }}" onChange="{{ setTitle }}" placeholder="예: 마왕의 아이로 살아남는 법" style="width: 100%; max-width: 620px; border: 1px solid #dad6e1; border-radius: 10px; padding: 10px 13px; font-size: 13px; font-family: inherit; outline: none; background: #fff" style-focus="border-color: #9276dc" />
+        <div style="font-size: 11.5px; color: #8d8399; line-height: 1.65; margin-top: 8px">한 줄로 끝나는 값 — 목록 카드와 헤더에 그대로 노출되므로 줄바꿈 없이 60자 이내로 적습니다.</div>
+      </div>
+
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px">
+          <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.02em">소개</span>
+          <span style="font-size: 13.5px; font-weight: 700; color: #c0392b">*</span>
+          <span style="{{ bioCountStyle }}">{{ bioCount }}</span>
+        </div>
+        <textarea value="{{ bioValue }}" onChange="{{ setBio }}" placeholder="세계관 · 거래 가능한 범위 · 톤을 소개합니다." style="width: 100%; max-width: 620px; min-height: 96px; border: 1px solid #dad6e1; border-radius: 10px; padding: 11px 13px; font-size: 13px; font-family: inherit; line-height: 1.7; outline: none; resize: vertical; background: #fff" style-focus="border-color: #9276dc"></textarea>
+        <div style="font-size: 11.5px; color: #8d8399; line-height: 1.65; margin-top: 8px">{{ bioNote }}</div>
+      </div>
+    </div>
+
+    <sc-for list="{{ textRows }}" as="r" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ r.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ r.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ r.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">4. 색</h2>
+    <p style="margin: 0 0 18px; font-size: 12.5px; color: #8d8399; line-height: 1.7">같은 역할에는 항상 같은 색을 씁니다. 새 색을 만들지 않습니다.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 12px">
+      <sc-for list="{{ colors }}" as="c" hint-placeholder-count="6">
+        <div style="border: 1px solid #eeebf3; border-radius: 12px; overflow: hidden">
+          <div style="{{ c.swatch }}"></div>
+          <div style="padding: 10px 12px">
+            <div style="font-size: 12.5px; font-weight: 700">{{ c.name }}</div>
+            <div style="font-size: 11px; color: #9b90ab; font-family: ui-monospace, monospace; margin-top: 3px">{{ c.hex }}</div>
+            <div style="font-size: 11.5px; color: #6f6879; line-height: 1.6; margin-top: 5px">{{ c.use }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">5. 글자 크기 — 9단계 스케일</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">본문 13.5px 기준. 홈 · 마켓 · 프로젝트 · 채팅 · 계정 전 화면이 아래 9개 값만 사용합니다. 아이콘 크기는 이 표와 별개입니다.</p>
+    <sc-for list="{{ typeRows }}" as="t" hint-placeholder-count="6">
+      <div style="display: grid; grid-template-columns: minmax(0, 1fr) 96px 150px; gap: 12px; padding: 12px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="{{ t.sample }}">{{ t.text }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ t.size }}</div>
+        <div style="font-size: 11.5px; color: #6f6879">{{ t.use }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">6. 버튼 · 배지 · 칩</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">주요 버튼은 화면당 하나. 버튼 묶음은 보조 → 주요 순서로 오른쪽 정렬하고 최소 폭 82px로 맞춥니다.</p>
+    <div style="display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 16px">
+      <button style="min-width: 82px; border: 1px solid #dad6e1; border-radius: 9px; padding: 8px 14px; font-size: 13px; color: #7e6a93; background: #fff">취소</button>
+      <button style="min-width: 82px; border: 1px solid #dad6e1; border-radius: 9px; padding: 8px 14px; font-size: 13px; background: #fff">임시 저장</button>
+      <button style="min-width: 82px; background: #6846db; color: #fff; border-radius: 9px; padding: 8px 14px; font-size: 13px; font-weight: 700">저장하기</button>
+    </div>
+    <div style="display: flex; gap: 9px; flex-wrap: wrap; align-items: center; margin-bottom: 16px">
+      <span style="font-size: 10.5px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: #e9f4ee; color: #3f8460">완료</span>
+      <span style="font-size: 10.5px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: #f8f2e6; color: #96681a">심사 중</span>
+      <span style="font-size: 10.5px; font-weight: 700; border-radius: 6px; padding: 3px 8px; background: #fbeef0; color: #b0405c">미등록</span>
+      <span style="font-size: 9.5px; font-weight: 700; border-radius: 999px; min-width: 15px; height: 15px; padding: 0 4px; display: inline-flex; align-items: center; justify-content: center; background: #e0455f; color: #fff">3</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #d9cef5; background: #f4f0fa; color: #5836c4; border-radius: 999px; padding: 6px 8px 6px 12px; font-size: 12.5px; font-weight: 700">
+        <span>선택한 값</span>
+        <span class="msym" style="font-size: 14px; color: #8265b9">close</span>
+      </span>
+    </div>
+    <sc-for list="{{ compRows }}" as="r" hint-placeholder-count="4">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ r.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ r.spec }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">7. 카드 · 간격 · 본문 폭</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">본문은 좌측 사이드바와 우측 에이전트 패널 사이 칸을 <b style="color: #6f6879">가득 채웁니다</b>. 좌우 안쪽 여백 8px, 가운데 정렬이나 max-width로 폭을 묶지 않습니다. 임베드된 화면(iframe)도 같은 규칙입니다.</p>
+    <div style="display: grid; grid-template-columns: 52px 92px minmax(0, 1fr) 118px; border: 1px solid #eeebf3; border-radius: 13px; overflow: hidden; margin-bottom: 18px; height: 132px; background: #faf9fc">
+      <div style="background: #2a1f4d"></div>
+      <div style="background: #fff; border-right: 1px solid #e8e5ed"></div>
+      <div style="padding: 10px 8px; min-width: 0">
+        <div style="height: 100%; border: 1.5px dashed #9276dc; border-radius: 10px; background: #f3effc; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #5836c4; text-align: center; padding: 8px">본문 — 칸을 가득 채움<br><span style="font-weight: 500; color: #8265b9">좌우 8px · max-width 없음</span></div>
+      </div>
+      <div style="background: #fff; border-left: 1px solid #e8e5ed"></div>
+    </div>
+    <sc-for list="{{ layoutRows }}" as="r" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ r.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ r.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ r.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">8. 모달 · 팝업</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">한 가지 결정을 받는 창입니다. 몸문을 스크롤하지 않고 끝낼 수 있는 양이 기준이고, 그보다 크면 화면으로 내립니다.</p>
+
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 18px 20px; background: #faf9fc; margin-bottom: 16px">
+      <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 20px; padding: 20px 22px; max-width: 420px; box-shadow: 0 24px 60px rgba(28,20,52,0.16)">
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px">
+          <div style="min-width: 0">
+            <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; margin-bottom: 5px">섭외 제안</div>
+            <h3 style="font-size: 19px; margin: 0 0 4px; letter-spacing: -0.03em">모달 제목은 19px</h3>
+            <p style="margin: 0; font-size: 13px; color: #6f6879; line-height: 1.6">무엇을 정하는 창인지 한 줄로 설명합니다.</p>
+          </div>
+          <button style="margin-left: auto; width: 32px; height: 32px; border-radius: 9px; color: #8d8399; display: grid; place-items: center; flex: none">✕</button>
+        </div>
+        <div style="background: #faf9fc; border: 1px solid #f0edf5; border-radius: 12px; padding: 12px 15px; font-size: 12.5px; color: #6f6879; line-height: 1.75; margin-bottom: 14px">요약 줄 — 고른 값을 문장으로 다시 확인시킵니다.</div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px">
+          <button style="min-width: 82px; border: 1px solid #dad6e1; border-radius: 10px; padding: 10px 16px; font-size: 13.5px; background: #fff">취소</button>
+          <button style="min-width: 82px; background: #6846db; color: #fff; border-radius: 10px; padding: 10px 18px; font-size: 13.5px; font-weight: 500">보내기</button>
+        </div>
+      </div>
+    </div>
+
+    <sc-for list="{{ modalRows }}" as="mr" hint-placeholder-count="6">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ mr.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ mr.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ mr.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">9. 탭 · 필터 · 상태 배지</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">같은 목록을 가르는 것은 탭(사각 칩), 조건을 고르는 것은 선택 칩(둥근 칩)입니다. 둘을 섞지 않습니다.</p>
+    <div style="display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px">
+      <button style="border: 1px solid #6846db; background: #eee8fa; color: #6846db; border-radius: 9px; padding: 8px 14px; font-size: 14px; font-weight: 500; white-space: nowrap">받은 지원<span style="margin-left: 6px; font-size: 11.5px; font-weight: 700">10</span></button>
+      <button style="border: 1px solid #dad6e1; background: #fff; color: #6f6879; border-radius: 9px; padding: 8px 14px; font-size: 14px; white-space: nowrap">보낸 섭외<span style="margin-left: 6px; font-size: 11.5px; font-weight: 700; color: #a49cb1">5</span></button>
+      <button style="border: 1px solid #dad6e1; background: #fff; color: #6f6879; border-radius: 9px; padding: 8px 14px; font-size: 14px; white-space: nowrap">선정됨<span style="margin-left: 6px; font-size: 11.5px; font-weight: 700; color: #a49cb1">6</span></button>
+    </div>
+    <div style="display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px">
+      <button style="border-radius: 999px; padding: 7px 13px; font-size: 13px; white-space: nowrap; border: 1px solid #6846db; background: #6846db; color: #fff; font-weight: 700">무관</button>
+      <button style="border-radius: 999px; padding: 7px 13px; font-size: 13px; white-space: nowrap; border: 1px solid #dad6e1; background: #fff; color: #6f6879">1천~5천</button>
+      <button style="border-radius: 999px; padding: 7px 13px; font-size: 13px; white-space: nowrap; border: 1px solid #dad6e1; background: #fff; color: #6f6879">1만~5만</button>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px">
+      <sc-for list="{{ stateBadges }}" as="sb" hint-placeholder-count="5">
+        <span style="{{ sb.style }}">{{ sb.label }}</span>
+      </sc-for>
+    </div>
+    <sc-for list="{{ tabRows }}" as="tr2" hint-placeholder-count="6">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ tr2.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ tr2.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ tr2.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">10. 목록 표 · 날짜 입력 · 빈 상태 · 토스트</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">지원자 표처럼 숫자를 비교하는 목록과, 아직 아무것도 없는 영역의 공통 규칙입니다.</p>
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 16px 18px; background: #faf9fc; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="border: 1.5px dashed #e2ddeb; border-radius: 12px; padding: 20px; text-align: center; font-size: 14px; color: #8d8399; line-height: 1.7; background: #fff">연결한 자료가 없습니다. 「자료 연결하기」로 자료함에서 고르세요.</div>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center">
+        <input type="date" style="border: 1px solid #dad6e1; border-radius: 10px; padding: 10px 13px; font-size: 13px; font-family: inherit; outline: none; background: #fff" />
+        <span style="display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; background: #2a1f4d; color: #fff; border-radius: 11px; padding: 10px 15px; font-size: 13px">저장했습니다</span>
+      </div>
+    </div>
+    <sc-for list="{{ tableRows }}" as="tb" hint-placeholder-count="7">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ tb.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ tb.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ tb.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 16px; padding: 22px 24px">
+    <h2 style="font-size: 17px; margin: 0 0 4px; letter-spacing: -0.02em">11. EARN · SPEND · 상태 · 금액 · 에러</h2>
+    <p style="margin: 0 0 16px; font-size: 12.5px; color: #8d8399; line-height: 1.7">화면마다 다르게 그리기 쉬운 다네 가지를 고정합니다. 이 값은 화면 내용이 바뀌어도 그대로 쓸니다.</p>
+
+    <div style="font-size: 13px; font-weight: 700; color: #3d3748; margin-bottom: 9px">수익형 EARN · 지원형 SPEND</div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px">
+      <span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; background: #e9f4ee; color: #3f8460">수익형 EARN</span>
+      <span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; background: #f3effc; color: #5836c4">지원형 SPEND</span>
+      <span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; background: rgba(63,132,96,0.92); color: #fff">커버 위 EARN</span>
+      <span style="font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; background: rgba(104,70,219,0.92); color: #fff">커버 위 SPEND</span>
+    </div>
+    <sc-for list="{{ flowRows }}" as="fl" hint-placeholder-count="4">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ fl.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ fl.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ fl.token }}</div>
+      </div>
+    </sc-for>
+
+    <div style="font-size: 13px; font-weight: 700; color: #3d3748; margin: 20px 0 9px">상태 배지 — 캐페인 · 계약 · 지원 · 정산</div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px">
+      <sc-for list="{{ statusBadges }}" as="st" hint-placeholder-count="8">
+        <span style="{{ st.style }}">{{ st.label }}</span>
+      </sc-for>
+    </div>
+    <sc-for list="{{ statusRows }}" as="sr" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ sr.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ sr.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ sr.token }}</div>
+      </div>
+    </sc-for>
+
+    <div style="font-size: 13px; font-weight: 700; color: #3d3748; margin: 20px 0 9px">금액 · 숫자 표기</div>
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 16px 18px; background: #faf9fc; margin-bottom: 8px; display: flex; gap: 22px; flex-wrap: wrap">
+      <div>
+        <div style="font-size: 12.5px; color: #8d8399; margin-bottom: 5px">보상 합계</div>
+        <div style="font-size: 20px; font-weight: 700; letter-spacing: -0.025em; white-space: nowrap">₩7,100,000</div>
+      </div>
+      <div>
+        <div style="font-size: 12.5px; color: #8d8399; margin-bottom: 5px">사용 가능 예시금</div>
+        <div style="font-size: 20px; font-weight: 700; letter-spacing: -0.025em; white-space: nowrap; color: #3f8460">₩2,480,000</div>
+      </div>
+      <div>
+        <div style="font-size: 12.5px; color: #8d8399; margin-bottom: 5px">부족액</div>
+        <div style="font-size: 20px; font-weight: 700; letter-spacing: -0.025em; white-space: nowrap; color: #b0405c">−₩620,000</div>
+      </div>
+    </div>
+    <sc-for list="{{ moneyRows }}" as="mo" hint-placeholder-count="7">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ mo.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ mo.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ mo.token }}</div>
+      </div>
+    </sc-for>
+
+    <div style="font-size: 13px; font-weight: 700; color: #3d3748; margin: 20px 0 9px">에러 · 차단 상태</div>
+    <div style="border: 1px solid #eeebf3; border-radius: 13px; padding: 16px 18px; background: #faf9fc; margin-bottom: 8px; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: flex-start; gap: 9px; background: #fdf3f4; border: 1px solid #f0d9e0; border-radius: 11px; padding: 11px 13px">
+        <span class="msym" style="font-size: 17px; color: #b0405c; flex: none">error</span>
+        <span style="font-size: 13px; color: #8f3348; line-height: 1.7">실패 · 차단 — 무엇이 문제인지와 바로 할 수 있는 행동을 한 문장으로.</span>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 9px; background: #fdf9f0; border: 1px solid #efe4cd; border-radius: 11px; padding: 11px 13px">
+        <span class="msym" style="font-size: 17px; color: #96681a; flex: none">warning</span>
+        <span style="font-size: 13px; color: #7a6b4a; line-height: 1.7">주의 — 진행은 되지만 알고 있어야 하는 사심.</span>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 9px; background: #f6f1fb; border: 1px solid #e6dcf7; border-radius: 11px; padding: 11px 13px">
+        <span class="msym" style="font-size: 17px; color: #6846db; flex: none">info</span>
+        <span style="font-size: 13px; color: #4c455a; line-height: 1.7">안내 — 권한 · 정책 설명과 다음 단계.</span>
+      </div>
+    </div>
+    <sc-for list="{{ errorRows }}" as="er" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 132px minmax(0, 1fr) 150px; gap: 12px; padding: 10px 0; border-top: 1px solid #f2eff7; align-items: baseline">
+        <div style="font-size: 12.5px; font-weight: 700; color: #3d3748">{{ er.name }}</div>
+        <div style="font-size: 12.5px; color: #6f6879; line-height: 1.6">{{ er.spec }}</div>
+        <div style="font-size: 11.5px; color: #9b90ab; font-family: ui-monospace, monospace">{{ er.token }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1080, &quot;height&quot;: 900}}">
+class Component extends DCLogic {
+  state = { demo: '', title: '', bio: '' };
+
+  counter(n, max) {
+    const ratio = n / max;
+    return {
+      text: n + ' / ' + max,
+      style: 'margin-left: auto; font-size: 11.5px; font-variant-numeric: tabular-nums; color: '
+        + (n > max ? '#b0405c' : ratio >= 0.9 ? '#96681a' : '#9b90ab')
+    };
+  }
+
+  renderVals() {
+    const t = this.counter((this.state.title || '').length, 60);
+    const b = this.counter((this.state.bio || '').length, 300);
+    return {
+      titleValue: this.state.title,
+      setTitle: e => this.setState({ title: e.target.value.slice(0, 60) }),
+      titleCount: t.text, titleCountStyle: t.style,
+      bioValue: this.state.bio,
+      setBio: e => this.setState({ bio: e.target.value.slice(0, 300) }),
+      bioCount: b.text, bioCountStyle: b.style,
+      bioNote: '최대 300자. 270자를 넘으면 글자수가 주황, 한도에 닿으면 빨강으로 바뀌고 더 입력되지 않습니다.',
+      textRows: [
+        { name: '한 줄 제목', spec: '단일 입력 · 줄바꿈 불가 · 목록과 헤더에 그대로 노출', token: '최대 60자' },
+        { name: '소개', spec: '여러 줄 입력 · 세로 크기 조절 가능 · 최소 높이 96px', token: '최대 300자' },
+        { name: '글자수 표시', spec: '라벨 줄 오른쪽 끝. 숫자 폭 고정', token: '11.5px / #9B90AB' },
+        { name: '주의 색', spec: '한도의 90%를 넘으면 주황', token: '#96681A' },
+        { name: '한도 색', spec: '한도에 닿으면 빨강, 추가 입력 차단', token: '#B0405C' },
+        { name: '입력 폭', spec: '제목 · 소개 모두 본문 폭 기준', token: 'max-width 620px' }
+      ],
+      demoValue: this.state.demo,
+      setDemo: e => this.setState({ demo: e.target.value }),
+      headerRows: [
+        { name: '상단 카테고리', spec: '화면이 속한 영역 이름. 대문자 자간, 보라', token: '11.5px / 0.14em / #8265B9' },
+        { name: '페이지 제목', spec: '무엇을 하는 화면인지. 항상 검정', token: '25px / 700 / #27252F' },
+        { name: '안내 문구', spec: '제목 아래 한 줄 설명', token: '14px / #6F6879' },
+        { name: '액션 버튼', spec: '제목과 같은 줄 오른쪽 끝. 보조 → 주요 순서', token: 'min-width 82px' },
+        { name: '섹션 제목', spec: '카드 안 소제목', token: '17px / 700 / #27252F' }
+      ],
+      formRows: [
+        { name: '항목 라벨', spec: '굵게, 검정. 필수는 뒤에 빨간 별표', token: '13.5px / 700 / #3D3748' },
+        { name: '필수 표시', spec: '라벨 뒤 * 하나. 「선택」 글자는 쓰지 않음', token: '#B0405C' },
+        { name: '라벨 아래 안내', spec: '입력 전에 알아야 할 규칙', token: '14px / #8D8399' },
+        { name: '입력 아래 안내', spec: '규격 · 예시 · 결과 설명', token: '14px / #8D8399' },
+        { name: '입력창', spec: '테두리 1px, 모서리 10px, 안쪽 10/13px', token: '13px / #DAD6E1' },
+        { name: '포커스', spec: '테두리 색만 바뀜', token: '#9276DC' },
+        { name: '드롭다운', spec: '입력창과 동일 + 오른쪽 화살표 아이콘', token: 'expand_more 18px' },
+        { name: '항목 간격', spec: '폼 항목 사이', token: 'gap 20px' }
+      ],
+      colors: [
+        { name: '브랜드 보라', hex: '#6846DB', use: '주요 버튼 · 선택 상태 · 링크', swatch: 'height: 54px; background: #6846db' },
+        { name: '딥 퍼플', hex: '#2A1F4D', use: '헤더 배경 · 강조 영역', swatch: 'height: 54px; background: #2a1f4d' },
+        { name: '본문 검정', hex: '#27252F', use: '제목 · 라벨', swatch: 'height: 54px; background: #27252f' },
+        { name: '본문 회색', hex: '#6F6879', use: '설명 문구', swatch: 'height: 54px; background: #6f6879' },
+        { name: '보조 회색', hex: '#8D8399', use: '작은 안내 · 메타', swatch: 'height: 54px; background: #8d8399' },
+        { name: '테두리', hex: '#E8E5ED', use: '카드 테두리 · 구분선', swatch: 'height: 54px; background: #e8e5ed' },
+        { name: '배경', hex: '#FAF9FC', use: '페이지 바탕', swatch: 'height: 54px; background: #faf9fc; border-bottom: 1px solid #eeebf3' },
+        { name: '성공', hex: '#3F8460', use: '완료 배지', swatch: 'height: 54px; background: #3f8460' },
+        { name: '경고', hex: '#96681A', use: '심사 중 배지', swatch: 'height: 54px; background: #96681a' },
+        { name: '위험', hex: '#B0405C', use: '미등록 · 삭제 · 필수 표시', swatch: 'height: 54px; background: #b0405c' }
+      ],
+      typeRows: [
+        { text: '01 페이지 제목', size: '25 / 700 / 1.35', use: '화면 제목 하나. 홈 · 마켓 · 프로젝트 · 채팅 · 계정 모두 동일', sample: 'font-size: 25px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.35' },
+        { text: '02 큰 수치 · 히어로', size: '20 / 700 / 1.35', use: '통계 숫자 · 히어로 문구 · 큰 금액', sample: 'font-size: 20px; font-weight: 700; letter-spacing: -0.03em' },
+        { text: '03 섹션 · 카드 제목', size: '16.5 / 700 / 1.35', use: '카드 소제목 · 모달 제목 · 대화 상대명', sample: 'font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em' },
+        { text: '04 항목 제목', size: '14.5 / 700 / 1.35', use: '리스트 카드 제목 · 강조 값', sample: 'font-size: 14.5px; font-weight: 700; letter-spacing: -0.02em' },
+        { text: '05 라벨 · 헤더 설명', size: '14 / 700·400 / 1.7', use: '폼 라벨(700) · 페이지 제목 아래 설명(400 · #6F6879)', sample: 'font-size: 14px; font-weight: 700' },        { text: '06 본문 · 안내 문구', size: '14 / 400 / 1.7', use: '입력값 · 버튼 · 카드 본문 · 말풍선 · 프로필 소개문 · 섹션 안내문 · 라벨 아래 설명 · 사이드바 항목 · 표 본문', sample: 'font-size: 14px; color: #3d3748' },
+        { text: '08 메타 · 칩', size: '12 / 400·600 / 1.6', use: '핸들 · 날짜 · 용량 · 필터 칩 · 유형 배지', sample: 'font-size: 12px; color: #9b90ab' },
+        { text: '09 배지', size: '11 / 700 / 1', use: '상태 배지 · 카운트 · 오버레이 태그', sample: 'font-size: 11px; font-weight: 700; color: #3f8460' }
+      ],
+      lineRows: [
+        { name: '제목 계열', spec: '01~04 제목은 모두 1.35. letter-spacing은 25px -0.03em, 그 외 -0.02em', token: 'line-height 1.35' },
+        { name: '본문 계열', spec: '05~07 문장은 1.7. 두 줄 이상 흐르는 설명문 기준', token: 'line-height 1.7' },
+        { name: '압축 계열', spec: '08 메타 · 카드 안 보조 줄은 1.6, 배지는 1', token: '1.6 / 1' },
+        { name: '아이콘', spec: '본문 옆 15~18px, 버튼 안 16~20px, 원형 카테고리 22px. 글자 스케일과 별개', token: 'msym 15~22px' },
+        { name: '프로필 헤더', spec: '프로필명 20px/700(02) · 핸들 12px/#8265B9(08) · 유형 배지 12px/700(08) · 소개문 14px/#6F6879(06)', token: '20 / 12 / 14' },
+        { name: '금지', spec: '위 9단계와 4개 행간 밖의 값은 쓰지 않습니다. 새 크기가 필요하면 가장 가까운 토큰으로 대체', token: '—' }
+      ],
+      compRows: [
+        { name: '주요 버튼', spec: '보라 배경 · 흰 글씨 · 굵게. 화면당 하나' },
+        { name: '보조 버튼', spec: '흰 배경 · 회색 테두리. 취소는 글씨를 연보라 회색으로' },
+        { name: '상태 배지', spec: '진행 상태를 한 단어로. 색은 9장의 네 쌍만 사용' },
+        { name: '카운트 배지', spec: '남은 필수 개수. 목록 오른쪽 끝 빨간 원, 0이면 숨김' },
+        { name: '선택 칩', spec: '고른 값 표시 + ✕ 제거. 드롭다운 아래에 나열' }
+      ],
+      modalRows: [
+        { name: '덮개', spec: '화면 전체를 덮는 보라진 검정', token: 'rgba(28,20,52,0.5)' },
+        { name: '모달 카드', spec: '흰 배경 · 모서리 20px · 안쪽 24/26px · 그림자', token: '20px / 0 24px 60px' },
+        { name: '넓이', spec: '확인 392 · 입력 560 · 목록 · 카드 그리드 620~760', token: 'max-width 392~760px' },
+        { name: '제목', spec: '상단 카테고리(11.5) → 제목 19px/700 → 안내 13px/#6F6879', token: '19px / 700' },
+        { name: '닫기', spec: '우상단 ✕ 32×32px. 별도 글자 없음', token: '32px / #8D8399' },
+        { name: '요약 박스', spec: '보내기 전 고른 값을 문장으로 한 번 더 보여줍니다', token: '#FAF9FC / 12px' },
+        { name: '버튼 줄', spec: '오른쪽 정렬 · 보조 → 주요 순 · 모서리 10px', token: 'min-width 82px' },
+        { name: '검증', spec: '빈 필수값은 보내기 시 토스트로 막고 모달은 닫지 않습니다', token: '토스트 안내' }
+      ],
+      stateBadges: [
+        ['요청 중', '#96681a', '#fdf6e9'], ['참여 확정', '#3f8460', '#eef7f1'],
+        ['거절', '#b0405c', '#fbeef0'], ['만료', '#77727e', '#f2f0f6'], ['취소함', '#77727e', '#f2f0f6']
+      ].map(([label, fg, bg]) => ({
+        label,
+        style: 'font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; color: ' + fg + '; background: ' + bg
+      })),
+      tabRows: [
+        { name: '탭(사각 칩)', spec: '목록을 가르는 용도. 고른 것은 연보라 배경 + 보라 테두리', token: '9px / #EEE8FA / #6846DB' },
+        { name: '탭 카운트', spec: '라벨 뒤 숫자. 고른 탭은 보라, 나머지는 회색', token: '11.5px / #A49CB1' },
+        { name: '선택 칩(둥근)', spec: '조건을 고르는 용도. 고르면 보라를 꽉 채움', token: '999px / #6846DB' },
+        { name: '복수 선택', spec: '「무관 · 전체」는 단독 선택 — 고르면 나머지가 풀립니다', token: '배타 규칙' },
+        { name: '상태 배지', spec: '진행 중 · 대기는 주황, 완료 · 확정은 초록, 실패 · 거절은 빨강, 끝난 것은 회색', token: '11.5px / 700 / 6px' },
+        { name: '색 짝', spec: '글자 #96681A·#3F8460·#B0405C·#77727E ↔ 배경 #FDF6E9·#EEF7F1·#FBEEF0·#F2F0F6', token: '고정 쌍' },
+        { name: '필터 드롭다운', spec: '선택지가 4개를 넘거나 라벨이 길면 칩 대신 드롭다운', token: '칩 ≤ 4개' }
+      ],
+      tableRows: [
+        { name: '표 헤더', spec: '12.5~14px · #8D8399 · 아래 구분선 1px', token: '#EEEEEE' },
+        { name: '숫자 열', spec: '오른쪽 정렬 · 천 단위 쉼표 · 줄바꿈 없음', token: 'text-align right' },
+        { name: '금액 열', spec: '오른쪽 정렬 · 굵게 · ₩ 기호 포함', token: '700 / #3D3748' },
+        { name: '좌우 스크롤', spec: '표는 최소 폭을 주고 바깥 상자에서만 스크롤', token: 'min-width 760px' },
+        { name: '페이지', spec: '10 · 20 · 50명. 표 위와 아래 양쪽에 이동 버튼', token: '기본 10' },
+        { name: '날짜 입력', spec: '일반 입력창과 같은 테두리 · 모서리. 기간은 시작~종료 두 칸', token: 'type=date / 10px' },
+        { name: '기간 규칙', spec: '종료일이 시작일보다 빠르면 ⚠ 경고 문구 + 저장 차단', token: '#B0405C' },
+        { name: '빈 상태', spec: '점선 테두리 박스 + 「무엇이 없다 + 어떻게 채운다」 한 문장', token: '1.5px dashed #E2DDEB' },
+        { name: '토스트', spec: '딥퍼플 배경 · 흰 글씨 · 하단 중앙 · 약 2초. 성공·실패 모두 같은 모양', token: '#2A1F4D / 11px' }
+      ],
+      flowRows: [
+        { name: '수익형 EARN', spec: '내가 돈을 받는 캐페인(IP판매 · 사용권 판매 · 항목 제공). 새록 계열', token: '#E9F4EE / #3F8460' },
+        { name: '지원형 SPEND', spec: '내가 돈을 쓰는 캐페인(향보 · 퀵오더 · 콜라보 · IP 구매). 보라 계열', token: '#F3EFFC / #5836C4' },
+        { name: '이미지 위', spec: '커버 · 사진 위에 엉을 대에는 반투명 배경 + 흰 글자', token: 'rgba(...,0.92) / #fff' },
+        { name: '보조 라벨', spec: '카드에는 「IP · Earn」처럼 소유자 유형과 한 쌍으로', token: '12px / 700' },
+        { name: '금지', spec: 'EARN에 보라, SPEND에 녹색을 쓰지 않습니다. 색이 역할을 뒤바꿍니다', token: '—' }
+      ],
+      statusBadges: [
+        ['모집 중', '#3f8460', '#e9f4ee'], ['상시', '#3f8460', '#e9f4ee'],
+        ['심사 중', '#96681a', '#f8f2e6'], ['요청 중', '#96681a', '#fdf6e9'], ['검수 대기', '#96681a', '#f8f2e6'],
+        ['진행 중', '#5836c4', '#f3effc'], ['참여 확정', '#3f8460', '#eef7f1'], ['정산 완료', '#3f8460', '#eef7f1'],
+        ['반려 · 거절', '#b0405c', '#fbeef0'], ['마감 · 종료', '#77727e', '#f2f0f6']
+      ].map(([label, fg, bg]) => ({
+        label,
+        style: 'font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; color: ' + fg + '; background: ' + bg
+      })),
+      statusRows: [
+        { name: '모집 계열', spec: '모집 중 · 상시 · 섭외 가능 — 지금 들어오면 되는 상태', token: '새록' },
+        { name: '대기 계열', spec: '심사 중 · 요청 중 · 검수 대기 — 상대의 답을 기다리는 상태', token: '주황' },
+        { name: '진행 계열', spec: '진행 중은 보라, 끝난 것(확정 · 정산 완료)은 새록', token: '보라 / 새록' },
+        { name: '실패 계열', spec: '반려 · 거절 · 지급 실패 — 사유를 항상 같이 보여줍니다', token: '빨강' },
+        { name: '종료 계열', spec: '마감 · 종료 · 취소 · 만료 — 더 할 일이 없는 상태', token: '회색' },
+        { name: '금지', spec: '같은 단어를 화면마다 다른 색으로 쓰지 않습니다. 새 상태는 다섯 계열 중 하나에 및어 넣습니다', token: '5계열' }
+      ],
+      moneyRows: [
+        { name: '기본 표기', spec: '통화기호 + 천 단위 쉼표. 소수점은 표시하지 않습니다', token: '₩7,100,000' },
+        { name: '통화', spec: '입력 통화는 ₩ · $ · ¥ · €. 예시금 · 수수료 · 정산은 항상 원화 환산 기준', token: '₩ 기준' },
+        { name: '보낼 때', spec: '큰 수치는 20px/700, 표 안의 금액은 12.5~14px/700 오른쪽 정렬', token: '20 / 14' },
+        { name: '색', spec: '일반 금액은 검정, 들어올 돈 · 사용 가능액은 새록, 마이너스 · 부족액은 빨강', token: '#27252F / #3F8460 / #B0405C' },
+        { name: '마이너스', spec: '괄호 대신 옆에 − 기호. “부족 ₩620,000” 같은 말부터 씩니다', token: '−₩620,000' },
+        { name: '단가 · 지표', spec: '단위는 금액 뒤에 줄임해 붙입니다 — “₩1,200 / 100클릭”', token: '· 구분' },
+        { name: '숫자 폭', spec: '숫자가 바뀌며 흔들리는 자리는 숫자 폭 고정', token: 'tabular-nums' },
+        { name: '무료 · 미정', spec: '0원은 ₩0 이 아니라 「무가」 · 「미입력」으로 적습니다', token: '말로 표기' }
+      ],
+      errorRows: [
+        { name: '상자 에러', spec: '화면 상태를 설명하는 에러는 아이콘 + 한 문장 상자', token: '#FDF3F4 / #F0D9E0' },
+        { name: '주의 · 안내', spec: '주의는 모래색, 정책 안내는 보라 상자', token: '#FDF9F0 / #F6F1FB' },
+        { name: '입력 에러', spec: '해당 입력창 테두리를 빨강으로 바꾸고 아래에 한 줄로 이유', token: '#B0405C / 11.5px' },
+        { name: '단숭 토스트', spec: '저장 · 보내기를 막을 때는 토스트 한 줄로. 모달은 닫지 않습니다', token: '딥퍼플' },
+        { name: '잠김 상태', spec: '권한·심사 때문에 모든 것이 잠길 때는 보라 상자로 이유 + 해제 방법', token: '#F6F1FB' },
+        { name: '금지', spec: '단지 바꿀 수 없단 이야기만 적는 문구 — 항상 다음 행동을 쓴다', token: '—' }
+      ],
+      layoutRows: [
+        { name: '카드', spec: '흰 배경 · 테두리 1px · 모서리 16px · 안쪽 22/24px', token: '#E8E5ED / 16px' },
+        { name: '작은 카드', spec: '목록 행 · 칩 카드', token: '13px / 12~15px' },
+        { name: '카드 사이', spec: '세로 간격', token: 'gap 14~16px' },
+        { name: '본문 폭', spec: '사이드바 ↔ 에이전트 패널 사이를 가득 채움', token: '좌우 여백 8px · max-width 없음' },
+        { name: '입력 열 폭', spec: '짧은 입력은 본문 절반', token: 'max-width 380~620px' },
+        { name: '모서리', spec: '카드 16px · 입력 10px · 버튼 9px · 칩 999px', token: '16 / 10 / 9' },
+        { name: '폼 안내 문구', spec: '모든 안내 문구는 14px · line-height 1.7. 제목 아래 설명은 #6F6879, 라벨·입력 아래 설명은 #8D8399. 12px 이하는 칩 · 배지 · 메타에만', token: '14px / 1.7' },
+        { name: '프로필 헤더', spec: '모든 프로필에 같은 규칙. 계정 프로필은 커버 오른쪽, 프로젝트 프로필은 커버 왼쪽', token: 'min-height 180px / 모서리 20px' },
+        { name: '헤더 커버', spec: '커버 열은 고정 폭, 헤더 높이를 꽉 채움. 880px 이하는 위로 쌓고 16:9', token: '280px (→200px) / height 100%' },
+        { name: '커버 이미지 규격', spec: '업로드 권장 크기 · 최대 3장이면 세로 3등분', token: '720×720 이상' },
+        { name: '커버 오버레이', spec: '유형 배지는 좌상단, 커버 편집은 우하단. 좁은 폭에서 아이콘만', token: 'top/bottom 10px' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

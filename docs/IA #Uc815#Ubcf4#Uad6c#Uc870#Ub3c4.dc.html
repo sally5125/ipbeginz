@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #faf9fc; }
+  * { box-sizing: border-box; }
+  body { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; color: #27252f; -webkit-font-smoothing: antialiased; }
+  a { color: #6846db; text-decoration: none; }
+  a:hover { color: #4f31b4; }
+  button { font-family: inherit; border: 0; background: none; cursor: pointer; color: inherit; }
+  .msym { font-family: "Material Symbols Outlined"; font-weight: normal; font-style: normal; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24; }
+  .iascroll { overflow-x: auto; padding-bottom: 8px; }
+  .iarow { display: grid; grid-template-columns: 172px repeat(5, minmax(0, 1fr)); gap: 12px; align-items: start; min-width: 1520px; }
+</style>
+</helmet>
+<div style="max-width: 1720px; margin: 0 auto; padding: 40px 34px 80px">
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 26px">
+    <div>
+      <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; margin-bottom: 8px">INFORMATION ARCHITECTURE · DEPTH MAP</div>
+      <h1 style="font-size: 25px; margin: 0 0 8px; letter-spacing: -0.035em; font-weight: 700; color: #27252f">IPBeginz 정보 구조도</h1>
+      <p style="margin: 0; font-size: 13.5px; color: #6f6879; max-width: 760px; line-height: 1.7">구현된 <b style="color: #4c455a">IPBeginz Web</b>을 기준으로 {{ shapeText }}으로 정리했습니다. 점선 노드는 아직 없는 화면 — 여기를 채워 나갑니다. <b style="color: #4c455a">실선 노드를 클릭하면 그 상태 그대로 화면이 열립니다</b> (필터 · 탭 · 단계까지 반영).</p>
+    </div>
+    <div style="display: flex; gap: 9px; flex-wrap: wrap">
+      <a href="IPBeginz Web.dc.html" style="display: flex; align-items: center; gap: 6px; border: 1px solid #dad6e1; border-radius: 10px; padding: 10px 16px; min-width: 82px; font-size: 13px; color: #4c455a; background: #fff; white-space: nowrap">
+        <span class="msym" style="font-size: 17px">arrow_back</span>
+        <span>웹 화면으로</span>
+      </a>
+      <a href="기획문서.dc.html" style="display: flex; align-items: center; gap: 6px; background: #6846db; color: #fff; border-radius: 10px; padding: 10px 16px; min-width: 82px; font-size: 13px; font-weight: 700; white-space: nowrap">
+        <span class="msym" style="font-size: 17px">description</span>
+        <span>기획문서</span>
+      </a>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 22px">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 12px; padding: 14px 16px">
+        <div style="font-size: 11.5px; color: #8d8399">{{ s.label }}</div>
+        <div style="{{ s.valueStyle }}">{{ s.value }}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; background: #fff; border: 1px solid #e8e5ed; border-radius: 14px; padding: 14px 18px; margin-bottom: 8px">
+    <sc-for list="{{ legend }}" as="l" hint-placeholder-count="4">
+      <div style="display: flex; align-items: center; gap: 8px">
+        <span style="{{ l.swatch }}"></span>
+        <span style="font-size: 12.5px; color: #4c455a; white-space: nowrap">{{ l.label }}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="font-size: 11.5px; color: #9b90ab; margin: 0 0 18px; padding-left: 2px">DEPTH 0 · 앱 셸(시안 B): 딥퍼플 상단 바(로고 · ＋만들기 · 알림 · 스타/루비 · 도움말 · 요금제 · 마이) + 페이지 띠(경로 · 페이지명 · 액션) + 흰 레일 + 서브내비 255px + 본문(좌우 8px) + 우측 AI · 템플릿 패널</div>
+
+  <div class="iascroll">
+  <div class="iarow" style="margin-bottom: 12px">
+    <span></span>
+    <sc-for list="{{ depths }}" as="d" hint-placeholder-count="5">
+      <div style="font-size: 11px; letter-spacing: 0.14em; color: #9b90ab; font-weight: 700; padding-left: 2px">{{ d }}</div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; flex-direction: column">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="9">
+      <div class="iarow" style="border-top: 1px solid #e5deed; padding: 22px 0">
+        <div style="display: flex; align-items: flex-start; gap: 9px; padding-top: 2px">
+          <span class="msym" style="font-size: 20px; color: #6846db; flex-shrink: 0">{{ g.glyph }}</span>
+          <div style="min-width: 0">
+            <div style="font-size: 14px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.4">{{ g.title }}</div>
+            <div style="font-size: 11.5px; color: #9b90ab; margin-top: 4px; line-height: 1.5">{{ g.rail }}</div>
+          </div>
+        </div>
+        <sc-for list="{{ g.columns }}" as="col" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{ col }}" as="n" hint-placeholder-count="2">
+              <a href="{{ n.href }}" style="{{ n.style }}">
+                <span style="display: flex; align-items: flex-start; gap: 7px; width: 100%">
+                  <span style="{{ n.titleStyle }}">{{ n.title }}</span>
+                  <sc-if value="{{ n.linked }}" hint-placeholder-val="{{ true }}">
+                    <span class="msym" style="{{ n.arrowStyle }}">open_in_new</span>
+                  </sc-if>
+                </span>
+                <sc-if value="{{ n.desc }}" hint-placeholder-val="{{ true }}">
+                  <span style="{{ n.descStyle }}">{{ n.desc }}</span>
+                </sc-if>
+              </a>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+  </div>
+
+  <div style="margin-top: 40px; border-top: 2px solid #e5deed; padding-top: 26px">
+    <div style="display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin-bottom: 16px">
+      <div>
+        <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; font-weight: 700; margin-bottom: 6px">BACKLOG</div>
+        <h2 style="font-size: 20px; margin: 0; letter-spacing: -0.03em">채워 나갈 화면</h2>
+      </div>
+      <span style="font-size: 12.5px; color: #8d8399; margin-bottom: 3px">SPEC.md 기준으로 아직 구현되지 않은 화면을 영역별로 묶었습니다. 위 구조도의 점선 노드와 같은 목록입니다.</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px">
+      <sc-for list="{{ backlog }}" as="b" hint-placeholder-count="4">
+        <div style="background: #fff; border: 1px solid #e8e5ed; border-radius: 14px; padding: 16px 18px">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px">
+            <span class="msym" style="font-size: 18px; color: #6846db">{{ b.glyph }}</span>
+            <span style="font-size: 13.5px; font-weight: 700; letter-spacing: -0.02em">{{ b.title }}</span>
+            <span style="font-size: 11px; color: #9b90ab; margin-left: auto">{{ b.count }}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{ b.items }}" as="i" hint-placeholder-count="3">
+              <div style="display: flex; gap: 8px; align-items: flex-start">
+                <span style="width: 5px; height: 5px; border-radius: 99px; background: #cfc6dd; flex: none; margin-top: 7px"></span>
+                <div style="min-width: 0">
+                  <div style="font-size: 12.5px; font-weight: 500; line-height: 1.45">{{ i.title }}</div>
+                  <div style="font-size: 11.5px; color: #9b90ab; margin-top: 3px; line-height: 1.5">{{ i.desc }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const W = 'IPBeginz Web.dc.html#';
+
+/* [title, desc, kind, hash]  kind: rail | built | doc | gap */
+const G = [
+  { glyph: 'login', title: '진입 · 인증', rail: '로그인 전 · 전체 화면 (레일 없음)', cols: [
+    [['가입 · 로그인', '좌측 브랜드 패널 + 우측 폼 · 좁은 화면은 폼만', 'rail', 'view=auth']],
+    [['로그인', '소셜 9종 · 로그인 상태 유지', 'built', 'view=auth'],
+     ['회원가입 STEP 1 · 가입 방식', '소셜 9종만 · 이메일 가입 없음', 'built', 'view=auth']],
+    [['STEP 2 · 개인 / 사업자', '가입 주체 선택이 이후 입력 항목을 바꿈', 'built', 'view=auth'],
+     ['STEP 3 · 기본정보 · 인증', '이메일 · 계정 이름 · 휴대폰 본인인증 · 사업자 정보', 'built', 'view=auth'],
+     ['STEP 4 · 소셜 연결', '채널 계정 연결 또는 주소만 등록 · 선택', 'built', 'view=auth']],
+    [['휴대폰 본인인증', '국가번호 선택 → 번호 입력 → 인증번호 받기', 'built', 'view=auth'],
+     ['사업자 정보 입력', '국가 · 유형 · 상호 · Tax ID · 대표자', 'built', 'view=auth'],
+     ['STEP 5 · 약관 · KYC', '전체동의 + 약관 5종 · 정산용 KYC', 'built', 'view=auth']],
+    [['인증번호 6자리 확인', '완료 전에는 다음 단계가 잠김', 'built', 'view=auth'],
+     ['가입 완료 · 다음 할 일', '프로젝트 프로필 만들기 / 대시보드 분기', 'built', 'view=auth'],
+     ['인증 심사 상태', '검토 중 · 승인 · 반려 사유 · 재제출', 'gap', ''],
+     ['초대로 가입', '팀 · 파트너 초대 링크 수락', 'gap', '']]
+  ]},
+  { glyph: 'space_dashboard', title: '대시보드 · 성과', rail: '레일 1 · 대시보드', cols: [
+    [['대시보드', '역할별 KPI · 기간 필터 30/90일 · 올해', 'rail', 'view=dash']],
+    [['현황 요약', '월별 커미션 · IP별 매출 비중', 'built', 'view=dash'],
+     ['처리 대기', '검수 · 승인 · 정산 · 만료 임박', 'built', 'view=dash'],
+     ['어필리에이트 성과 · 정산', '클릭 · 전환 · 커미션 · 정산 대기', 'built', 'view=affiliate']],
+    [['성과 상위 캠페인', '카드 클릭 → 캠페인 상세', 'built', 'view=campaign&campaign=dc-affiliate&ctab=overview'],
+     ['파트너별 성과 순위', '전환율 · 커미션 상위 파트너', 'built', 'view=affiliate'],
+     ['화면 구조도 (이 문서)', '', 'built', 'view=ia']],
+    [['캠페인 성과 탭', '노출 · 반응 · 전환 · 집행 예산', 'built', 'view=campaign&campaign=dc-affiliate&ctab=overview'],
+     ['기획문서', '정책 · 모델 · 개발 범위', 'doc', '']],
+    [['리포트 빌더 · 데이터피드', 'CSV · 웹훅 · 기간 비교', 'gap', ''],
+     ['원장 · 잔액 상세', '이중 잔액(수익/충전) · 거래 원장', 'gap', '']]
+  ]},
+  { glyph: 'home', title: '홈 · 소식', rail: '레일 2 · 홈', cols: [
+    [['홈 피드', '팔로우 · 공식 · 광고 소식 통합', 'rail', 'view=home&htab=all']],
+    [['전체', '모든 소식 카드', 'built', 'view=home&htab=all'],
+     ['플랫폼 공식', 'IPBeginz 공지 · 기획전', 'built', 'view=home&htab=official'],
+     ['광고 중인 소식', '부스팅된 캠페인 소식', 'built', 'view=home&htab=promoted'],
+     ['팔로우한 프로필', '구독 중인 IP · 브랜드', 'built', 'view=home&htab=following']],
+    [['계정 피드 탭', '내 프로필이 올린 소식', 'built', 'view=hub&tab=feed'],
+     ['계정 콘텐츠 탭', '자산 · 시리즈 · 접근 플랜별', 'built', 'view=hub&tab=content']],
+    [['소식 · 공지 올리기', '종류 · 프로필 · 캠페인 연결 · 예약', 'built', 'view=post'],
+     ['콘텐츠 올리기', '파일 · 자산 유형 · 접근 플랜 · 노출', 'built', 'view=upload']],
+    [['게시물 상세 · 반응', '좋아요 · 댓글 · 공유', 'gap', ''],
+     ['콘텐츠 열람 · 플랜 게이트', '다운로드 로그 · 플랜별 차단', 'gap', ''],
+     ['알림 센터', '캠페인 · 정산 · 승인 알림', 'gap', '']]
+  ]},
+  { glyph: 'explore', title: '마켓 · 검색', rail: '레일 3 · 마켓', cols: [
+    [['캠페인 마켓', '검색 + 상단 칩 + 좌측 필터 레일', 'rail', 'view=market']],
+    [['전체', 'IP 라이선스 + 캠페인 함께', 'built', 'view=market&mm=전체'],
+     ['IP 라이선스', '용도 · 지역 필터 · 라이선스 카드', 'built', 'view=market&mm=IP 라이선스'],
+     ['캠페인', '좌측 필터 + 캠페인 카드', 'built', 'view=market&mm=캠페인'],
+     ['필터 바 두 줄', '방향 · 세부 유형 / 사용분야 · 카테고리 · 국가 (⌄ 펼치기)', 'built', 'view=market&mm=전체']],
+    [['필터 1줄 · EARN', '방문자가 버는 쪽 — 개설자 지출형 캠페인', 'built', 'view=market&mflow=지출형'],
+     ['필터 1줄 · SPEND', '방문자가 쓰는 쪽 — 수익형 + IP 라이선스', 'built', 'view=market&mflow=수익형'],
+     ['필터 2줄 · 사용분야 · 세부 카테고리', 'IP · Brand · Creator + 카테고리 · 국가 드롭다운', 'built', 'view=market&mind=뷰티'],
+     ['레일 · 인증 · 신뢰', '저작권 등록 · 권리 증빙 · 신규 (AND)', 'built', 'view=market&mtrust=저작권 등록'],
+     ['레일 · 시딩', '유가 · 무가 시딩', 'built', 'view=market&mseed=무가 시딩']],
+    [['세부 유형 버튼 (EARN)', '2nd Licensing · 홍보 · 퀵오더 · PPL (건수 0도 표시)', 'built', 'view=market&mkind=홍보(마케팅)'],
+     ['세부 유형 버튼 (SPEND)', 'IP판매 · 2nd License · 크리에이터', 'built', 'view=market&mkind=IP판매'],
+     ['레일 · 개설 주체', 'IP · 브랜드 · 크리에이터', 'built', 'view=market&mown=크리에이터'],
+     ['레일 · 보상 방식', '고정 · 성과 · 고정 + 성과', 'built', 'view=market&mpay=성과'],
+     ['라이선스 용도 선택', '웹툰화 · 드라마 · 게임화 · 굿즈', 'built', 'view=market&licuse=웹툰화'],
+     ['모집 상태 · 집행 규모', '셀렉트 + 슬라이더 (레일 하단)', 'built', 'view=market&mm=캠페인']],
+    [['IP 사용권 상세', '용도 하나의 조건 · 기준가 · 계약 방식', 'built', 'view=license&lic=0'],
+     ['구매하기 팝업', '조건 고정 + 수수료 3% + 계약 방식 2택', 'built', 'view=license&lic=0'],
+     ['다른 2차 사용권', '같은 IP가 함께 파는 용도 카드', 'built', 'view=license&lic=1'],
+     ['캠페인 상세', '보상 · 조건 · 지원 · 추적 링크', 'built', 'view=campaign&campaign=dc-affiliate&ctab=overview'],
+     ['셀프 프로모션 상세', '활동 채널 · 실적 · 제공 업무', 'built', 'view=campaign&campaign=momo-service&ctab=overview'],
+     ['라이선스 라인 · 맞춤 견적', '프로필 프랜차이즈 탭에서 견적 팝업', 'built', 'view=profile&profile=demon-child&ptab=franchise'],
+     ['찜 · 비교', '저장 목록 · 조건 비교 표', 'gap', '']]
+  ]},
+  { glyph: 'campaign', title: '캠페인 운영', rail: '레일 3 · 마켓 / 레일 6 · 마이', cols: [
+    [['캠페인 관리', '내가 만든 · 참여 · 찜한 캠페인', 'rail', 'view=hub&tab=campaigns']],
+    [['만든 캠페인', '소유 캠페인 카드 + ⋯ 메뉴', 'built', 'view=hub&tab=campaigns&mfilter=만든 캠페인'],
+     ['참여 캠페인', '내 참여 상태 · 할 일', 'built', 'view=hub&tab=campaigns&mfilter=참여 캠페인'],
+     ['찜 · 팔로우', '저장한 캠페인 · 마감일', 'built', 'view=hub&tab=campaigns&mfilter=찜 · 팔로우']],
+    [['캠페인 상세 · 정보 탭', '설정 · 모집 조건 · 랜딩 · 프로모', 'built', 'view=campaign&campaign=dc-affiliate&ctab=overview'],
+     ['지원자 탭', '필터 · 검색 · 페이지 · 일괄 승인', 'built', 'view=campaign&campaign=dc-affiliate&ctab=applicants'],
+     ['내 참여 탭', '할 일 · 제출물 · 성과', 'built', 'view=campaign&campaign=np-remix&ctab=mine']],
+    [['지원자 · 승인 대기', '대기 전체 승인 · 행별 승인/반려', 'built', 'view=campaign&campaign=dc-affiliate&atab=승인 대기'],
+     ['지원자 · 승인됨', '전용 추적 링크 자동 발급', 'built', 'view=campaign&campaign=dc-affiliate&atab=승인됨'],
+     ['지원자 · 반려', '반려 사유 기록', 'built', 'view=campaign&campaign=dc-affiliate&atab=반려']],
+    [['성과 예측 · 집행 예산', '승인 인원 변경 시 즉시 재계산', 'built', 'view=campaign&campaign=dc-affiliate&ctab=applicants'],
+     ['파트너별 발급 현황', '링크 · 프로모 코드 발급 상태', 'built', 'view=campaign&campaign=dc-affiliate&ctab=overview'],
+     ['시딩 검수', '제출물 · 가이드 위반 체크 · 승인', 'gap', ''],
+     ['지원 · 오퍼 협상', '지원서 · 역제안 · Term Sheet', 'gap', '']]
+  ]},
+  { glyph: 'add_circle', title: '캠페인 만들기', rail: '레일 3 · 마켓 (폼 화면)', cols: [
+    [['캠페인 만들기', '3단계 폼 · 프로필 선택으로 시작', 'rail', 'view=newcampaign&ncstep=0']],
+    [['프로필 선택', '어느 프로젝트 프로필에서 만들지', 'built', 'view=newcampaign&ncstep=0'],
+     ['STEP 1 · 목적 · 내용', '방향(수익/지출) · 세부 유형 · 직접 입력', 'built', 'view=newcampaign&ncstep=0']],
+    [['STEP 2 · 조건 · 보상', '시딩 구분 · 보상 방식 · 모집 인원', 'built', 'view=newcampaign&ncstep=1'],
+     ['사용할 IP · 권리', '내 보유 IP / 구매한 권리 (지출형만 2탭)', 'built', 'view=newcampaign&ncstep=0'],
+     ['마켓 분류 · 태그 · 썸네일', '마켓 카드에 쓰이는 정보', 'built', 'view=newcampaign&ncstep=1']],
+    [['유가 시딩 · 보상 입력', '고정 / 성과 / 고정 + 성과 + 1인 상한', 'built', 'view=newcampaign&ncstep=1'],
+     ['무가 시딩 · 제공물 입력', '제공물 · 수량 · 전달 방식', 'built', 'view=newcampaign&ncstep=1'],
+     ['타겟층 설정', '연령 · 성별 · 관심사 · 채널 · 최소 팔로워', 'built', 'view=newcampaign&ncstep=1'],
+     ['IP판매 · 매매권 · 운영권 추가', '권리 종류 + 등록번호 + 증빙 (그룹별 추가)', 'built', 'view=newcampaign&ncstep=1'],
+     ['IP판매 · 인도할 원본 자산', '비공개 · 결제 후 공개 · 마켓에는 건수만', 'built', 'view=newcampaign&ncstep=1'],
+     ['집행 · 성과 확인 방법', 'URL 제출 · 채널 연결 · UTM · 캡처', 'built', 'view=newcampaign&ncstep=1']],
+    [['STEP 3 · 검토 · 게시', '수수료 요약 · 예치금 게이트', 'built', 'view=newcampaign&ncstep=2'],
+     ['예치금 부족 → 충전', '부족액이 미리 입력된 지갑 충전', 'built', 'view=wallet&wtab=topup'],
+     ['마켓 노출 미리보기', '게시 전 카드 모양 확인', 'built', 'view=newcampaign&ncstep=2']]
+  ]},
+  { glyph: 'inbox', title: '인박스', rail: '레일 4 · 인박스', cols: [
+    [['인박스', '받은 요청 · 보낸 요청 · 진행 중 · 계약 · 저장함 (요약 카드 4)', 'rail', 'view=work&wktab=received']],
+    [['받은 요청', '내 캠페인에 온 지원(승인 대기) + 내 프로필로 온 섭외 제안(수랭 · 거절)', 'built', 'view=work&wktab=received'],
+     ['보낸 요청', '내가 지원한 캠페인 + 내가 보낸 섭외 제안', 'built', 'view=work&wktab=sent'],
+     ['진행 중', '종료되지 않은 계약 + 「다음에 할 일」', 'built', 'view=work&wktab=active'],
+     ['계약', '계약 6종 · 판/산 · 유형 필터', 'built', 'view=work&wktab=contracts'],
+     ['저장함', '북마크한 캠페인 · 사용권', 'built', 'view=work&wktab=saved'],
+     ['구매한 권리', '내가 산 사용권 (계정에서 이동)', 'built', 'view=work&wktab=rights'],
+     ['공유됨', '공동 운영 · 권한 위임 (계정에서 이동)', 'built', 'view=work&wktab=shared']],
+    [['계약 상세', '범위 · 지급 내역 · 계약서 · 지갑 연결', 'gap', ''],
+     ['만료 임박 알림 · 갱신', '기간 종료 전 재계약 유도', 'gap', ''],
+     ['분쟁 · 조정 신슭', '이행 무산 · 낙품 분쟁', 'gap', '']]
+  ]},
+  { glyph: 'folder_special', title: '프로젝트 프로필', rail: '레일 6 · 마이', cols: [
+    [['프로젝트 프로필 목록', '유형 필터 · 프로필 카드', 'rail', 'view=hub&tab=projects']],
+    [['IP 프로필 (캐릭터 · 스토리)', '데몬 차일드 · 정보 탭', 'built', 'view=profile&profile=demon-child&ptab=info'],
+     ['인물 IP 프로필', '서하린 · 라이선스 탭', 'built', 'view=profile&profile=seo-harin&ptab=franchise'],
+     ['브랜드 프로필', '달빛서고 라이선싱 · 판권 관리', 'built', 'view=profile&profile=moonlight-brand&ptab=info'],
+     ['크리에이터 프로필', '모모 · 라이브 커머스', 'built', 'view=profile&profile=momo&ptab=info']],
+    [['정보 · 소개 · 권리', '기본 정보 + 권리 증빙 요약', 'built', 'view=profile&profile=demon-child&isec=basic'],
+     ['세계관 · 캐릭터', '설정 문서 · 캐릭터 시트', 'built', 'view=profile&profile=demon-child&isec=world'],
+     ['가이드라인', '활용 규칙 · 금지 사항', 'built', 'view=profile&profile=demon-child&isec=guide'],
+     ['견적 · 권리 조건', '라이선스 견적 조립 화면', 'built', 'view=profile&profile=demon-child&isec=deal']],
+    [['프랜차이즈 · 라이선스 탭', '용도별 라인 · 국가 · 기간 · 독점 + 활성화 스위치', 'built', 'view=profile&profile=demon-child&ptab=franchise'],
+     ['자료 올리기', '다중 파일 · 소재 종류 7종 · 접근 등급 · 캠페인 연결 · 권리 확인', 'built', 'view=docupload'],
+     ['자료 · 소재함 탭', '공개 / 캠페인 한정 / 비공개 + 연결된 캠페인 + 검색 · 정렬', 'built', 'view=profile&profile=demon-child&ptab=docs'],
+     ['자산 탭', '권리 배지 + 사용권 금액 + 「＋ 자산 등록」', 'built', 'view=profile&profile=demon-child&ptab=assets'],
+     ['이 프로필의 캠페인', '프로필 소속 캠페인 관리', 'built', 'view=profile&profile=demon-child&ptab=campaigns'],
+     ['프로필 피드 · 창작 자료', '소식 · 2차 창작용 파일', 'built', 'view=profile&profile=demon-child&ptab=feed']],
+    [['프랜차이즈 권한 조건 설정', '권한 38종 · 6그룹 · 판매 방식 · 3단 상속 · 검증 V1~V5', 'built', 'view=rights'],
+     ['자산 등록 폼', '파일 · 자산 유형 · 접근 플랜 · 노출', 'built', 'view=assetupload'],
+     ['맞춤 견적 팝업', '지역 · 기간 · 독점 · 추가 조항 (기준가 15%)', 'built', 'view=profile&profile=demon-child&ptab=franchise'],
+     ['계약 체결 (디지털 / 직접)', '확인 체크가 서명을 갈음', 'built', 'view=profile&profile=demon-child&ptab=franchise'],
+     ['새 프로젝트 프로필 만들기', '6단계 · 유형 → 게시', 'built', 'view=create&step=type'],
+     ['프로필 심사 · 온보딩', '제출 → 심사중 → 승인 / 반려', 'gap', ''],
+     ['IP 자산 · 가이드 편집기', '열람 등급 · 라이선스 매트릭스', 'gap', '']]
+  ]},
+  { glyph: 'account_balance_wallet', title: '지갑 · 정산', rail: '레일 6 · 마이', cols: [
+    [['지갑', '예치금 · 루비 · 스타 · 정산', 'rail', 'view=wallet&wtab=balance']],
+    [['잔액 · 예치금', '사용 가능 / 캠페인에 묶인 금액', 'built', 'view=wallet&wtab=balance'],
+     ['충전 · 구매', '카드 · 실시간 계좌이체 · 가상계좌', 'built', 'view=wallet&wtab=topup'],
+     ['주문 · 인보이스', '결제 내역 · 세금계산서', 'built', 'view=wallet&wtab=orders'],
+     ['정산 · 출금', '출금 가능액 · 원천징수', 'built', 'view=wallet&wtab=payout']],
+    [['루비 팩 구매', 'AI 크레딧 · 보너스 구간', 'built', 'view=wallet&wtab=topup'],
+     ['스타 팩 구매', '후원 크레딧 · 환불 불가', 'built', 'view=wallet&wtab=topup'],
+     ['구매한 권리', '범위 · 기간 · 만료', 'built', 'view=work&wktab=rights']],
+    [['캠페인 예치금 묶임 내역', '게시 시 차감 · 마감 시 환불', 'built', 'view=wallet&wtab=balance'],
+     ['요금제 · 플랜', 'Free / Pro / Business', 'built', 'view=plan']],
+    [['출금 신청', '계좌 · 세금 서류 · 처리 상태', 'gap', ''],
+     ['세금계산서 · 영수증', '발행 · 수신 · 이용료 명세', 'gap', ''],
+     ['조기 정산', '성과 확정 전 출금 수수료 2~3%', 'gap', '']]
+  ]},
+  { glyph: 'chat_bubble', title: 'AI · 템플릿', rail: '레일 5 · 채팅 (우측 패널 상시)', cols: [
+    [['AI 에이전트', '프로필별 에이전트 · 루비 차감', 'rail', 'view=dash&panel=agent']],
+    [['대화 목록', '날짜별 · 프로필별 · 제목 수정', 'built', 'view=chat'],
+     ['템플릿 패널', '카테고리 6종 · 카드 11종', 'built', 'view=dash&panel=template']],
+    [['추천 질문 · 응답', '표준 5 · 정밀 15 · 빠름 2 루비', 'built', 'view=dash&panel=agent'],
+     ['템플릿 카드 상세보기', '조건이 채워진 초안 열기', 'built', 'view=selfpromo&panel=template']],
+    [['템플릿 카드 상세설정', '채널 연동 · 단가 · 체크리스트', 'built', 'view=selfpromo'],
+     ['내 캠페인에 추가', '캠페인 관리로 이동', 'built', 'view=hub&tab=campaigns']],
+    [['루비 사용 로그', '요청별 소모량 · 잔량 경고', 'gap', ''],
+     ['문의 인박스', 'AI 응답 → 담당자 핸드오프', 'gap', '']]
+  ]},
+  { glyph: 'settings', title: '계정 · 설정', rail: '레일 6 · 마이', cols: [
+    [['계정 설정', '3개 그룹 · 12개 섹션', 'rail', 'view=settings&sgroup=auth']],
+    [['설정 · 인증 그룹', '본인 · 사업자 · KYC · 정산 · 결제 · 보안', 'built', 'view=settings&sgroup=auth'],
+     ['환경 · 지원 그룹', '언어 · 지역 · 알림 · 개인정보 · 문의', 'built', 'view=settings&sgroup=env'],
+     ['계정 관리 그룹', '프로필 편집 · 플랜 · 탈퇴', 'built', 'view=settings&sgroup=account']],
+    [['본인 인증', '국가 · 번호 · 인증 수단 · 인증일', 'built', 'view=settings&sgroup=auth&stab=identity'],
+     ['사업자 정보', '서류 제출 · 심사 상태', 'built', 'view=settings&sgroup=auth&stab=business'],
+     ['KYC 인증', '신분증 · 거주 증빙 · 세금 서류', 'built', 'view=settings&sgroup=auth&stab=kyc'],
+     ['정산 계좌 · 세금', '계좌 변경 시 3일 출금 보류', 'built', 'view=settings&sgroup=auth&stab=payout'],
+     ['보안 · 로그인', '소셜 연결 · 세션 · 2단계', 'built', 'view=settings&sgroup=auth&stab=security']],
+    [['번호 변경 · 재인증', '국가 → 새 번호 → 인증번호 받기', 'built', 'view=settings&sgroup=auth&stab=identity'],
+     ['서류 업로드', '사업자등록증 · 통장 사본', 'built', 'view=settings&sgroup=auth&stab=business'],
+     ['결제 수단 · 구독', '카드 등록 · 플랜 결제', 'built', 'view=settings&sgroup=auth&stab=billing'],
+     ['프로필 편집', '이름 · 아이디 · 소개 · 공개 범위', 'built', 'view=edit']],
+    [['인증번호 6자리 확인 → 저장', '인증 완료 전 저장 잠김 · 3일 출금 보류', 'built', 'view=settings&sgroup=auth&stab=identity'],
+     ['섹션별 변경 이력', '본인 · 사업자 · 정산 · 보안 로그', 'built', 'view=settings&sgroup=auth&stab=identity'],
+     ['팀 계정 · 권한', 'Business 전용 · 역할별 접근', 'gap', ''],
+     ['회원 탈퇴', '보류 거래 · 보관 데이터 안내', 'gap', '']]
+  ]}
+];
+
+const BACKLOG = [
+  { glyph: 'login', title: '계정 · 온보딩', items: [
+    ['인증 심사 상태', '검토 중 · 승인 · 반려 사유 · 재제출'],
+    ['초대로 가입', '팀 · 파트너 초대 링크 수락'],
+    ['프로필 심사 · 온보딩', '제출 → 심사중 → 승인 / 반려 상태 화면'],
+    ['팀 계정 · 권한', 'Business 플랜 · 역할별 접근 제어'],
+    ['회원 탈퇴', '보류 거래 · 보관 데이터 안내']
+  ]},
+  { glyph: 'handshake', title: '거래 · 계약', items: [
+    ['지원 · 오퍼 협상', '지원서 · 역제안 · Term Sheet 비교'],
+    ['시딩 검수', '제출물 · 가이드 위반 체크 · 승인/반려'],
+    ['보유 라이선스 · 로열티', 'D-day · 로열티 리포트 · 2차창작물 승인'],
+    ['찜 · 비교', '저장 목록 · 조건 비교 표']
+  ]},
+  { glyph: 'account_balance', title: '정산 · 파이낸스', items: [
+    ['원장 · 잔액 상세', '수익/충전 이중 잔액 · 거래 원장'],
+    ['출금 신청', '계좌 · 세금 서류 · 처리 상태'],
+    ['세금계산서 · 영수증', '발행 · 수신 · 플랫폼 이용료 명세'],
+    ['조기 정산', '성과 확정 전 출금 수수료 2~3%'],
+    ['리포트 빌더 · 데이터피드', 'CSV · 웹훅 · 기간 비교'],
+    ['루비 사용 로그', '요청별 소모량 · 잔량 경고']
+  ]},
+  { glyph: 'inventory', title: 'IP 자산 · 소식', items: [
+    ['IP 자산 · 가이드 편집기', '열람 등급 · 라이선스 매트릭스'],
+    ['게시물 상세 · 반응', '좋아요 · 댓글 · 공유'],
+    ['콘텐츠 열람 · 플랜 게이트', '다운로드 로그 · 플랜별 차단'],
+    ['알림 센터', '캠페인 · 정산 · 승인 알림'],
+    ['문의 인박스', 'AI 응답 → 담당자 핸드오프']
+  ]}
+];
+
+const TITLE = 'display: block; flex: 1 1 auto; min-width: 0; font-size: 13px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.4; color: ';
+const DESC = 'display: block; font-size: 11.5px; margin-top: 6px; line-height: 1.55; color: ';
+
+const ST = {
+  rail: { box: 'background: #2a1f4d; border: 1px solid #2a1f4d', title: TITLE + '#fff', desc: DESC + '#c5bada', arrow: '#a996d4' },
+  built: { box: 'background: #fff; border: 1px solid #e2ddeb', title: TITLE + '#27252f', desc: DESC + '#8d8399', arrow: '#b3a8c4' },
+  doc: { box: 'background: #f3effc; border: 1px solid #ddd0f5', title: TITLE + '#5836c4', desc: DESC + '#8a76b8', arrow: '#a992dd' },
+  gap: { box: 'background: #faf9fc; border: 1.5px dashed #d3cbe2', title: TITLE + '#6f6879', desc: DESC + '#a09aab', arrow: '#c9c2d4' }
+};
+
+class Component extends DCLogic {
+  renderVals() {
+    let built = 0, gaps = 0, deepest = 0;
+    G.forEach(g => {
+      deepest = Math.max(deepest, g.cols.length);
+      g.cols.forEach(c => c.forEach(n => {
+        if (n[2] === 'gap') gaps++; else if (n[2] !== 'doc') built++;
+      }));
+    });
+    return {
+      stats: [
+        { label: '구현된 화면 · 단계', value: built + '개', color: '#3f8460' },
+        { label: '채울 화면 (점선)', value: gaps + '개', color: '#6846db' },
+        { label: '영역 × 최대 깊이', value: G.length + ' × ' + deepest, color: '#27252f' },
+        { label: '깊은 링크', value: '노드 클릭 = 그 상태로 열림', color: '#8265b9' }
+      ].map(x => ({
+        label: x.label, value: x.value,
+        valueStyle: 'font-size: ' + (x.value.length > 12 ? '14px' : '22px') + '; font-weight: 700; letter-spacing: -0.03em; margin-top: 6px; line-height: 1.4; color: ' + x.color
+      })),
+      shapeText: '진입 1 + 좌측 레일 ' + (G.length - 1) + '개 영역 × 깊이 5단',
+      depths: ['DEPTH 1 · 레일 진입', 'DEPTH 2 · 목록 · 탭', 'DEPTH 3 · 섹션 · 필터', 'DEPTH 4 · 상세 · 폼', 'DEPTH 5 · 단계 · 하위 패널'],
+      legend: [
+        { label: '레일 진입 화면', filled: '#2a1f4d' },
+        { label: '구현된 하위 화면 · 상태', outline: '#e2ddeb' },
+        { label: '문서 페이지', filled: '#f3effc', border: '#ddd0f5' },
+        { label: '채울 화면 (미구현)', dashed: '#d3cbe2' }
+      ].map(l => ({
+        label: l.label,
+        swatch: 'width: 22px; height: 14px; border-radius: 5px; flex-shrink: 0; '
+          + (l.dashed ? 'border: 1.5px dashed ' + l.dashed + '; background: #faf9fc'
+            : l.outline ? 'background: #fff; border: 1px solid ' + l.outline
+              : 'background: ' + l.filled + '; border: 1px solid ' + (l.border || l.filled))
+      })),
+      backlog: BACKLOG.map(b => ({
+        glyph: b.glyph, title: b.title, count: b.items.length + '개',
+        items: b.items.map(x => ({ title: x[0], desc: x[1] }))
+      })),
+      groups: G.map(g => ({
+        title: g.title, glyph: g.glyph, rail: g.rail,
+        columns: g.cols.map(col => col.map(n => {
+          const st = ST[n[2]] || ST.built;
+          const target = n[2] === 'doc' ? '기획문서.dc.html' : (n[3] ? W + encodeURI(n[3]) : '');
+          return {
+            title: n[0], desc: n[1], linked: !!target,
+            href: target || undefined,
+            style: 'display: block; border-radius: 12px; padding: 12px 14px; text-decoration: none; '
+              + st.box + (target ? '' : '; cursor: default; pointer-events: none'),
+            titleStyle: st.title, descStyle: st.desc,
+            arrowStyle: 'font-size: 14px; margin-left: auto; flex-shrink: 0; color: ' + st.arrow
+          };
+        }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

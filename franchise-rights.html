@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="IP Holder 전용 38종 프랜차이즈 권한 조건 설정 목록 화면">
+<title>프랜차이즈 권한 조건 설정 · IPbeginz My Studio</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{
+  --primary-50:#EEF2FF;--primary-100:#E0E7FF;--primary-200:#C7D2FE;--primary-500:#6366F1;--primary-600:#4F46E5;--primary-700:#4338CA;--primary-900:#312E81;
+  --secondary-400:#FBBF24;--secondary-500:#F59E0B;--secondary-600:#D97706;
+  --accent-500:#10B981;--accent-600:#059669;
+  --success-500:#22C55E;--warning-500:#F59E0B;--error-500:#EF4444;--info-500:#3B82F6;
+  --gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;--gray-300:#D1D5DB;--gray-400:#9CA3AF;--gray-500:#6B7280;--gray-600:#4B5563;--gray-700:#374151;--gray-800:#1F2937;--gray-900:#111827;
+  --bg-primary:#FFFFFF;--bg-secondary:#F9FAFB;--bg-dark:#111827;
+  --font-display:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --font-body:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --shadow-sm:0 1px 2px 0 rgba(0,0,0,.05);--shadow-md:0 4px 6px -1px rgba(0,0,0,.1);--shadow-lg:0 10px 15px -3px rgba(0,0,0,.1);--shadow-xl:0 20px 25px -5px rgba(0,0,0,.1);
+  --radius-sm:.25rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-2xl:1.5rem;--radius-full:9999px;
+  --transition-fast:150ms ease;--transition-normal:300ms ease;
+
+  /* 화면 전용 토큰 */
+  --canvas:#F4F5F8;--surface:#FFFFFF;--surface-2:#F9FAFB;--line:#E5E7EB;--line-strong:#D1D5DB;
+  --text:#111827;--text-2:#4B5563;--text-3:#8A93A3;--inh:#9CA3AF;
+  --focus-ring:0 0 0 3px rgba(99,102,241,.38);
+  --gA:#1F3A5F;--gB:#2E6B4F;--gC:#6B3F8A;--gD:#A65A1B;--gE:#A3324A;--gF:#2F6F7A;
+  --mn-fg:#3730A3;--mn-bg:#EEF2FF;--mn-bd:#C7D2FE;
+  --mi-fg:#047857;--mi-bg:#ECFDF5;--mi-bd:#A7F3D0;
+  --mc-fg:#B45309;--mc-bg:#FFFBEB;--mc-bd:#FDE68A;
+  --mo-fg:#6B7280;--mo-bg:#F3F4F6;--mo-bd:#E5E7EB;
+  --err-bg:#FEF2F2;--err-fg:#B91C1C;--warn-bg:#FFFBEB;--warn-fg:#92400E;--ok-fg:#15803D;--info-bg:#EFF6FF;--info-fg:#1D4ED8;
+  --rail:232px;--topbar:56px;--bottomnav:64px;
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --canvas:#0C1018;--surface:#141A24;--surface-2:#1A2130;--line:#252E3E;--line-strong:#344056;
+  --text:#E7EAF0;--text-2:#AAB3C2;--text-3:#737D90;--inh:#6F7A8E;
+  --primary-50:rgba(99,102,241,.16);--primary-100:rgba(99,102,241,.24);
+  --gA:#5A82B8;--gB:#56AE85;--gC:#A57BC9;--gD:#DB8C4A;--gE:#D96683;--gF:#5CAAB7;
+  --mn-fg:#A5B4FC;--mn-bg:rgba(99,102,241,.16);--mn-bd:rgba(129,140,248,.4);
+  --mi-fg:#6EE7B7;--mi-bg:rgba(16,185,129,.13);--mi-bd:rgba(52,211,153,.35);
+  --mc-fg:#FCD34D;--mc-bg:rgba(245,158,11,.13);--mc-bd:rgba(251,191,36,.35);
+  --mo-fg:#9CA3AF;--mo-bg:rgba(156,163,175,.12);--mo-bd:rgba(156,163,175,.28);
+  --err-bg:rgba(239,68,68,.12);--err-fg:#FCA5A5;--warn-bg:rgba(245,158,11,.12);--warn-fg:#FCD34D;--ok-fg:#86EFAC;--info-bg:rgba(59,130,246,.13);--info-fg:#93C5FD;
+  --shadow-lg:0 12px 28px -6px rgba(0,0,0,.6);--shadow-xl:0 24px 40px -8px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font-body);font-size:14px;line-height:1.5;color:var(--text);background:var(--canvas);font-feature-settings:"tnum" 0;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed}
+a{color:inherit}
+:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.num{font-variant-numeric:tabular-nums}
+svg.ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- 셸 ---------- */
+.app{display:flex;min-height:100vh}
+.sidebar{position:fixed;inset:0 auto 0 0;width:var(--rail);background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:40}
+.sb-logo{height:var(--topbar);display:flex;align-items:center;gap:10px;padding:0 18px;font-weight:800;font-size:17px;letter-spacing:-.02em;border-bottom:1px solid var(--line);text-decoration:none}
+.sb-logo .mark{width:28px;height:28px;border-radius:8px;background:var(--primary-600);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800;flex:none}
+.sb-logo small{font-weight:600;color:var(--text-3);font-size:12px}
+.sb-nav{flex:1;overflow:auto;padding:10px 10px}
+.sb-item{display:flex;align-items:center;gap:10px;height:40px;padding:0 10px;border-radius:8px;text-decoration:none;color:var(--text-2);font-weight:500;white-space:nowrap}
+.sb-item .em{width:22px;text-align:center;flex:none}
+.sb-item:hover{background:var(--surface-2);color:var(--text)}
+.sb-item[aria-current="page"]{background:var(--primary-50);color:var(--primary-700);font-weight:700}
+[data-theme="dark"] .sb-item[aria-current="page"]{color:#C7D2FE}
+.sb-item .cnt{margin-left:auto;font-size:11px;color:var(--text-3)}
+.sb-sub{margin:2px 0 6px 42px;display:flex;flex-direction:column;gap:2px}
+.sb-sub a{font-size:13px;color:var(--text-3);text-decoration:none;padding:4px 8px;border-radius:6px}
+.sb-sub a[aria-current="page"]{color:var(--primary-700);font-weight:700;background:var(--primary-50)}
+[data-theme="dark"] .sb-sub a[aria-current="page"]{color:#C7D2FE}
+.sb-profile{border-top:1px solid var(--line);padding:12px;display:flex;align-items:center;gap:10px}
+.sb-profile .av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#312E81,#6366F1);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.sb-profile b{display:block;font-size:13px}
+.sb-profile span{font-size:12px;color:var(--text-3)}
+.sb-profile select{margin-left:auto;border:1px solid var(--line);background:var(--surface);border-radius:6px;font-size:12px;height:30px;padding:0 4px;max-width:92px}
+.main{flex:1;min-width:0;margin-left:var(--rail)}
+.scrim{position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:60;opacity:0;pointer-events:none;transition:opacity var(--transition-fast)}
+.scrim.on{opacity:1;pointer-events:auto}
+
+.topbar{position:sticky;top:0;z-index:30;height:var(--topbar);background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 24px}
+.crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-3);min-width:0;overflow:hidden;white-space:nowrap}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{color:var(--text)}
+.crumbs [aria-current]{color:var(--text);font-weight:600}
+.crumbs .sep{color:var(--line-strong)}
+.tb-actions{margin-left:auto;display:flex;align-items:center;gap:6px}
+.mobile-title{display:none;align-items:center;gap:6px;font-weight:700;font-size:16px;min-width:0}
+.mobile-title a{display:grid;place-items:center;width:40px;height:40px;margin-left:-10px;border-radius:8px;text-decoration:none}
+
+/* ---------- 버튼 ---------- */
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 14px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);font-weight:600;font-size:13px;white-space:nowrap;transition:background var(--transition-fast),border-color var(--transition-fast),transform var(--transition-fast)}
+.btn:hover:not(:disabled){background:var(--surface-2);border-color:var(--gray-400)}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn:disabled{opacity:.5}
+.btn-primary{background:var(--primary-600);border-color:var(--primary-600);color:#fff}
+.btn-primary:hover:not(:disabled){background:var(--primary-700);border-color:var(--primary-700)}
+.btn-ghost{border-color:transparent;background:transparent}
+.btn-ghost:hover:not(:disabled){background:var(--surface-2);border-color:transparent}
+.btn-sm{height:30px;padding:0 10px;font-size:12px;border-radius:7px}
+.btn-xs{height:26px;padding:0 8px;font-size:12px;border-radius:6px}
+.btn-danger{color:var(--err-fg);border-color:color-mix(in srgb,var(--error-500) 40%,transparent)}
+.icon-btn{width:36px;height:36px;display:inline-grid;place-items:center;border-radius:8px;border:1px solid transparent;background:transparent;color:var(--text-2)}
+.icon-btn:hover{background:var(--surface-2);color:var(--text)}
+.link-btn{border:0;background:none;padding:0;color:var(--primary-600);font-weight:600;font-size:inherit;text-decoration:underline;text-underline-offset:2px}
+[data-theme="dark"] .link-btn{color:#A5B4FC}
+
+/* ---------- 판매 방식 배지 ---------- */
+.mode{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid;white-space:nowrap}
+.mode.m-negotiated{color:var(--mn-fg);background:var(--mn-bg);border-color:var(--mn-bd)}
+.mode.m-instant{color:var(--mi-fg);background:var(--mi-bg);border-color:var(--mi-bd)}
+.mode.m-creator{color:var(--mc-fg);background:var(--mc-bg);border-color:var(--mc-bd)}
+.mode.m-off{color:var(--mo-fg);background:var(--mo-bg);border-color:var(--mo-bd)}
+
+.badge{display:inline-flex;align-items:center;gap:3px;height:20px;padding:0 7px;border-radius:5px;font-size:11px;font-weight:600;background:var(--surface-2);color:var(--text-2);border:1px solid var(--line);white-space:nowrap}
+.badge.b-warn{background:var(--warn-bg);color:var(--warn-fg);border-color:transparent}
+.badge.b-indigo{background:var(--mn-bg);color:var(--mn-fg);border-color:transparent}
+.badge.b-info{background:var(--info-bg);color:var(--info-fg);border-color:transparent}
+
+/* ---------- 폼 컨트롤 ---------- */
+.sel{height:32px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface);padding:0 26px 0 9px;font-size:13px;font-weight:600;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;max-width:100%;min-width:0;text-overflow:ellipsis}
+.sel:hover:not(:disabled){border-color:var(--gray-400)}
+.sel:disabled{opacity:.65}
+.sel.inh{color:var(--inh);font-weight:500}
+.inp{height:34px;border:1px solid var(--line-strong);border-radius:7px;background:var(--surface);padding:0 10px;font-size:13px;width:100%;min-width:0}
+.inp:hover{border-color:var(--gray-400)}
+.inp.err{border-color:var(--error-500);background:var(--err-bg)}
+textarea.inp{height:auto;min-height:64px;padding:8px 10px;resize:vertical;line-height:1.5}
+.inp-wrap{position:relative;display:flex;align-items:center}
+.inp-wrap .suf{position:absolute;right:10px;font-size:12px;color:var(--text-3);pointer-events:none}
+.inp-wrap .inp{padding-right:44px;text-align:right}
+input[type=number]::-webkit-inner-spin-button{opacity:.4}
+
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:8px;padding:2px;background:var(--surface-2);gap:2px;flex-wrap:wrap}
+.seg button{height:28px;border:0;background:transparent;border-radius:6px;padding:0 10px;font-size:12px;font-weight:600;color:var(--text-2)}
+.seg button[aria-checked="true"]{background:var(--surface);color:var(--text);box-shadow:0 0 0 1px var(--line-strong),var(--shadow-sm)}
+.seg button:disabled{opacity:.4}
+
+.sw{position:relative;width:38px;height:22px;border-radius:999px;border:0;background:var(--gray-300);padding:0;flex:none;transition:background var(--transition-fast)}
+[data-theme="dark"] .sw{background:#3A4458}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);transition:transform var(--transition-fast)}
+.sw[aria-checked="true"]{background:var(--primary-600)}
+.sw[aria-checked="true"]::after{transform:translateX(16px)}
+.sw:disabled{opacity:.5}
+.sw-row{display:flex;align-items:center;gap:8px;min-height:32px}
+
+.tog{height:28px;padding:0 10px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);font-size:12px;font-weight:600;color:var(--text-2);transition:background var(--transition-fast),color var(--transition-fast)}
+.tog[aria-pressed="true"]{background:var(--primary-600);border-color:var(--primary-600);color:#fff}
+.tog:disabled{opacity:.45}
+.tog-set{display:flex;flex-wrap:wrap;gap:5px}
+
+.chk{display:flex;align-items:center;gap:8px;min-height:30px;font-size:13px}
+.chk input{width:16px;height:16px;accent-color:var(--primary-600);margin:0}
+
+/* ---------- 팝오버 / 시트 / 드로어 / 모달 ---------- */
+.pop{position:fixed;z-index:90;width:380px;max-width:calc(100vw - 16px);max-height:min(560px,calc(100vh - 24px));overflow:auto;background:var(--surface);border:1px solid var(--line-strong);border-radius:12px;box-shadow:var(--shadow-xl);padding:14px;opacity:0;transform:translateY(-4px);transition:opacity 150ms ease-out,transform 150ms ease-out}
+.pop.on{opacity:1;transform:none}
+.pop h3{margin:0 0 2px;font-size:14px}
+.pop .sub{margin:0 0 12px;font-size:12px;color:var(--text-3)}
+.pop-foot{display:flex;gap:6px;justify-content:flex-end;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.pop-foot .left{margin-right:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);z-index:70;background:var(--surface);border-left:1px solid var(--line);box-shadow:var(--shadow-xl);display:flex;flex-direction:column;transform:translateX(100%);transition:transform 250ms ease-out;visibility:hidden}
+.drawer.on{transform:none;visibility:visible}
+.drawer-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.drawer-head h2{margin:0;font-size:16px}
+.drawer-head .icon-btn{margin-left:auto}
+.drawer-body{flex:1;overflow:auto;padding:16px 18px}
+.modal{position:fixed;z-index:80;left:50%;top:50%;width:min(520px,calc(100vw - 24px));max-height:calc(100vh - 48px);overflow:auto;background:var(--surface);border-radius:14px;box-shadow:var(--shadow-xl);border:1px solid var(--line);transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:opacity 180ms ease-out,transform 180ms ease-out}
+.modal.on{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+.modal-head{padding:18px 20px 6px}
+.modal-head h2{margin:0;font-size:17px}
+.modal-head p{margin:6px 0 0;color:var(--text-2);font-size:13px}
+.modal-body{padding:12px 20px}
+.modal-foot{display:flex;gap:8px;justify-content:flex-end;padding:12px 20px 18px}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:75;background:var(--surface);border-radius:16px 16px 0 0;box-shadow:var(--shadow-xl);max-height:88vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform 250ms ease-out;visibility:hidden}
+.sheet.on{transform:none;visibility:visible}
+.sheet-grip{width:40px;height:4px;border-radius:4px;background:var(--line-strong);margin:8px auto 2px}
+.sheet-head{display:flex;align-items:center;gap:8px;padding:6px 16px 10px;border-bottom:1px solid var(--line)}
+.sheet-head h2{margin:0;font-size:16px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheet-head .icon-btn{margin-left:auto;width:44px;height:44px}
+.sheet-body{overflow:auto;padding:14px 16px calc(20px + env(safe-area-inset-bottom))}
+
+.toasts{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:100;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:max-content;max-width:calc(100vw - 24px)}
+.toast{pointer-events:auto;display:flex;align-items:center;gap:12px;background:#1F2937;color:#F9FAFB;border-radius:10px;padding:10px 12px 10px 16px;font-size:13px;box-shadow:var(--shadow-lg);animation:toastIn 200ms ease-out}
+[data-theme="dark"] .toast{background:#E5E7EB;color:#111827}
+.toast button{border:0;background:transparent;color:#A5B4FC;font-weight:700;font-size:13px;padding:4px 6px;border-radius:6px}
+[data-theme="dark"] .toast button{color:#4338CA}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.bottomnav{display:none}
+.skel{background:linear-gradient(90deg,var(--surface-2),var(--line),var(--surface-2));background-size:200% 100%;animation:sk 1.2s linear infinite;border-radius:6px}
+@keyframes sk{to{background-position:-200% 0}}
+.spin{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- 개발용 상태 스위처 ---------- */
+.devsw{position:fixed;left:12px;bottom:12px;z-index:65;background:var(--surface);border:1px dashed var(--line-strong);border-radius:10px;padding:6px 8px;display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);box-shadow:var(--shadow-md)}
+.devsw select{height:28px;font-size:12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);max-width:130px}
+
+/* ---------- 반응형 셸 ---------- */
+@media (min-width:1024px) and (max-width:1535px){
+  :root{--rail:68px}
+  .sb-logo{padding:0;justify-content:center}
+  .sb-logo span,.sb-item .lbl,.sb-item .cnt,.sb-sub,.sb-profile div,.sb-profile select{display:none}
+  .sb-item{justify-content:center;padding:0}
+  .sb-profile{justify-content:center}
+}
+@media (max-width:1023px){
+  :root{--rail:0px}
+  .sidebar{width:272px;transform:translateX(-100%);transition:transform 250ms ease-out;z-index:78}
+  .sidebar.on{transform:none}
+  .topbar{padding:0 16px}
+  .bottomnav{display:flex;position:fixed;left:0;right:0;bottom:0;height:calc(var(--bottomnav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:var(--surface);border-top:1px solid var(--line);z-index:45}
+  .bottomnav a,.bottomnav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;color:var(--text-3);text-decoration:none;border:0;background:none;min-height:44px}
+  .bottomnav .em{font-size:18px;line-height:1}
+  .bottomnav [aria-current="page"]{color:var(--primary-600);font-weight:700}
+  .devsw{bottom:calc(var(--bottomnav) + 10px + env(safe-area-inset-bottom))}
+  .toasts{bottom:calc(var(--bottomnav) + 76px)}
+}
+@media (max-width:767px){
+  .crumbs{display:none}
+  .mobile-title{display:flex}
+  .tb-actions .hide-m{display:none}
+  .pop{left:0!important;right:0;top:auto!important;bottom:0;width:100%;max-width:100%;border-radius:16px 16px 0 0;max-height:80vh;padding:16px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(12px)}
+  .pop.on{transform:none}
+  .pop .btn,.pop .seg button,.pop .tog{min-height:40px}
+  .sel,.inp{height:40px}
+  .devsw{left:8px;padding:4px 6px}
+  .devsw span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+.show-mt{display:none}
+@media (max-width:1279px){.hide-t{display:none}.show-mt{display:inline-grid}}
+.page{padding:20px 24px 120px;max-width:1480px}
+
+/* IP 헤더 */
+.ip-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ip-thumb{width:52px;height:68px;border-radius:8px;background:radial-gradient(circle at 70% 25%,#E5E7EB 0 9px,transparent 10px),linear-gradient(160deg,#0F172A,#312E81 70%,#4338CA);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;flex:none;box-shadow:var(--shadow-md)}
+.ip-thumb span{color:#E0E7FF;font-size:11px;font-weight:800;letter-spacing:.08em}
+.ip-meta h1{margin:0;font-size:22px;letter-spacing:-.02em;line-height:1.3}
+.ip-meta .en{font-size:13px;font-weight:500;color:var(--text-3);margin-left:4px}
+.ip-meta p{margin:4px 0 0;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--text-2)}
+.ip-meta .stage{color:#C2410C;font-weight:700}
+.ip-meta .stage::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#F97316;margin-right:5px;vertical-align:1px}
+.ip-note{margin-left:auto;max-width:420px;font-size:13px;color:var(--text-2);line-height:1.55}
+
+/* 요약 바 */
+.summary{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 14px}
+.sum{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:13px;color:var(--text-2)}
+.sum b{font-size:16px;color:var(--text);font-variant-numeric:tabular-nums}
+.sum:hover{border-color:var(--line-strong)}
+.sum[aria-pressed="true"]{border-color:var(--primary-500);box-shadow:0 0 0 1px var(--primary-500) inset}
+.sum.s-sold b{color:var(--error-500)}
+.sum.s-err{color:var(--err-fg);background:var(--err-bg);border-color:transparent}
+.sum.s-err b{color:var(--err-fg)}
+.sum-div{width:1px;background:var(--line);margin:4px 4px}
+
+/* IP 기본값 스트립 */
+.strip{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.strip .st-l{font-size:13px;font-weight:700;margin-right:2px}
+.sf{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-3);font-weight:600}
+.sf .tog{height:26px;padding:0 8px}
+
+/* 툴바 */
+.toolbar{position:sticky;top:var(--topbar);z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px -24px 0;padding:10px 24px;background:color-mix(in srgb,var(--canvas) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid transparent}
+.toolbar.stuck{border-bottom-color:var(--line)}
+.search{position:relative;display:flex;align-items:center;flex:0 1 220px;min-width:160px}
+.search svg{position:absolute;left:10px;color:var(--text-3)}
+.search input{width:100%;height:34px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);padding:0 10px 0 32px;font-size:13px}
+.chips{display:flex;gap:4px;flex-wrap:wrap}
+.chip-f{height:30px;min-width:30px;padding:0 10px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);font-size:12px;font-weight:700;color:var(--text-2);display:inline-flex;align-items:center;gap:5px}
+.chip-f .dot{width:8px;height:8px;border-radius:2px;background:var(--gc)}
+.chip-f[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--surface)}
+#statusFilter{height:30px;font-size:12px}
+#expandBtn{margin-left:auto}
+
+/* 그룹 */
+.list{margin-top:6px;display:flex;flex-direction:column;gap:12px}
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative}
+.grp::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gc)}
+.grp-head{display:flex;align-items:center;gap:12px;padding:10px 14px 10px 18px;min-height:56px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--gc) 5%,var(--surface))}
+.grp:not(.open) .grp-head{border-bottom-color:transparent}
+.grp-toggle{display:flex;align-items:center;gap:10px;border:0;background:none;padding:4px 6px 4px 0;text-align:left;min-width:0;flex:0 1 auto;border-radius:6px}
+.grp-code{width:26px;height:26px;border-radius:7px;background:var(--gc);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.grp-name{font-weight:800;font-size:15px;white-space:nowrap}
+.grp-dist{font-size:12px;color:var(--text-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.grp-toggle svg{transition:transform 200ms;color:var(--text-3)}
+.grp:not(.open) .grp-toggle svg{transform:rotate(-90deg)}
+.gd{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.gd-l{font-size:12px;color:var(--text-3);font-weight:600;margin-right:2px}
+.gd .sel{height:30px;font-size:12px}
+.gd-m{display:none}
+.grp-body[hidden]{display:none}
+
+/* 행 그리드 */
+.row,.colhead{display:grid;align-items:center;column-gap:8px;padding:0 14px 0 18px;grid-template-columns:minmax(0,1.3fr) 136px 156px 96px 84px 92px 112px minmax(0,1fr) 92px;grid-template-areas:"name mode price terr term slot stat badge act"}
+.colhead{height:34px;font-size:12px;color:var(--text-3);font-weight:600;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.colhead .r{text-align:right}
+.l1,.l2{display:contents}
+.c-name{grid-area:name}.c-mode{grid-area:mode}.c-price{grid-area:price}.c-terr{grid-area:terr}.c-term{grid-area:term}.c-slot{grid-area:slot}.c-stat{grid-area:stat}.c-badge{grid-area:badge}.c-act{grid-area:act;justify-self:end}
+.right{border-bottom:1px solid var(--line);position:relative}
+.right:last-child{border-bottom:0}
+.row{min-height:52px;padding-top:6px;padding-bottom:6px;transition:background var(--transition-fast)}
+.right:hover .row{background:color-mix(in srgb,var(--surface-2) 70%,transparent)}
+.right.is-dirty .row{background:color-mix(in srgb,var(--primary-50) 55%,transparent)}
+.right.is-off .row>*:not(.c-mode):not(.l1),.right.is-off .c-name,.right.is-off .c-price,.right.is-off .c-act{opacity:.45}
+.right.is-off .c-mode{opacity:1}
+.c-name{display:flex;align-items:center;gap:8px;min-width:0}
+.c-name .ico{font-size:17px;width:22px;text-align:center;flex:none}
+.c-name .nm{min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.c-name .nm b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.c-name .nm small{font-size:11px;color:var(--text-3);white-space:nowrap}
+.dirty-dot{width:7px;height:7px;border-radius:50%;background:var(--secondary-500);flex:none}
+.avatar{width:24px;height:24px;border-radius:50%;background:#0EA5E9;color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;flex:none;box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px #0EA5E9;margin-left:auto}
+.c-mode{display:flex;align-items:center;min-width:0;position:relative}
+.c-mode .sel{width:100%}
+.sel.ms-negotiated{color:var(--mn-fg);background-color:var(--mn-bg);border-color:var(--mn-bd)}
+.sel.ms-instant{color:var(--mi-fg);background-color:var(--mi-bg);border-color:var(--mi-bd)}
+.sel.ms-creator{color:var(--mc-fg);background-color:var(--mc-bg);border-color:var(--mc-bd)}
+.sel.ms-off{color:var(--mo-fg);background-color:var(--mo-bg);border-color:var(--mo-bd)}
+.sel.ms-inh{border-style:dashed}
+.mod-dot{position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;background:var(--secondary-500);box-shadow:0 0 0 2px var(--surface)}
+
+/* 값 칩 */
+.vchip{display:inline-flex;align-items:center;gap:5px;height:32px;max-width:100%;padding:0 9px;border-radius:7px;border:1px solid var(--line-strong);background:var(--surface);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;min-width:0;transition:border-color var(--transition-fast),background var(--transition-fast)}
+.vchip .t{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.vchip:hover:not(:disabled){border-color:var(--primary-500)}
+.vchip.inh{color:var(--inh);font-weight:500;border-style:dashed}
+.vchip .lab{font-size:10px;font-weight:600;color:var(--inh);border:1px solid var(--line);border-radius:4px;padding:0 4px;line-height:15px;flex:none}
+.ov{width:6px;height:6px;border-radius:50%;background:var(--primary-600);flex:none}
+[data-theme="dark"] .ov{background:#818CF8}
+.vchip.err{border-color:var(--error-500);background:var(--err-bg);color:var(--err-fg)}
+.vchip:disabled{color:var(--text-3);background:var(--surface-2);border-style:solid;cursor:not-allowed}
+.vchip.full{width:100%;justify-content:space-between}
+.c-price .vchip{width:100%;justify-content:flex-end}
+.c-price .vchip .t{margin-left:auto}
+.term-wrap{display:flex;align-items:center;gap:3px;min-width:0}
+.term-wrap .sel{flex:1;min-width:0}
+.ar{width:30px;height:32px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--text-3);display:grid;place-items:center;flex:none;font-size:14px}
+.ar[aria-pressed="true"]{color:var(--primary-600);border-color:var(--primary-200);background:var(--primary-50)}
+.ar:disabled{opacity:.4}
+.c-stat{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.3}
+.st-open{color:var(--ok-fg)}
+.st-sold{color:var(--error-500)}
+.st-sold small{display:block;font-weight:500;color:var(--text-3)}
+.st-inf{color:var(--text-2)}
+.st-off{color:var(--text-3);font-weight:500}
+.st-units{display:block;font-weight:500;color:var(--text-3);font-size:11px}
+.c-badge{display:flex;gap:4px;flex-wrap:wrap;min-width:0;align-items:center}
+.c-act .btn{width:100%}
+.c-act .btn[aria-expanded="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+.c-act .btn.err{border-color:var(--error-500);color:var(--err-fg);background:var(--err-bg)}
+.reserve[aria-pressed="true"]{background:var(--mi-bg);color:var(--mi-fg);border-color:var(--mi-bd)}
+
+/* 행 아래 안내 */
+.notes{display:flex;flex-direction:column;gap:6px;padding:0 14px 0 50px}
+.notes:not(:empty){padding-bottom:10px}
+.note{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;border-radius:8px;padding:7px 10px}
+.note svg{flex:none}
+.note.err{background:var(--err-bg);color:var(--err-fg)}
+.note.info{background:var(--info-bg);color:var(--info-fg)}
+.note.ok{background:#eef7f1;color:#3f8460;font-weight:600}
+.note .btn{margin-left:auto}
+.conflict{border:1px solid color-mix(in srgb,var(--warning-500) 55%,transparent);background:var(--warn-bg);color:var(--text);padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+.conflict .who{width:26px;height:26px;border-radius:50%;background:#0EA5E9;color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;flex:none}
+.conflict .acts{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.conflict del{color:var(--text-3)}
+
+/* 직접 설정 패널 */
+.panel{margin:0 14px 14px 50px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface-2);overflow:hidden;animation:panelIn 200ms ease-out}
+@keyframes panelIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.panel-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.psec{padding:14px 16px;border-right:1px solid var(--line);min-width:0}
+.psec:last-child{border-right:0}
+.psec h4{margin:0 0 10px;font-size:13px;display:flex;align-items:center;gap:6px}
+.psec h4 .n{width:18px;height:18px;border-radius:50%;background:var(--text);color:var(--surface);font-size:10px;display:grid;place-items:center}
+.fld{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.fld:last-child{margin-bottom:0}
+.fld-l{font-size:12px;font-weight:600;color:var(--text-2);display:flex;align-items:center;gap:6px}
+.fld-l .auto{font-size:10px;color:var(--inh);border:1px solid var(--line);border-radius:4px;padding:0 4px;font-weight:600}
+.fld-h{font-size:11px;color:var(--text-3)}
+.fld-row{display:flex;gap:6px;align-items:center}
+.fixed{display:flex;gap:8px;align-items:flex-start;font-size:12px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--text-2)}
+.fixed svg{color:var(--error-500);margin-top:1px}
+.none-note{font-size:12px;color:var(--text-3)}
+.panel-foot{display:flex;gap:8px;justify-content:flex-end;padding:10px 14px;border-top:1px solid var(--line);background:var(--surface)}
+.panel-foot .auto-sum{margin-right:auto;font-size:12px;color:var(--text-3);align-self:center}
+.file-mock{display:flex;align-items:center;gap:6px;font-size:12px}
+.file-mock .fn{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-weight:600}
+
+/* 팝오버 내부 */
+.ptype{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:12px}
+.ptype button{height:34px;border-radius:7px;border:1px solid var(--line-strong);background:var(--surface);font-size:12px;font-weight:600}
+.ptype button[aria-checked="true"]{border-color:var(--primary-600);background:var(--primary-50);color:var(--primary-700);box-shadow:0 0 0 1px var(--primary-600) inset}
+[data-theme="dark"] .ptype button[aria-checked="true"]{color:#C7D2FE}
+.ptype button:disabled{opacity:.4}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pgrid .full{grid-column:1/-1}
+.fxline{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--text-3);margin-top:10px}
+.fxline b{color:var(--text-2);font-variant-numeric:tabular-nums}
+.net{margin-top:12px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);padding:10px 12px;font-size:12px}
+.net div{display:flex;justify-content:space-between;padding:2px 0;font-variant-numeric:tabular-nums}
+.net .tot{border-top:1px solid var(--line);margin-top:4px;padding-top:6px;font-size:14px;font-weight:800}
+.net .tot span:last-child{color:var(--accent-600)}
+.hint{font-size:11px;color:var(--text-3);margin-top:6px}
+.tip{border-bottom:1px dotted var(--text-3);cursor:help}
+.tree{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.tree-row{display:flex;align-items:center;gap:8px;min-height:38px;padding:0 10px;border-bottom:1px solid var(--line)}
+.tree-row:last-child{border-bottom:0}
+.tree-row label{display:flex;align-items:center;gap:8px;flex:1;font-size:13px;font-weight:600;min-height:38px;cursor:pointer}
+.tree-row input{width:16px;height:16px;accent-color:var(--primary-600)}
+.tree-row .exp{border:0;background:none;width:32px;height:32px;border-radius:6px;display:grid;place-items:center;color:var(--text-3)}
+.tree-row .exp[aria-expanded="true"] svg{transform:rotate(180deg)}
+.tree-row .cnt{font-size:11px;color:var(--text-3)}
+.tree-kids{display:grid;grid-template-columns:1fr 1fr;padding:4px 10px 8px 34px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.tree-kids label{display:flex;align-items:center;gap:6px;font-size:12px;min-height:32px;cursor:pointer}
+.tree-kids input{accent-color:var(--primary-600)}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:36px;height:36px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);display:grid;place-items:center}
+.stepper input{width:64px;text-align:center;height:36px}
+.menu{display:flex;flex-direction:column;gap:2px}
+.menu button{display:flex;align-items:center;gap:10px;height:42px;border:0;background:none;border-radius:8px;padding:0 10px;font-weight:600;text-align:left}
+.menu button:hover{background:var(--surface-2)}
+
+/* 저장 바 */
+.savebar{position:fixed;left:var(--rail);right:0;bottom:0;z-index:50;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 20px -8px rgba(0,0,0,.12);display:flex;align-items:center;gap:14px;padding:12px 24px;animation:barIn 200ms ease-out}
+@keyframes barIn{from{transform:translateY(100%)}to{transform:none}}
+.savebar[hidden]{display:none}
+.savebar .cnts{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:600}
+.savebar .cnts .e{color:var(--err-fg)}
+.savebar .cnts .w{color:var(--warn-fg)}
+.savebar .msg{font-size:12px;color:var(--text-3)}
+.savebar .acts{margin-left:auto;display:flex;gap:8px}
+.savebar.failed{border-top:2px solid var(--error-500)}
+.savebar.failed .msg{color:var(--err-fg);font-weight:600}
+
+/* 상태 화면 */
+.state-box{background:var(--surface);border:1px dashed var(--line-strong);border-radius:14px;padding:48px 24px;text-align:center}
+.state-box .art{font-size:34px;letter-spacing:6px;margin-bottom:10px}
+.state-box h2{margin:0 0 6px;font-size:17px}
+.state-box p{margin:0 0 16px;color:var(--text-2);font-size:13px}
+.state-box .acts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.state-box.err{border-color:color-mix(in srgb,var(--error-500) 45%,transparent)}
+.sk-grp{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+.sk-grp .h{height:22px;width:40%;margin-bottom:14px}
+.sk-grp .r{height:34px;margin-top:10px}
+
+/* 미리보기 */
+.pv-note{font-size:12px;color:var(--text-3);margin:0 0 12px}
+.pv-note code{font-size:11px;background:var(--surface-2);padding:1px 5px;border-radius:4px}
+.pv-frame{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 auto;transition:max-width 250ms ease-out;max-width:100%;background:var(--surface)}
+.pv-frame.mobile{max-width:340px}
+.pv-hero{padding:14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center}
+.pv-hero b{display:block}
+.pv-hero small{color:var(--text-3)}
+.pv-g{padding:8px 14px 4px;font-size:12px;font-weight:800;color:var(--gc);background:var(--surface-2);border-bottom:1px solid var(--line)}
+.bv-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 14px;border-bottom:1px solid var(--line);border-left:3px solid var(--gc)}
+.bv-name{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px}
+.bv-status{justify-self:end;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700}
+.bv-open{color:var(--ok-fg)}
+.bv-sold{color:var(--error-500)}
+.bv-meta{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:12px;color:var(--text-2)}
+.bv-price{justify-self:end;font-weight:800;font-size:14px}
+.bv-price small{font-weight:500;color:var(--text-3);font-size:11px}
+.pv-frame.mobile .bv-row{grid-template-columns:1fr}
+.pv-frame.mobile .bv-status,.pv-frame.mobile .bv-price{justify-self:start}
+
+/* 이력 */
+.hs{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}
+.hs .when{font-size:12px;color:var(--text-3);font-variant-numeric:tabular-nums;grid-column:1/-1;display:flex;gap:8px;align-items:center}
+.hs .who{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.hs .what b{font-weight:700}
+.hs .diff{font-variant-numeric:tabular-nums}
+.hs .diff del{color:var(--text-3)}
+.hs .btn{grid-column:2;justify-self:start;margin-top:4px}
+
+/* 모달 공통 */
+.pick{display:flex;flex-direction:column;gap:6px}
+.pick label{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
+.pick label:has(input:checked){border-color:var(--primary-500);background:var(--primary-50)}
+.pick input{accent-color:var(--primary-600)}
+.pick small{display:block;color:var(--text-3);font-size:12px}
+.copy-list{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:4px 10px}
+.copy-list h5{margin:10px 0 2px;font-size:12px;color:var(--text-3)}
+
+/* ---------- 태블릿: 2줄 행 ---------- */
+@media (max-width:1279px){
+  .colhead{display:none}
+  .row{grid-template-columns:repeat(12,minmax(0,1fr));row-gap:6px;padding-top:10px;padding-bottom:10px;
+    grid-template-areas:"name name name name name mode mode mode price price act act" "terr terr term term term slot slot stat stat badge badge badge"}
+  .c-act{justify-self:stretch}
+  .gd .gd-l{display:none}
+  .panel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .psec:nth-child(2){border-right:0}
+  .psec:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .ip-note{margin-left:0;max-width:none;flex-basis:100%}
+}
+@media (max-width:1023px){
+  .savebar{left:0;bottom:calc(var(--bottomnav) + env(safe-area-inset-bottom));padding:10px 16px}
+  .page{padding-bottom:180px}
+  .grp-head{flex-wrap:wrap}
+  .gd{margin-left:0;justify-content:flex-start;width:100%}
+}
+/* ---------- 모바일: 카드 ---------- */
+@media (max-width:767px){
+  .page{padding:14px 12px 200px}
+  .ip-head{display:none}
+  .summary{margin:4px 0 10px;gap:6px}
+  .sum{height:32px;padding:0 9px;font-size:12px}
+  .sum b{font-size:14px}
+  .sum-div{display:none}
+  .strip{padding:12px;gap:10px 14px}
+  .toolbar{margin:10px -12px 0;padding:8px 12px;gap:6px}
+  .search{flex:1 1 100%}
+  .search input{height:40px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none}
+  #groupChips{flex:1 1 100%}
+  .chip-f{height:36px;flex:none}
+  #statusFilter{height:36px}
+  .grp-head{padding:8px 10px 8px 16px;min-height:52px;flex-wrap:nowrap}
+  .grp-toggle{flex:1;min-height:44px}
+  .gd{display:none}
+  .gd-m{display:inline-flex;height:36px}
+  .row{grid-template-columns:repeat(6,minmax(0,1fr));padding:12px 12px 12px 16px;row-gap:8px;
+    grid-template-areas:"name name name mode mode mode" "price price price price price price" "terr terr term term slot slot" "stat stat stat badge badge badge" "act act act act act act"}
+  .c-mode .sel{padding-left:6px;padding-right:22px;background-position:right 5px center}
+  .vchip{height:40px}
+  .c-price .vchip{justify-content:space-between}
+  .ar{height:40px;width:34px}
+  .c-act .btn{height:40px}
+  .notes{padding:0 12px 0 16px}
+  .panel{display:none}
+  .savebar .msg{display:none}
+  .savebar .acts .btn{height:40px}
+  .conflict .acts{margin-left:0;width:100%}
+  .conflict .acts .btn{flex:1;height:40px}
+  .note .btn{height:34px}
+  .sheet .psec{border:0;padding:4px 0}
+  .tabs{display:flex;gap:4px;overflow-x:auto;margin:0 -16px 12px;padding:0 16px;scrollbar-width:none}
+  .tabs button{flex:none;height:36px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);padding:0 12px;font-size:13px;font-weight:600}
+  .tabs button[aria-selected="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+  .sheet .basic{display:flex;flex-direction:column;gap:12px}
+  .savebar .cnts{font-size:12px}
+}
+.lbl-m{display:none}
+.tabs{display:flex;gap:4px;overflow-x:auto;margin:0 -16px 12px;padding:0 16px;scrollbar-width:none}
+.tabs button{flex:none;height:36px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);padding:0 12px;font-size:13px;font-weight:600}
+.tabs button[aria-selected="true"]{background:var(--text);color:var(--surface);border-color:var(--text)}
+.sheet .basic{display:flex;flex-direction:column;gap:12px}
+.sheet .basic .fld{margin:0}
+.sheet .sheet-foot{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.sheet .sheet-foot .btn{flex:1;height:42px}
+.sheet .notes{padding:0}
+.sheet .stat-line{font-size:13px;font-weight:700}
+@media (max-width:767px){.lbl-d{display:none}.lbl-m{display:inline}}
+
+.vchip.stk{flex-direction:column;align-items:flex-start;justify-content:center;gap:0;height:38px;line-height:1.15}
+.vchip.stk .lab{border:0;padding:0;line-height:1.1;font-size:10px}
+.vchip.stk .t{display:flex;align-items:center;gap:3px;max-width:100%}
+.c-price .vchip.stk{align-items:flex-end}
+.c-price .vchip.stk .t{margin-left:0}
+.c-terr .vchip,.c-term .vchip,.c-slot .vchip{width:100%}
+.vchip.full.stk{align-items:flex-start}
+.devsw{left:calc(var(--rail) + 12px)}
+body.has-savebar .devsw{bottom:80px}
+@media (max-width:1023px){body.has-savebar .devsw{bottom:calc(var(--bottomnav) + 76px)}}
+@media (max-width:767px){.vchip.stk{height:44px}.c-price .vchip.stk{align-items:flex-start}}
+
+@media (max-width:767px){
+  .toolbar{position:static}
+  .tb-actions [data-act="preview"] span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .tb-actions [data-act="preview"]{width:36px;padding:0}
+  .mobile-title span{white-space:nowrap}
+  .devsw{opacity:.9}
+}
+
+</style>
+<style id="ipz-embed">
+/* IPBeginz 임베드용: 셸 숨김 + 스타일 가이드 토큰 */
+:root{
+  --primary-50:#F3EFFC;--primary-100:#EEE8FA;--primary-200:#D9CEF5;--primary-500:#6846DB;--primary-600:#5836C4;--primary-700:#4F31B4;--primary-900:#2A1F4D;
+  --canvas:#FAF9FC;--surface:#FFFFFF;--surface-2:#FAF9FC;--line:#E8E5ED;--line-strong:#DAD6E1;
+  --text:#27252F;--text-2:#6F6879;--text-3:#8D8399;--inh:#A09AAB;
+  --focus-ring:0 0 0 3px rgba(146,118,220,.38);
+  --success-500:#3F8460;--warning-500:#96681A;--error-500:#B0405C;
+  --ok-fg:#3F8460;--warn-fg:#96681A;--err-fg:#B0405C;--err-bg:#FBEEF0;--warn-bg:#F8F2E6;--info-fg:#5836C4;--info-bg:#F3EFFC;
+  --mn-fg:#4F31B4;--mn-bg:#EEE8FA;--mn-bd:#D9CEF5;
+  --mi-fg:#3F8460;--mi-bg:#E9F4EE;--mi-bd:#BFE0CD;
+  --mc-fg:#96681A;--mc-bg:#F8F2E6;--mc-bd:#EAD7AE;
+  --mo-fg:#8D8399;--mo-bg:#F2F0F6;--mo-bd:#E8E5ED;
+  --gA:#2A1F4D;--gB:#3F8460;--gC:#6846DB;--gD:#96681A;--gE:#B0405C;--gF:#2F6F7A;
+  --radius-md:10px;--radius-lg:16px;
+  --rail:0px;--topbar:52px;
+  --font-body:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+.sidebar,#navScrim,.bottomnav,.devsw,.crumbs,.mobile-title{display:none !important}
+.main{margin-left:0 !important}
+.topbar{justify-content:flex-end;background:var(--canvas);border-bottom:0;height:auto;padding:12px 8px 0}
+.page{padding:8px 8px 120px;max-width:none}
+.savebar{left:0 !important}
+[data-theme="dark"]{--canvas:#FAF9FC}
+/* 태블릿 2줄 행: 권한명은 왼쪽 한 칸에 두고 나머지를 옆에 2줄로 */
+@media (max-width:1279px) and (min-width:768px){
+  .row{grid-template-columns:minmax(150px,1.1fr) repeat(9,minmax(0,1fr));row-gap:6px;column-gap:8px;align-items:center;
+    grid-template-areas:"name mode mode mode price price price act act act" "name terr terr term term slot slot stat stat badge"}
+  .c-name{align-self:center}
+  .c-badge{justify-self:end}
+}
+#themeBtn{display:none}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar" aria-label="My Studio 메뉴">
+  <a class="sb-logo" href="dashboard.html" data-nav><span class="mark" aria-hidden="true">IP</span><span>IPbeginz <small>Studio</small></span></a>
+  <nav class="sb-nav">
+    <a class="sb-item" href="dashboard.html" data-nav title="Dashboard"><span class="em" aria-hidden="true">📊</span><span class="lbl">Dashboard</span></a>
+    <a class="sb-item" href="my-ips.html" data-nav aria-current="page" title="My IPs"><span class="em" aria-hidden="true">📝</span><span class="lbl">My IPs</span><span class="cnt">7</span></a>
+    <div class="sb-sub">
+      <a href="ip-detail.html?id=ip_9f21" data-nav>검은 달의 계약자</a>
+      <a href="franchise-rights.html?id=ip_9f21" aria-current="page" data-self>프랜차이즈 권한</a>
+    </div>
+    <a class="sb-item" href="deals.html" data-nav title="Franchise Deals"><span class="em" aria-hidden="true">🤝</span><span class="lbl">Franchise Deals</span><span class="cnt">3</span></a>
+    <a class="sb-item" href="team.html" data-nav title="Project Team"><span class="em" aria-hidden="true">👥</span><span class="lbl">Project Team</span></a>
+    <a class="sb-item" href="staff-requests.html" data-nav title="Staff Requests"><span class="em" aria-hidden="true">🎬</span><span class="lbl">Staff Requests</span></a>
+    <a class="sb-item" href="influencer-match.html" data-nav title="Influencer Match"><span class="em" aria-hidden="true">🌟</span><span class="lbl">Influencer Match</span></a>
+    <a class="sb-item" href="channel.html" data-nav title="Channel"><span class="em" aria-hidden="true">📺</span><span class="lbl">Channel</span></a>
+    <a class="sb-item" href="earnings.html" data-nav title="Earnings"><span class="em" aria-hidden="true">💰</span><span class="lbl">Earnings</span></a>
+    <a class="sb-item" href="inbox.html" data-nav title="Inbox"><span class="em" aria-hidden="true">💬</span><span class="lbl">Inbox</span><span class="cnt">응답 2</span></a>
+    <a class="sb-item" href="settings.html" data-nav title="Settings"><span class="em" aria-hidden="true">⚙️</span><span class="lbl">Settings</span></a>
+  </nav>
+  <div class="sb-profile">
+    <span class="av" aria-hidden="true">문</span>
+    <div><b>문하린 작가</b><span>IP Holder</span></div>
+    <select aria-label="역할 전환"><option>IP Holder</option><option>Buyer</option><option>Staff</option><option>Admin</option></select>
+  </div>
+</aside>
+<div class="scrim" id="navScrim"></div>
+
+<div class="main">
+  <header class="topbar">
+    <div class="mobile-title"><a href="ip-detail.html?id=ip_9f21" data-nav aria-label="IP 상세로 돌아가기"><i data-ic="chevronLeft"></i></a><span>프랜차이즈 권한</span></div>
+    <nav class="crumbs" aria-label="현재 위치">
+      <a href="dashboard.html" data-nav>My Studio</a><span class="sep">/</span>
+      <a href="my-ips.html" data-nav>내 IP</a><span class="sep">/</span>
+      <a href="ip-detail.html?id=ip_9f21" data-nav>검은 달의 계약자</a><span class="sep">/</span>
+      <span aria-current="page">프랜차이즈 권한</span>
+    </nav>
+    <div class="tb-actions">
+      <button type="button" class="btn btn-sm" data-act="preview"><i data-ic="eye"></i><span>바이어 화면 미리보기</span></button>
+      <button type="button" class="btn btn-sm hide-m" data-act="history"><i data-ic="history"></i>변경 이력</button>
+      <button type="button" class="btn btn-sm hide-m hide-t" data-act="wizard"><i data-ic="wand"></i>위저드로 다시 설정</button>
+      <button type="button" class="btn btn-sm hide-m hide-t" data-act="loadOther"><i data-ic="import"></i>다른 IP 설정 불러오기</button>
+      <button type="button" class="icon-btn show-mt" data-act="moreMenu" aria-label="더 보기" aria-haspopup="menu"><i data-ic="more"></i></button>
+      <button type="button" class="icon-btn" id="themeBtn" data-act="theme"></button>
+    </div>
+  </header>
+
+  <div class="page">
+    <section class="ip-head" aria-label="IP 요약">
+      <div class="ip-thumb" aria-hidden="true"><span>黒月</span></div>
+      <div class="ip-meta">
+        <h1>검은 달의 계약자 <span class="en">The Black Moon Contractor</span></h1>
+        <p><span>웹소설</span><span>다크판타지</span><span class="stage">Post-Prod</span><span>문하린 작가</span></p>
+      </div>
+      <div class="ip-note">권한마다 <b>판매 방식</b>만 고르면 독점성·승인·구매 절차가 따라옴. 다른 값이 필요한 권한만 고치면 됨.</div>
+    </section>
+
+    <div class="summary" id="summary" role="group" aria-label="판매 현황 요약"></div>
+
+    <section class="strip" id="ipStrip" aria-label="IP 기본값"></section>
+
+    <div class="toolbar" id="toolbar">
+      <label class="search"><i data-ic="search"></i><span class="sr-only">권한 검색</span><input id="q" type="search" placeholder="권한 검색  ( / )" autocomplete="off"></label>
+      <div class="chips" id="groupChips" role="group" aria-label="그룹 필터"></div>
+      <div class="chips" id="modeChips" role="group" aria-label="판매 방식 필터"></div>
+      <select class="sel" id="statusFilter" aria-label="상태 필터">
+        <option value="all">상태 전체</option>
+        <option value="override">예외 있음</option>
+        <option value="sold">판매완료</option>
+        <option value="error">오류 있음</option>
+        <option value="changed">변경된 항목만</option>
+      </select>
+      <button type="button" class="btn btn-sm btn-ghost" data-act="expandAll" id="expandBtn">모두 접기</button>
+    </div>
+
+    <div id="list" class="list" aria-live="off"></div>
+  </div>
+</div>
+</div>
+
+<div class="savebar" id="savebar" role="region" aria-label="저장" hidden></div>
+
+<nav class="bottomnav" aria-label="모바일 메뉴">
+  <a href="dashboard.html" data-nav><span class="em" aria-hidden="true">📊</span>홈</a>
+  <a href="my-ips.html" data-nav aria-current="page"><span class="em" aria-hidden="true">📝</span>내 IP</a>
+  <a href="deals.html" data-nav><span class="em" aria-hidden="true">🤝</span>계약</a>
+  <a href="earnings.html" data-nav><span class="em" aria-hidden="true">💰</span>수익</a>
+  <button type="button" data-open-nav><span class="em" aria-hidden="true">≡</span>더보기</button>
+</nav>
+
+<div class="pop" id="pop" role="dialog" aria-modal="false" hidden></div>
+<div class="scrim" id="layerScrim"></div>
+
+<aside class="drawer" id="previewDrawer" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+  <div class="drawer-head">
+    <h2 id="pvTitle">바이어 화면 미리보기</h2>
+    <div class="seg" role="radiogroup" aria-label="미리보기 크기">
+      <button type="button" role="radio" aria-checked="true" data-act="pvSize" data-val="desktop"><i data-ic="monitor"></i><span class="sr-only">데스크톱</span></button>
+      <button type="button" role="radio" aria-checked="false" data-act="pvSize" data-val="mobile"><i data-ic="phone"></i><span class="sr-only">모바일</span></button>
+    </div>
+    <button type="button" class="icon-btn" data-act="closeLayer" aria-label="닫기"><i data-ic="x"></i></button>
+  </div>
+  <div class="drawer-body">
+    <p class="pv-note">저장하지 않은 값까지 반영된 화면임. 실제 바이어 화면은 <code>market/ip-detail.html</code>.</p>
+    <div class="pv-frame" id="pvFrame"></div>
+  </div>
+</aside>
+
+<aside class="drawer" id="historyDrawer" role="dialog" aria-modal="true" aria-labelledby="hsTitle">
+  <div class="drawer-head"><h2 id="hsTitle">변경 이력</h2><button type="button" class="icon-btn" data-act="closeLayer" aria-label="닫기"><i data-ic="x"></i></button></div>
+  <div class="drawer-body" id="historyBody"></div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"></div>
+
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <div class="sheet-head"><h2 id="sheetTitle"></h2><button type="button" class="icon-btn" data-act="closeLayer" aria-label="닫기"><i data-ic="x"></i></button></div>
+  <div class="sheet-body" id="sheetBody"></div>
+</section>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<div class="devsw" aria-label="개발용 상태 스위처">
+  <span>개발용 상태</span>
+  <select id="devState" aria-label="개발용 상태 선택">
+    <option value="normal">정상</option>
+    <option value="loading">로딩</option>
+    <option value="empty">빈 상태 (전부 판매 안 함)</option>
+    <option value="noresult">검색 결과 없음</option>
+    <option value="savefail">저장 실패</option>
+    <option value="conflict">저장 충돌 (409)</option>
+    <option value="loadfail">불러오기 실패</option>
+  </select>
+</div>
+
+<script>
+'use strict';
+/* ============================================================
+   IPbeginz · 프랜차이즈 권한 공통 데이터·로직 (두 페이지 공용)
+   ============================================================ */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const clone = o => JSON.parse(JSON.stringify(o));
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function getPath(o, p) { return p.split('.').reduce((a, k) => (a == null ? undefined : a[k]), o); }
+function setPath(o, p, v) {
+  const ks = p.split('.'); let cur = o;
+  for (let i = 0; i < ks.length - 1; i++) {
+    if (cur[ks[i]] == null || typeof cur[ks[i]] !== 'object' || Array.isArray(cur[ks[i]])) cur[ks[i]] = {};
+    cur = cur[ks[i]];
+  }
+  const last = ks[ks.length - 1];
+  if (v === undefined) delete cur[last]; else cur[last] = v;
+}
+/* 빈 객체 정리 — 변경 비교 시 {} 와 미설정을 같게 봄 */
+function prune(o) {
+  if (!o || typeof o !== 'object' || Array.isArray(o)) return o;
+  Object.keys(o).forEach(k => {
+    const v = o[k];
+    if (v === undefined) delete o[k];
+    else if (v && typeof v === 'object' && !Array.isArray(v)) { prune(v); if (!Object.keys(v).length) delete o[k]; }
+  });
+  return o;
+}
+const same = (a, b) => JSON.stringify(prune(clone(a ?? {}))) === JSON.stringify(prune(clone(b ?? {})));
+
+/* ---------- 아이콘 (Lucide 스타일 인라인 SVG) ---------- */
+const ICON = {
+  chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  chevronLeft: '<path d="m15 18-6-6 6-6"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+  history: '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/>',
+  wand: '<path d="m15 4 5 5"/><path d="M3 21 14.5 9.5"/><path d="M9 3v2M4 8h2M18 14v2M21 17h-2"/>',
+  import: '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>',
+  x: '<path d="M18 6 6 18M6 6l12 12"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>',
+  more: '<circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/>',
+  lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+  refresh: '<path d="M21 12a9 9 0 1 1-2.6-6.4L21 8"/><path d="M21 3v5h-5"/>',
+  sliders: '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
+  minus: '<path d="M5 12h14"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  alert: '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  copy: '<rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>',
+  undo: '<path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/>',
+  grip: '<circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/>',
+  monitor: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+  filter: '<path d="M3 5h18l-7 8v6l-4 2v-8Z"/>'
+};
+const ic = (n, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n] || ''}</svg>`;
+function hydrateIcons(root = document) { $$('i[data-ic]', root).forEach(el => { el.outerHTML = ic(el.dataset.ic, el.className || ''); }); }
+
+/* ---------- 그룹 · 판매 방식 ---------- */
+const GROUPS = [
+  { code: 'A', name: '영상', v: '--gA' },
+  { code: 'B', name: '텍스트·출판', v: '--gB' },
+  { code: 'C', name: '음악·오디오·무대', v: '--gC' },
+  { code: 'D', name: '인터랙티브·신기술', v: '--gD' },
+  { code: 'E', name: '브랜드·커머스', v: '--gE' },
+  { code: 'F', name: '마이크로·데이터', v: '--gF' }
+];
+const GROUP_MAP = Object.fromEntries(GROUPS.map(g => [g.code, g]));
+const GROUP_DEFAULTS = {
+  A: { saleMode: 'negotiated', priceRange: [30000000, 200000000], territory: null, termMonths: 60, slots: 1, slotUnit: 'total' },
+  B: { saleMode: 'instant', priceRange: [3000000, 10000000], territory: null, termMonths: 60, slots: 1, slotUnit: 'region' },
+  C: { saleMode: 'instant', priceRange: [1000000, 30000000], territory: null, termMonths: 36, slots: 5, slotUnit: 'total' },
+  D: { saleMode: 'instant', priceRange: [10000000, 30000000], territory: null, termMonths: 36, slots: 3, slotUnit: 'total' },
+  E: { saleMode: 'instant', priceRange: [3000000, 30000000], territory: null, termMonths: 12, slots: 3, slotUnit: 'region' },
+  F: { saleMode: 'creator', priceRange: [0, 300000], territory: null, termMonths: 12, slots: null, slotUnit: 'total' }
+};
+/* 12-2 판매 방식 → 자동 결정값 */
+const SALE_MODES = {
+  negotiated: { key: 'negotiated', s: 'n', icon: '🔒', label: '협의 판매', short: '협의', desc: '독점으로 팔고 조건은 협상함', exclusivity: 'exclusive', approval: 'pre', process: 'negotiation', creator: false, slots: 1, escrow: true, buyerType: 'business', startDeadlineMonths: 18, materialLevel: 'Lv4', template: 'TPL_EXCLUSIVE' },
+  instant: { key: 'instant', s: 'i', icon: '🛒', label: '즉시 판매', short: '즉시', desc: '비독점으로 정가에 바로 팜', exclusivity: 'non_exclusive', approval: 'auto', process: 'instant', creator: false, escrow: false, buyerType: 'anyone', startDeadlineMonths: null, materialLevel: 'Lv3', template: 'TPL_NON_EXCLUSIVE' },
+  creator: { key: 'creator', s: 'c', icon: '🌟', label: 'Creator 개방', short: 'Creator', desc: 'Creator 패키지에 넣고 누구나 바로 씀', exclusivity: 'non_exclusive', approval: 'auto', process: 'instant', creator: true, slots: null, escrow: false, buyerType: 'anyone', startDeadlineMonths: null, materialLevel: 'Lv3', template: 'TPL_CREATOR' },
+  off: { key: 'off', s: 'o', icon: '🚫', label: '판매 안 함', short: '판매 안 함', desc: '마켓에 노출하지 않음', enabled: false, template: null }
+};
+const MODE_KEYS = ['negotiated', 'instant', 'creator', 'off'];
+const MODE_BY_S = { n: 'negotiated', i: 'instant', c: 'creator', o: 'off' };
+const modeBadge = (k, text) => `<span class="mode m-${k}"><span aria-hidden="true">${SALE_MODES[k].icon}</span>${text ?? SALE_MODES[k].short}</span>`;
+
+const TERMS = [[6, '6개월'], [12, '1년'], [24, '2년'], [36, '3년'], [60, '5년'], [120, '10년'], [0, '영구']];
+const termLabel = m => (TERMS.find(t => t[0] === m) || [0, `${m}개월`])[1];
+const UNITS = { total: '전체', region: '지역당', media: '매체당', language: '언어당', category: '카테고리당' };
+const LANGS = [['KR', '한국어'], ['EN', '영어'], ['JP', '일본어'], ['CN', '중국어'], ['ES', '스페인어'], ['FR', '프랑스어'], ['DE', '독일어'], ['TH', '태국어'], ['VI', '베트남어'], ['ID', '인도네시아어']];
+/* 전 세계 국가 목록(대륙별 · ISO 코드). 지역 선택기는 「전 세계 / 선택 국가만 / 전 세계에서 제외」 3택 + 검색으로 고른다 */
+const REGIONS = [
+  { code: 'EA', name: '동아시아', countries: [['KR','대한민국'],['JP','일본'],['CN','중국'],['TW','대만'],['HK','홍콩'],['MO','마카오'],['MN','몽골'],['KP','북한']] },
+  { code: 'SEA', name: '동남아시아', countries: [['SG','싱가포르'],['VN','베트남'],['TH','태국'],['ID','인도네시아'],['PH','필리핀'],['MY','말레이시아'],['KH','캄보디아'],['LA','라오스'],['MM','미얀마'],['BN','브루나이'],['TL','동티모르']] },
+  { code: 'SA', name: '남아시아', countries: [['IN','인도'],['PK','파키스탄'],['BD','방글라데시'],['LK','스리랑카'],['NP','네팔'],['BT','부탄'],['MV','몰디브'],['AF','아프가니스탄']] },
+  { code: 'CA', name: '중앙아시아', countries: [['KZ','카자흐스탄'],['UZ','우즈베키스탄'],['KG','키르기스스탄'],['TJ','타지키스탄'],['TM','투르크메니스탄']] },
+  { code: 'ME', name: '중동', countries: [['AE','아랍에미리트'],['SA','사우디아라비아'],['QA','카타르'],['KW','쿠웨이트'],['BH','바레인'],['OM','오만'],['IL','이스라엘'],['JO','요르단'],['LB','레바논'],['IQ','이라크'],['IR','이란'],['SY','시리아'],['YE','예멘'],['PS','팔레스타인'],['TR','튀르키예']] },
+  { code: 'NA', name: '북미', countries: [['US','미국'],['CA','캐나다'],['MX','멕시코']] },
+  { code: 'CAM', name: '중미 · 카리브', countries: [['GT','과테말라'],['HN','온두라스'],['SV','엘살바도르'],['NI','니카라과'],['CR','코스타리카'],['PA','파나마'],['BZ','벨리즈'],['CU','쿠바'],['DO','도미니카공화국'],['HT','아이티'],['JM','자메이카'],['PR','푸에르토리코'],['TT','트리니다드토바고'],['BS','바하마'],['BB','바베이도스']] },
+  { code: 'SAM', name: '남미', countries: [['BR','브라질'],['AR','아르헨티나'],['CL','칠레'],['CO','콜롬비아'],['PE','페루'],['VE','베네수엘라'],['EC','에콰도르'],['BO','볼리비아'],['PY','파라과이'],['UY','우루과이'],['GY','가이아나'],['SR','수리남']] },
+  { code: 'WEU', name: '서유럽', countries: [['GB','영국'],['IE','아일랜드'],['FR','프랑스'],['DE','독일'],['NL','네덜란드'],['BE','벨기에'],['LU','룩셈부르크'],['CH','스위스'],['AT','오스트리아'],['LI','리히텐슈타인'],['MC','모나코']] },
+  { code: 'NEU', name: '북유럽', countries: [['SE','스웨덴'],['NO','노르웨이'],['DK','덴마크'],['FI','핀란드'],['IS','아이슬란드'],['EE','에스토니아'],['LV','라트비아'],['LT','리투아니아']] },
+  { code: 'SEU', name: '남유럽', countries: [['ES','스페인'],['PT','포르투갈'],['IT','이탈리아'],['GR','그리스'],['MT','몰타'],['CY','키프로스'],['AD','안도라'],['SM','산마리노'],['VA','바티칸']] },
+  { code: 'EEU', name: '동유럽 · 발칸', countries: [['PL','폴란드'],['CZ','체코'],['SK','슬로바키아'],['HU','헝가리'],['RO','루마니아'],['BG','불가리아'],['UA','우크라이나'],['BY','벨라루스'],['MD','몰도바'],['RU','러시아'],['SI','슬로베니아'],['HR','크로아티아'],['BA','보스니아헤르체고비나'],['RS','세르비아'],['ME','몬테네그로'],['MK','북마케도니아'],['AL','알바니아'],['XK','코소보'],['GE','조지아'],['AM','아르메니아'],['AZ','아제르바이잔']] },
+  { code: 'OC', name: '오세아니아', countries: [['AU','호주'],['NZ','뉴질랜드'],['PG','파푸아뉴기니'],['FJ','피지'],['WS','사모아'],['TO','통가'],['VU','바누아투'],['SB','솔로몬제도'],['GU','괌'],['PW','팔라우'],['FM','미크로네시아'],['MH','마셜제도'],['KI','키리바시'],['NR','나우루'],['TV','투발루']] },
+  { code: 'NAF', name: '북아프리카', countries: [['EG','이집트'],['MA','모로코'],['DZ','알제리'],['TN','튀니지'],['LY','리비아'],['SD','수단']] },
+  { code: 'WAF', name: '서아프리카', countries: [['NG','나이지리아'],['GH','가나'],['SN','세네갈'],['CI','코트디부아르'],['ML','말리'],['BF','부르키나파소'],['NE','니제르'],['GN','기니'],['BJ','베냉'],['TG','토고'],['SL','시에라리온'],['LR','라이베리아'],['GM','감비아'],['MR','모리타니'],['CV','카보베르데'],['GW','기니비사우']] },
+  { code: 'EAF', name: '동아프리카', countries: [['KE','케냐'],['ET','에티오피아'],['TZ','탄자니아'],['UG','우간다'],['RW','르완다'],['BI','부룬디'],['SO','소말리아'],['DJ','지부티'],['ER','에리트레아'],['SS','남수단'],['MZ','모잠비크'],['MG','마다가스카르'],['MU','모리셔스'],['SC','세이셸'],['KM','코모로']] },
+  { code: 'SAF', name: '중부 · 남부 아프리카', countries: [['ZA','남아프리카공화국'],['NA','나미비아'],['BW','보츠와나'],['ZW','짐바브웨'],['ZM','잠비아'],['MW','말라위'],['AO','앙골라'],['CD','콩고민주공화국'],['CG','콩고공화국'],['CM','카메룬'],['GA','가봉'],['GQ','적도기니'],['TD','차드'],['CF','중앙아프리카공화국'],['LS','레소토'],['SZ','에스와티니']] }
+];
+const ALL_COUNTRIES = REGIONS.flatMap(r => r.countries.map(c => c[0]));
+function territoryText(t) {
+  if (!t || !t.length || t.includes('GLOBAL')) return 'Global';
+  let rest = [...t]; const names = [];
+  REGIONS.forEach(r => { const cs = r.countries.map(c => c[0]); if (cs.every(c => rest.includes(c))) { names.push(r.name); rest = rest.filter(c => !cs.includes(c)); } });
+  const all = [...names, ...rest];
+  if (all.length === ALL_COUNTRIES.length) return '전 세계';
+  const excl = ALL_COUNTRIES.length - t.length;
+  if (excl > 0 && excl <= 5) return `전 세계 · 제외 ${excl}`;
+  if (all.length <= 2) return all.join('·');
+  return `${t.length}개국`;
+}
+const countryName = c => { for (const r of REGIONS) { const hit = r.countries.find(x => x[0] === c); if (hit) return hit[1]; } return c; };
+/* 지역 팝업의 대륙 → 국가 트리. q: 검색어, chk(code): 체크 여부(제외 모드에서는 제외 = 체크) */
+function terrTreeHTML(q, chk) {
+  return REGIONS.map(r => {
+    const cs = r.countries.filter(([c, l]) => !q || l.toLowerCase().includes(q) || r.name.toLowerCase().includes(q) || c.toLowerCase() === q);
+    if (!cs.length) return '';
+    const codes = cs.map(c => c[0]); const n = codes.filter(chk).length; const exp = !!q || ui.treeOpen.has(r.code);
+    return `<div class="tree-row"><label><input type="checkbox" data-tact="region" data-code="${r.code}" ${n === codes.length ? 'checked' : ''} data-ind="${n > 0 && n < codes.length}">${r.name}</label><span class="cnt">${n}/${codes.length}</span><button type="button" class="exp" data-act="treeExp" data-val="${r.code}" aria-expanded="${exp}" aria-label="${r.name} 국가 ${exp ? '접기' : '펼치기'}" data-fk="te-${r.code}">${ic('chevronDown')}</button></div>
+      ${exp ? `<div class="tree-kids">${cs.map(([c, l]) => `<label><input type="checkbox" data-tact="country" data-code="${c}" ${chk(c) ? 'checked' : ''}>${l} <small style="color:var(--text-3)">${c}</small></label>`).join('')}</div>` : ''}`;
+  }).join('');
+}
+
+/* ---------- 권한 38종 (4장) ---------- */
+/* id|code|icon|권한명|보조그룹|판매방식|시작가|기간(개월,0=영구)|슬롯(inf=∞)|슬롯단위|특화필드|영문명 */
+const RIGHTS = `
+A-01|SHORT_DRAMA|📱|숏폼드라마화권||n|30000000|36|1|total|option|Short-form Drama
+A-02|DRAMA|📺|드라마화권||n|80000000|60|1|total|option|TV/OTT Drama
+A-03|FILM|🎬|영화화권||n|200000000|0|1|total|option|Feature Film
+A-04|SPINOFF|🧬|스핀오프·프리퀄·시퀄권|B|n|80000000|60|1|total||Spin-off / Prequel / Sequel
+A-05|REMAKE|🔄|리메이크권|B|n|80000000|60|1|total||Remake
+A-06|VIDEO|🎥|영상화권(일반)||c|3000000|12|inf|total||General Video
+A-07|VARIETY|🎪|예능화권(숏/롱폼)||n|30000000|36|1|total|option|Variety Show
+A-08|ANIME|🎨|애니메이션화권||n|200000000|60|1|total|option|Animation
+A-09|SHORT_ANIME|🎞️|숏폼애니메이션화권||i|10000000|24|3|total||Short-form Animation
+A-10|SOCIAL|📲|소셜플랫폼권||c|300000|12|inf|total||Social Platform
+A-11|MV|📼|뮤직비디오권|C|i|30000000|36|3|total|sync|Music Video
+A-12|LOCALIZE|🌍|더빙·자막 로컬라이제이션권|C|i|3000000|36|1|language|lang|Dubbing & Subtitles
+B-01|NOVEL|📚|소설화권||i|3000000|60|1|region||Novelization
+B-02|WEBTOON|📖|웹툰화권||i|10000000|60|1|region||Webtoon
+B-03|BLOG|✍️|블로그화권||c|300000|12|inf|total||Blog
+B-04|AUDIOBOOK|🎙️|오디오북·팟캐스트권|C|i|3000000|36|1|language|lang|Audiobook
+B-05|FANWORK|💖|팬창작권|E|c|0|12|inf|total|fanwork|Fan Work
+C-01|AUDIO_DRAMA|🎧|오디오드라마/영화화권||c|1000000|24|inf|total||Audio Drama
+C-02|MUSIC|🎵|음악화권||i|1000000|36|5|total|sync|Music
+C-03|MUSICAL|🎭|뮤지컬화권||n|200000000|60|1|total|option|Musical
+C-04|VOICE|🗣️|보이스권|D|i|3000000|12|5|total|voice|Voice
+C-05|PODCAST|📻|팟캐스트·오디오 해설권||c|300000|12|inf|total||Podcast Commentary
+D-01|GAME|🎮|게임화권||n|200000000|60|1|total|option|Game
+D-02|HOLOGRAM|🔮|홀로그램화권||n|80000000|36|1|media||Hologram
+D-03|CHAR_CHAT|💬|캐릭터챗봇서비스권||i|10000000|0|3|total|chatbot|Character Chatbot
+D-04|INTERACTIVE|🕹️|인터랙티브 스토리·비주얼노벨권||i|10000000|36|1|total||Interactive Story
+D-05|LBE|🏛️|전시·팝업스토어·방탈출권|E|i|30000000|12|1|region||Location-based Entertainment
+D-06|METAVERSE|🌐|블록체인·메타버스권||i|30000000|0|3|total||Blockchain / Metaverse
+E-01|PPL|🎯|PPL·브랜디드 엔터테인먼트권||n|30000000|12|3|total|ppl|PPL / Branded
+E-02|AD|📢|광고화권||n|200000000|6|1|media||Advertising
+E-03|COLLAB|🔗|콜라보레이션권||i|30000000|6|3|total||Collaboration
+E-04|GOODS|🛍️|굿즈권||i|3000000|24|1|category|goods|Merchandise
+E-05|EMOJI|😀|이모지권||c|1000000|24|inf|total||Emoji
+E-06|OFFLINE_PROMO|🏪|오프라인 매장 홍보권||i|3000000|6|3|region|store|Offline Store Promo
+E-07|LIVE_COMMERCE|🛒|라이브커머스·라이브스트리밍권||c|3000000|6|inf|total||Live Commerce
+F-01|MICRO|✂️|마이크로라이센스||c|300000|12|inf|total|micro|Micro-license
+F-02|MEME|🌀|meme & challenge권|E|c|0|12|inf|total|meme|Meme & Challenge
+F-03|AI_TDM|🧠|AI 학습 데이터권||n|80000000|36|3|total|aitdm|AI Training Data
+`.trim().split('\n').map(line => {
+  const [id, code, icon, name, sub, m, price, term, slots, unit, special, en] = line.split('|');
+  return {
+    id, code, icon, name, en, sub, group: id[0],
+    special: special ? special.split('+') : [],
+    ai: ['VOICE', 'CHAR_CHAT', 'AI_TDM'].includes(code),
+    rec: { mode: MODE_BY_S[m], price: +price, term: +term, slots: slots === 'inf' ? null : +slots, unit }
+  };
+});
+const RIGHT_MAP = Object.fromEntries(RIGHTS.map(r => [r.id, r]));
+const FIXED_CLAUSE_IDS = ['B-05', 'F-02', 'D-03', 'C-04'];
+const BUNDLES = [
+  { id: 'bundle_video', name: '영상화 패키지', ids: ['A-02', 'A-03', 'A-08'], disc: 15 },
+  { id: 'bundle_short', name: '숏폼 패키지', ids: ['A-01', 'A-09', 'A-10'], disc: 10 }
+];
+
+/* ---------- 금액 표기 ---------- */
+const FX = { KRW: 1, USD: 1350, JPY: 9.1, CNY: 190 };   // 추정 환율
+const PPP = { USD: 0.78, JPY: 0.92, CNY: 0.55 };          // 추정 PPP 보정계수
+let CUR = 'KRW';
+const trim0 = s => s.replace(/\.0(?=\D|$)/, '');
+function man(n) {
+  if (n == null || isNaN(n)) return '-';
+  if (n === 0) return '0';
+  if (n >= 1e8) return trim0((n / 1e8).toFixed(1)) + '억';
+  if (n >= 1e4) return (n / 1e4).toLocaleString('ko-KR', { maximumFractionDigits: 1 }) + '만';
+  return n.toLocaleString('ko-KR');
+}
+function money(n, cur = CUR) {
+  if (cur === 'KRW') return '₩' + man(n);
+  const v = n / FX[cur];
+  if (cur === 'USD') return '$' + (v >= 1e6 ? trim0((v / 1e6).toFixed(1)) + 'M' : v >= 1e3 ? trim0((v / 1e3).toFixed(1)) + 'K' : Math.round(v));
+  if (cur === 'JPY') return '¥' + (v >= 1e8 ? trim0((v / 1e8).toFixed(1)) + '億' : v >= 1e4 ? Math.round(v / 1e4).toLocaleString() + '万' : Math.round(v).toLocaleString());
+  return 'CN¥' + (v >= 1e4 ? trim0((v / 1e4).toFixed(1)) + '万' : Math.round(v).toLocaleString());
+}
+const moneyRange = (a, b) => CUR === 'KRW' ? `₩${man(a)}~${man(b)}` : `${money(a)}~${money(b)}`;
+const fullWon = n => '₩' + Math.round(n || 0).toLocaleString('ko-KR');
+
+/* ---------- 상속 해석: IP 기본값 → 그룹 기본값 → 권한 overrides ---------- */
+function resolveRight(st, id) {
+  const R = RIGHT_MAP[id], r = st.rights[id], g = st.groupDefaults[R.group], ip = st.ipDefaults;
+  const o = r.overrides || {}, d = r.detail || {};
+  const mode = r.saleMode || g.saleMode;
+  const modeSrc = r.saleMode ? 'override' : 'group';
+  const M = SALE_MODES[mode];
+  const comp = o.compensation || { type: 'range', min: g.priceRange[0], max: g.priceRange[1] };
+  const compSrc = o.compensation ? 'override' : 'group';
+  let territory, terrSrc;
+  if (o.territory) { territory = o.territory; terrSrc = 'override'; }
+  else if (g.territory) { territory = g.territory; terrSrc = 'group'; }
+  else { territory = ip.territory; terrSrc = 'ip'; }
+  let term, termSrc;
+  if (o.termMonths != null) { term = o.termMonths; termSrc = 'override'; }
+  else if (g.termMonths != null) { term = g.termMonths; termSrc = 'group'; }
+  else { term = ip.termMonths; termSrc = 'ip'; }
+  let slots, unit, slotSrc;
+  if (mode === 'creator') { slots = null; unit = 'total'; slotSrc = 'mode'; }
+  else if (o.slots !== undefined) { slots = o.slots; unit = o.slotUnit || 'total'; slotSrc = 'override'; }
+  else if (r.saleMode && r.saleMode !== g.saleMode && M.slots !== undefined) { slots = M.slots; unit = 'total'; slotSrc = 'mode'; }
+  else { slots = g.slots; unit = g.slotUnit; slotSrc = 'group'; }
+  const el = d.eligibility || {}, ob = d.obligations || {};
+  const ss = r.slotState || { used: 0 };
+  const units = ss.units || null;
+  const cap = slots == null ? Infinity : slots * (units ? units.length : 1);
+  const used = units ? units.reduce((a, u) => a + u.used, 0) : (ss.used || 0);
+  const active = mode !== 'off';
+  return {
+    R, r, g, mode, M, modeSrc, comp, compSrc, territory, terrSrc, term, termSrc, slots, unit, slotSrc,
+    autoRenew: !!o.autoRenew, detail: d,
+    escrow: el.escrow ?? M.escrow ?? false,
+    buyerType: el.buyerType ?? M.buyerType ?? 'anyone',
+    startDeadline: ('startDeadlineMonths' in ob) ? ob.startDeadlineMonths : (M.startDeadlineMonths ?? null),
+    materialLevel: el.materialLevel ?? M.materialLevel ?? 'Lv3',
+    bundleIds: el.bundleIds ?? BUNDLES.filter(b => b.ids.includes(id)).map(b => b.id),
+    contactAllowed: el.contactAllowed ?? true,
+    used, cap, units, next: ss.nextAvailableFrom, active,
+    sold: active && slots != null && used >= cap,
+    semiExclusive: mode === 'negotiated' && (slots == null || slots >= 2),
+    hasOverrides: ['compensation', 'territory', 'termMonths', 'slots', 'autoRenew'].some(k => o[k] !== undefined),
+    hasDetail: Object.values(d).some(s => s && typeof s === 'object' && Object.keys(s).length)
+  };
+}
+
+function priceText(x) {
+  const c = x.comp, from = x.mode === 'negotiated';
+  const pre = x.R.code === 'PPL' ? '수령 ' : '';
+  switch (c.type) {
+    case 'range': return c.min === 0 ? (from ? '가격 협의' : '무료') : pre + money(c.min) + (from ? '~' : '');
+    case 'free': return '무료';
+    case 'lump': return c.amount > 0 ? pre + money(c.amount) + (from ? '~' : '') : '금액 없음';
+    case 'perUnit': return c.amount > 0 ? `${money(c.amount)}/건` : '금액 없음';
+    case 'royalty': return `RS ${c.royaltyPct ?? 0}%`;
+    case 'hybrid': return c.upfront > 0 ? `${pre}${money(c.upfront)}~ · Hybrid` : 'Hybrid · 금액 없음';
+    default: return '-';
+  }
+}
+function slotText(x) {
+  if (x.slots == null) return '∞';
+  return x.unit === 'total' ? `${x.slots}` : `${UNITS[x.unit]} ${x.slots}`;
+}
+function statusText(x) {
+  if (!x.active) return '판매 안 함';
+  if (x.slots == null) return '∞';
+  if (x.sold) return `${x.used}/${x.cap} 판매완료`;
+  return `${x.used}/${x.cap === Infinity ? '∞' : x.cap}`;
+}
+function exclusivityText(x) {
+  if (x.slots == null) return '비독점 · 무제한';
+  const left = Math.max(0, x.cap - x.used);
+  if (x.slots === 1) {
+    const map = { total: '독점', region: '지역독점', media: '분야독점', language: '언어별 독점', category: '카테고리 독점' };
+    return map[x.unit] + (x.units ? ` · 잔여 ${left}` : '');
+  }
+  return `${x.mode === 'negotiated' ? '준독점' : '비독점'} · 잔여 ${left}`;
+}
+const aiSet = d => { const a = d?.scope?.ai; return !!(a && (a.generation || a.training || a.synthesis || a.none)); };
+
+/* ---------- 검증 V1~V5 (서버 동일 규칙 재검증) ---------- */
+function validateRight(st, id) {
+  const x = resolveRight(st, id), out = [];
+  if (!x.active) return out;
+  const c = x.comp, R = x.R;
+  if (c.type === 'lump' || c.type === 'perUnit') { if (!(c.amount > 0)) out.push({ code: 'V1', cell: 'price', msg: '가격을 입력하거나 무료로 바꿔야 함', fix: 'price', fixLabel: '금액 입력' }); }
+  if (c.type === 'hybrid' && !(c.upfront > 0)) out.push({ code: 'V1', cell: 'price', msg: '선급금을 입력하거나 무료로 바꿔야 함', fix: 'price', fixLabel: '금액 입력' });
+  if (c.type === 'free' && x.mode !== 'creator') out.push({ code: 'V1', cell: 'price', msg: '무료는 Creator 개방에서만 쓸 수 있음. 가격을 입력해야 함', fix: 'price', fixLabel: '금액 입력' });
+  if ((c.type === 'royalty' || c.type === 'hybrid') && !(c.royaltyPct > 0 && c.royaltyPct <= 50)) out.push({ code: 'V2', cell: 'price', msg: '로열티율은 0.1~50% 사이로 입력', fix: 'clampRoyalty', fixLabel: '값 보정' });
+  if (R.ai && !aiSet(x.detail)) out.push({ code: 'V3', cell: 'act', msg: 'AI 관련 권한은 AI 활용 범위를 정해야 판매할 수 있음', fix: 'openScope', fixLabel: '직접 설정 열기' });
+  if (R.code === 'FANWORK' && !x.detail?.special?.fanwork?.platform) out.push({ code: 'V4', cell: 'act', msg: '팬창작 권한은 게시 플랫폼을 지정해야 함', fix: 'fanHub', fixLabel: 'ipbeginz 팬창작 허브 선택' });
+  if ((R.code === 'LOCALIZE' || R.code === 'AUDIOBOOK') && !(x.detail?.special?.lang?.targets?.length)) out.push({ code: 'V5', cell: 'act', msg: '대상 언어를 1개 이상 선택해야 함', fix: 'openLang', fixLabel: '언어 선택 열기' });
+  return out;
+}
+
+/* ---------- 바이어 화면 한 줄 (12-4) ---------- */
+function buyerRowHTML(st, id) {
+  const x = resolveRight(st, id);
+  if (!x.active) return '';
+  const R = x.R;
+  const status = x.sold
+    ? `<span class="bv-sold">판매완료 · ${esc(x.next || '가용일 미정')}부터</span><button type="button" class="btn btn-xs" tabindex="-1">예약 문의</button>`
+    : x.slots == null ? `<span class="bv-open">상시 판매</span>`
+      : `<span class="bv-open">판매중 · 잔여 ${x.cap - x.used}</span>`;
+  const proc = x.mode === 'negotiated' ? '🤝 협의 구매 · 사전 승인' : '⚡ 즉시 구매';
+  return `<div class="bv-row" style="--gc:var(${GROUP_MAP[R.group].v})">
+    <div class="bv-name"><span aria-hidden="true">${R.icon}</span><b>${esc(R.name)}</b>${x.mode === 'creator' ? '<span class="badge b-warn">🌟 Creator 패키지</span>' : ''}</div>
+    <div class="bv-status">${status}</div>
+    <div class="bv-meta"><span>${exclusivityText(x)}</span><span>${territoryText(x.territory)} · ${termLabel(x.term)}${x.autoRenew ? ' · 자동갱신' : ''}</span><span>${proc}</span></div>
+    <div class="bv-price num">${x.R.code === 'PPL' ? '<small>노출비</small> ' : ''}${esc(priceText(x).replace('수령 ', ''))}</div>
+  </div>`;
+}
+
+/* ---------- 초기 상태 (더미) ---------- */
+const IP_INFO = { id: 'ip_9f21', name: '검은 달의 계약자', en: 'The Black Moon Contractor', type: '웹소설', genre: '다크판타지', stage: 'Post-Prod', holder: '문하린 작가' };
+function baseRightState() { return { overrides: {}, detail: {}, slotState: { used: 0, nextAvailableFrom: null }, hasActiveDeals: false }; }
+function placementFromRec(st) {
+  RIGHTS.forEach(R => {
+    const r = st.rights[R.id];
+    if (R.rec.mode !== st.groupDefaults[R.group].saleMode) r.saleMode = R.rec.mode; else delete r.saleMode;
+  });
+}
+function initialState() {
+  const st = {
+    ipId: IP_INFO.id, version: 17,
+    ipDefaults: { visibility: 'public', oneToOne: false, currency: 'KRW', languages: ['KR', 'EN'], territory: ['GLOBAL'], termMonths: 36 },
+    groupDefaults: clone(GROUP_DEFAULTS),
+    rights: {}
+  };
+  RIGHTS.forEach(R => { st.rights[R.id] = baseRightState(); });
+  placementFromRec(st);
+  const R = st.rights;
+  // 예외값 8개 행
+  R['A-01'].overrides = { compensation: { type: 'lump', amount: 30000000 }, termMonths: 36 };
+  R['A-02'].overrides = { compensation: { type: 'hybrid', upfront: 80000000, royaltyPct: 5, mg: 20000000, preStageDiscountPct: 0 }, termMonths: 36 };
+  R['A-03'].overrides = { compensation: { type: 'lump', amount: 200000000 }, termMonths: 0, territory: ['KR', 'JP'] };
+  R['A-09'].overrides = { compensation: { type: 'lump', amount: 10000000 }, termMonths: 24, slots: 3, slotUnit: 'total' };
+  R['C-02'].overrides = { compensation: { type: 'royalty', royaltyPct: 7, reportCycle: 'quarter' } };
+  R['D-01'].overrides = { compensation: { type: 'lump', amount: 200000000 }, termMonths: 60 };
+  R['E-04'].overrides = { compensation: { type: 'lump', amount: 3000000 }, termMonths: 24, slots: 1, slotUnit: 'category' };
+  R['F-01'].overrides = { compensation: { type: 'perUnit', amount: 300000, cap: 50 } };
+  // 세부 조건
+  R['A-02'].detail = {
+    scope: { media: ['TV', 'OTT'], acts: ['reproduce', 'distribute', 'derivative'], commercial: 'commercial', rofr: true, ai: { none: true }, changeLimit: 'low' },
+    obligations: { startDeadlineMonths: 18, curePeriodDays: 30 },
+    eligibility: { contactAllowed: true, bundleIds: ['bundle_video'], materialLevel: 'Lv4' },
+    special: { option: { months: 12, fee: 8000000, conversionPrice: 80000000 } }
+  };
+  R['A-06'].detail = { scope: { commercial: 'commercial' } };
+  R['A-12'].detail = { special: { lang: { targets: ['EN', 'JP'] } } };
+  R['B-04'].detail = { special: { lang: { targets: ['EN'] } } };
+  R['B-05'].detail = { special: { fanwork: { platform: 'hub', monetize: 'ads' } } };
+  R['C-02'].detail = { special: { sync: { split: true } } };
+  R['D-03'].detail = { scope: { ai: { generation: true, synthesis: true } }, special: { chatbot: { banned: '정치·혐오·성적 대화' } } };
+  R['F-03'].detail = { scope: { ai: { training: true } }, special: { aitdm: { purpose: 'split', similarity: 30 } } };
+  // 판매 슬롯 현황
+  R['A-03'].slotState = { used: 1, nextAvailableFrom: '2027.03' };
+  R['D-01'].slotState = { used: 1, nextAvailableFrom: '2028.01' };
+  R['A-09'].slotState = { used: 1, nextAvailableFrom: null };
+  R['C-02'].slotState = { used: 2, nextAvailableFrom: null };
+  R['E-04'].slotState = { used: 1, nextAvailableFrom: null, units: [{ label: '문구', used: 1 }, { label: '의류', used: 0 }] };
+  ['A-02', 'B-02', 'E-04'].forEach(k => { R[k].hasActiveDeals = true; });
+  R['A-02'].editingBy = { userId: 'user_02', initials: 'MH', name: '문민혁', since: '2026-09-15T10:18:00+09:00' };
+  return st;
+}
+/* URL 파라미터로 위저드 ↔ 목록 배치 전달 (브라우저 저장소 대신) */
+function encodePlacement(st) { return RIGHTS.map(R => SALE_MODES[resolveRight(st, R.id).mode].s).join(''); }
+function applyPlacement(st, m) {
+  if (!m || m.length !== RIGHTS.length) return false;
+  RIGHTS.forEach((R, i) => {
+    const mode = MODE_BY_S[m[i]]; if (!mode) return;
+    if (mode === st.groupDefaults[R.group].saleMode) delete st.rights[R.id].saleMode; else st.rights[R.id].saleMode = mode;
+  });
+  return true;
+}
+function readParams(st) {
+  const p = new URLSearchParams(location.search);
+  let applied = false;
+  try { const g = p.get('g'); if (g) { const obj = JSON.parse(g); Object.keys(obj).forEach(k => { if (st.groupDefaults[k]) Object.assign(st.groupDefaults[k], obj[k]); }); applied = true; } } catch (e) { console.warn('g 파라미터 해석 실패', e); }
+  if (applyPlacement(st, p.get('m'))) applied = true;
+  try { const fx = p.get('fx'); if (fx) { const obj = JSON.parse(fx); Object.keys(obj).forEach(id => { if (st.rights[id]) { st.rights[id].detail = Object.assign(st.rights[id].detail || {}, obj[id]); } }); applied = true; } } catch (e) { console.warn('fx 파라미터 해석 실패', e); }
+  return applied;
+}
+function modeCounts(st) {
+  const c = { negotiated: 0, instant: 0, creator: 0, off: 0 };
+  RIGHTS.forEach(R => { c[resolveRight(st, R.id).mode]++; });
+  return c;
+}
+
+/* ---------- 토스트 ---------- */
+function toast(msg, action, ms = 4000) {
+  const box = $('#toasts'); if (!box) return;
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<span>${esc(msg)}</span>`;
+  if (action) {
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = action.label;
+    b.addEventListener('click', () => { action.run(); t.remove(); });
+    t.appendChild(b);
+  }
+  box.appendChild(t);
+  setTimeout(() => t.remove(), action ? Math.max(ms, 5000) : ms);
+}
+
+/* ---------- 테마 ---------- */
+function initTheme() {
+  const prefers = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = prefers ? 'dark' : 'light';
+  syncThemeBtn();
+}
+function toggleTheme() {
+  const r = document.documentElement;
+  r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+  syncThemeBtn();
+}
+function syncThemeBtn() {
+  const b = $('#themeBtn'); if (!b) return;
+  const dark = document.documentElement.dataset.theme === 'dark';
+  b.innerHTML = ic(dark ? 'sun' : 'moon');
+  b.setAttribute('aria-label', dark ? '라이트 모드로 전환' : '다크 모드로 전환');
+}
+function initNavDrawer() {
+  const sb = $('#sidebar'), scrim = $('#navScrim');
+  const close = () => { sb.classList.remove('on'); scrim.classList.remove('on'); };
+  $$('[data-open-nav]').forEach(b => b.addEventListener('click', () => { sb.classList.add('on'); scrim.classList.add('on'); }));
+  scrim.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+}
+
+/* ============================================================
+   studio/franchise-rights.html — 목록 화면
+   ============================================================ */
+let state = initialState();
+const urlApplied = readParams(state);
+let saved = clone(state);
+const ui = {
+  open: new Set(GROUPS.map(g => g.code)), detail: new Set(),
+  q: '', group: 'all', modes: new Set(), status: 'all',
+  conflicts: [], saving: false, saveError: false, forceSaveFail: false, mockConflictUsed: false,
+  dev: 'normal', devSnap: null, loading: false, loadFail: false,
+  pop: null, treeOpen: new Set(['EA']), sheet: null, pvSize: 'desktop', layer: null, terrMode: null, terrQ: ''
+};
+const isMobile = () => matchMedia('(max-width:767px)').matches;
+const pickRight = r => ({ saleMode: r.saleMode, overrides: r.overrides, detail: r.detail });
+const rightChanged = id => !same(pickRight(state.rights[id]), pickRight(saved.rights[id]));
+function changeList() {
+  const out = [];
+  RIGHTS.forEach(R => { if (rightChanged(R.id)) out.push({ kind: 'right', id: R.id }); });
+  GROUPS.forEach(g => { if (!same(state.groupDefaults[g.code], saved.groupDefaults[g.code])) out.push({ kind: 'group', id: g.code }); });
+  if (!same(state.ipDefaults, saved.ipDefaults)) out.push({ kind: 'ip' });
+  return out;
+}
+function errorsAll() { const m = {}; RIGHTS.forEach(R => { const v = validateRight(state, R.id); if (v.length) m[R.id] = v; }); return m; }
+const rememberFocus = () => document.activeElement?.dataset?.fk || null;
+function restoreFocus(fk) { if (!fk) return; const n = document.querySelector(`[data-fk="${CSS.escape(fk)}"]`); if (n && n !== document.activeElement) n.focus({ preventScroll: true }); }
+
+/* ---------- 옵션 상수 ---------- */
+const MEDIA_OPTS = ['TV', 'OTT', '극장', '모바일', '웹', '유튜브', '틱톡', '인스타그램', '오프라인'].map(m => [m, m]);
+const ACT_OPTS = [['reproduce', '복제'], ['distribute', '배포'], ['perform', '공연'], ['derivative', '2차 창작'], ['sublicense', '서브라이선싱']];
+const defaultActs = x => x.mode === 'instant' ? ['reproduce', 'distribute'] : ['reproduce', 'distribute', 'derivative'];
+
+/* ---------- 작은 컨트롤 빌더 ---------- */
+const attrVal = v => esc(JSON.stringify(v));
+const fld = (label, body, hint = '', auto = false, req = false) =>
+  `<div class="fld"><span class="fld-l">${label}${req ? ' <span style="color:var(--error-500)">*</span>' : ''}${auto ? '<span class="auto">자동</span>' : ''}</span>${body}${hint ? `<span class="fld-h">${hint}</span>` : ''}</div>`;
+const segH = (id, path, val, opts, sfx = '') =>
+  `<div class="seg" role="radiogroup">${opts.map(([v, l]) => `<button type="button" role="radio" aria-checked="${val === v}" data-act="seg" data-id="${id}" data-path="${path}" data-val="${attrVal(v)}" data-fk="${id}-${path}-${v}${sfx}">${l}</button>`).join('')}</div>`;
+const swH = (id, path, on, label, sfx = '', act = 'sw') =>
+  `<div class="sw-row"><button type="button" class="sw" role="switch" aria-checked="${!!on}" aria-label="${esc(label)}" data-act="${act}" data-id="${id}" data-path="${path}" data-fk="${id}-${path}${sfx}"></button><span>${label}</span></div>`;
+const multiH = (id, path, arr, opts, def, sfx = '') =>
+  `<div class="tog-set">${opts.map(([v, l]) => `<button type="button" class="tog" aria-pressed="${arr.includes(v)}" data-act="multi" data-id="${id}" data-path="${path}" data-val="${attrVal(v)}" data-def="${attrVal(def || [])}" data-fk="${id}-${path}-${v}${sfx}">${l}</button>`).join('')}</div>`;
+const numH = (id, path, val, suf, { scale = 1, ph = '', min = 0, max } = {}, sfx = '') =>
+  `<div class="inp-wrap"><input class="inp num" type="number" inputmode="decimal" min="${min}" ${max != null ? `max="${max}"` : ''} value="${val == null ? '' : val / scale}" placeholder="${ph}" data-bind data-kind="num" data-scale="${scale}" data-id="${id}" data-path="${path}" data-fk="${id}-${path}${sfx}"><span class="suf">${suf}</span></div>`;
+const txtH = (id, path, val, ph, sfx = '', area = false) => area
+  ? `<textarea class="inp" data-bind data-kind="txt" data-id="${id}" data-path="${path}" data-fk="${id}-${path}${sfx}" placeholder="${esc(ph)}">${esc(val || '')}</textarea>`
+  : `<input class="inp" type="text" value="${esc(val || '')}" placeholder="${esc(ph)}" data-bind data-kind="txt" data-id="${id}" data-path="${path}" data-fk="${id}-${path}${sfx}">`;
+const selH = (id, path, val, opts, sfx = '', err = false) =>
+  `<select class="sel ${err ? 'err' : ''}" style="width:100%" data-bind data-kind="sel" data-id="${id}" data-path="${path}" data-fk="${id}-${path}${sfx}">${opts.map(([v, l]) => `<option value="${v}" ${String(val ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>`;
+const fileH = (id, path, val, sample, sfx = '') => val
+  ? `<div class="file-mock"><span class="fn">📎 ${esc(val)}</span><button type="button" class="btn btn-xs" data-act="file" data-id="${id}" data-path="${path}" data-fk="${id}-${path}${sfx}">제거</button></div>`
+  : `<div class="file-mock"><button type="button" class="btn btn-sm" data-act="file" data-id="${id}" data-path="${path}" data-val="${esc(sample)}" data-fk="${id}-${path}${sfx}">파일 첨부</button><span class="fld-h">예: ${esc(sample)}</span></div>`;
+
+/* ---------- 행 컨트롤 5개 ---------- */
+function modeSelectHTML(id, x, sfx = '') {
+  const gm = x.g.saleMode, r = x.r;
+  return `<select class="sel ms-${x.mode} ${r.saleMode ? '' : 'ms-inh'}" data-rfield="saleMode" data-id="${id}" data-fk="mode-${id}${sfx}" aria-label="${esc(x.R.name)} 판매 방식">
+    <option value="" ${r.saleMode ? '' : 'selected'}>${SALE_MODES[gm].icon} ${SALE_MODES[gm].short} · 기본값</option>
+    ${MODE_KEYS.filter(k => k !== gm).map(k => `<option value="${k}" ${r.saleMode === k ? 'selected' : ''}>${SALE_MODES[k].icon} ${SALE_MODES[k].short}</option>`).join('')}
+  </select>`;
+}
+function chipInner(inh, text, lock, labText = '기본값') {
+  const lk = lock ? ic('lock') : '';
+  return inh ? `<span class="t">${lk}${esc(text)}</span><span class="lab">${labText}</span>` : `${lk}<span class="t">${esc(text)}</span><i class="ov" aria-hidden="true"></i>`;
+}
+function priceChipHTML(id, x, errs, sfx = '') {
+  const inh = x.compSrc === 'group', err = errs.some(e => e.cell === 'price'), dis = x.sold || !x.active;
+  const t = priceText(x);
+  const title = inh ? `그룹 가격 범위 ${moneyRange(x.comp.min, x.comp.max)}` : (x.sold ? '판매완료 — 가용일 이후 수정 가능' : '가격 설정');
+  return `<button type="button" class="vchip ${inh ? 'inh stk' : ''} ${err ? 'err' : ''} ${sfx ? 'full' : ''}" data-act="pop" data-pop="price" data-scope="right" data-id="${id}" data-fk="price-${id}${sfx}" ${dis ? 'disabled' : ''} title="${esc(title)}" aria-haspopup="dialog" aria-label="${esc(x.R.name)} 가격 ${esc(t)}${inh ? ', 기본값' : ''}">${chipInner(inh, t, x.sold)}</button>`;
+}
+function terrChipHTML(id, x, sfx = '') {
+  const inh = x.terrSrc !== 'override', dis = x.sold || !x.active, t = territoryText(x.territory);
+  return `<button type="button" class="vchip ${inh ? 'inh stk' : ''} ${sfx ? 'full' : ''}" data-act="pop" data-pop="terr" data-scope="right" data-id="${id}" data-fk="terr-${id}${sfx}" ${dis ? 'disabled' : ''} title="${x.sold ? '판매완료 — 가용일 이후 수정 가능' : '지역 설정'}" aria-haspopup="dialog" aria-label="${esc(x.R.name)} 지역 ${t}${inh ? ', 기본값' : ''}">${chipInner(inh, t, x.sold)}</button>`;
+}
+function termChipHTML(id, x, sfx = '') {
+  const inh = x.termSrc !== 'override', dis = x.sold || !x.active;
+  const t = termLabel(x.term) + (x.autoRenew ? ' ↻' : '');
+  return `<button type="button" class="vchip ${inh ? 'inh stk' : ''} ${sfx ? 'full' : ''}" data-act="pop" data-pop="term" data-scope="right" data-id="${id}" data-fk="term-${id}${sfx}" ${dis ? 'disabled' : ''} title="${x.sold ? '판매완료 — 가용일 이후 수정 가능' : '기간 · 자동갱신'}" aria-haspopup="dialog" aria-label="${esc(x.R.name)} 기간 ${termLabel(x.term)}${x.autoRenew ? ', 자동갱신' : ''}${inh ? ', 기본값' : ''}">${chipInner(inh, t, x.sold)}</button>`;
+}
+function slotChipHTML(id, x, sfx = '') {
+  const creator = x.mode === 'creator', dis = creator || !x.active;
+  const inh = x.slotSrc !== 'override';
+  const lab = x.slotSrc === 'mode' ? '자동' : '기본값';
+  return `<button type="button" class="vchip ${inh ? 'inh' : ''} ${inh && !creator ? 'stk' : ''} ${sfx ? 'full' : ''}" data-act="pop" data-pop="slot" data-scope="right" data-id="${id}" data-fk="slot-${id}${sfx}" ${dis ? 'disabled' : ''} title="${creator ? 'Creator 개방은 슬롯 ∞ 고정' : '판매 슬롯'}" aria-haspopup="dialog" aria-label="${esc(x.R.name)} 슬롯 ${slotText(x)}">${creator ? `<span class="t">∞</span>` : chipInner(inh, slotText(x), false, lab)}</button>`;
+}
+function statusHTML(x) {
+  if (!x.active) return '<span class="st-off">판매 안 함</span>';
+  if (x.slots == null) return '<span class="st-inf">∞ 상시</span>';
+  if (x.sold) return `<span class="st-sold">${x.used}/${x.cap} 판매완료<small>${esc(x.next || '가용일 미정')}부터 가용</small></span>`;
+  return `<span class="st-open">${x.used}/${x.cap} 판매중</span>${x.units ? `<span class="st-units">${x.units.map(u => `${esc(u.label)} ${u.used}/${x.slots}`).join(' · ')}</span>` : ''}`;
+}
+function badgesFor(x) {
+  const b = [], d = x.detail, sc = d.scope || {};
+  if (x.r.hasActiveDeals) b.push(['협상 중', 'b-info']);
+  if (x.semiExclusive) b.push(['준독점', 'b-indigo']);
+  if (x.startDeadline) b.push([`🔁 착수 ${x.startDeadline}개월`, '']);
+  if (d.special?.option?.months) b.push(['옵션', '']);
+  x.bundleIds.forEach(bid => { const B = BUNDLES.find(z => z.id === bid); if (B) b.push([`${B.name.replace(' 패키지', '')} 번들`, '']); });
+  if (sc.commercial) b.push([{ commercial: '영리', noncommercial: '비영리', both: '영리·비영리' }[sc.commercial], '']);
+  if (sc.ai && (sc.ai.generation || sc.ai.training || sc.ai.synthesis)) b.push(['AI 허용', '']);
+  if (x.autoRenew) b.push(['자동갱신', '']);
+  if (x.buyerType === 'invite') b.push(['초대 전용', '']);
+  if (d.eligibility?.escrow === true && x.mode !== 'negotiated') b.push(['에스크로', '']);
+  return b;
+}
+function badgeCellHTML(id, x, sfx = '') {
+  if (x.sold) {
+    const on = !!x.detail.eligibility?.nextSaleReserved;
+    return `<button type="button" class="btn btn-xs reserve" data-act="reserve" data-id="${id}" data-fk="rsv-${id}${sfx}" aria-pressed="${on}" title="${esc(x.next || '')}부터 자동으로 판매를 다시 엶">${on ? '✓ 다음 판매 예약됨' : '다음 판매 예약'}</button>`;
+  }
+  const b = badgesFor(x); if (!b.length) return '';
+  const shown = b.slice(0, 3), rest = b.slice(3);
+  return shown.map(([t, c]) => `<span class="badge ${c}">${esc(t)}</span>`).join('') + (rest.length ? `<span class="badge" title="${esc(rest.map(r => r[0]).join(', '))}">+${rest.length}</span>` : '');
+}
+
+/* ---------- 권한 1개 렌더 ---------- */
+function rowHTML(id, x, errs, dirty) {
+  const R = x.R, r = x.r;
+  const open = ui.detail.has(id);
+  const actErr = errs.some(e => e.cell === 'act');
+  return `<div class="row">
+   <div class="l1">
+    <div class="c-name"><span class="ico" aria-hidden="true">${R.icon}</span><span class="nm"><b title="${esc(R.name)}">${esc(R.name)}</b><small>${R.id} · ${R.code}${R.sub ? ` · 보조 ${R.sub}` : ''}</small></span>${dirty ? '<span class="dirty-dot" title="저장 안 된 변경"><span class="sr-only">저장 안 된 변경 있음</span></span>' : ''}${r.editingBy ? `<span class="avatar" title="${esc(r.editingBy.name)}님 편집 중">${esc(r.editingBy.initials)}<span class="sr-only">${esc(r.editingBy.name)}님 편집 중</span></span>` : ''}</div>
+    <div class="c-mode">${modeSelectHTML(id, x)}${x.hasDetail ? '<i class="mod-dot" title="직접 설정에서 세부 조건을 바꿈"></i><span class="sr-only">세부 조건 수정됨</span>' : ''}</div>
+    <div class="c-price">${priceChipHTML(id, x, errs)}</div>
+    <div class="c-act"><button type="button" class="btn btn-sm ${actErr ? 'err' : ''}" data-act="detail" data-id="${id}" data-fk="act-${id}" aria-expanded="${open}" aria-controls="panel-${id}">${actErr ? ic('alert') : ''}<span class="lbl-d">직접 설정</span><span class="lbl-m">세부 조건 편집</span></button></div>
+   </div>
+   <div class="l2">
+    <div class="c-terr">${terrChipHTML(id, x)}</div>
+    <div class="c-term">${termChipHTML(id, x)}</div>
+    <div class="c-slot">${slotChipHTML(id, x)}</div>
+    <div class="c-stat">${statusHTML(x)}</div>
+    <div class="c-badge">${badgeCellHTML(id, x)}</div>
+   </div>
+  </div>`;
+}
+function notesHTML(id, x, errs, dirty, sfx = '') {
+  let h = '';
+  const cf = ui.conflicts.find(c => c.rightId === id);
+  if (cf) {
+    const mine = termLabel(resolveRight(state, id).term);
+    h += `<div class="conflict" role="alert"><span class="who" aria-hidden="true">${cf.by}</span><span><b>${cf.byName}님이 방금 바꿈</b> · ${cf.label} <del>${termLabel(cf.before)}</del> → <b>${termLabel(cf.theirs)}</b></span>
+      <div class="acts"><button type="button" class="btn btn-sm" data-act="conflictMine" data-id="${id}" data-fk="cfm-${id}${sfx}">내 값으로 덮어쓰기 (${mine})</button><button type="button" class="btn btn-sm btn-primary" data-act="conflictTheirs" data-id="${id}" data-fk="cft-${id}${sfx}">${cf.byName}님 값 유지</button></div></div>`;
+  }
+  errs.forEach(e => { h += `<div class="note err">${ic('alert')}<span>${e.msg}</span><button type="button" class="btn btn-xs" data-act="fix" data-fix="${e.fix}" data-id="${id}">${e.fixLabel}</button></div>`; });
+  if (dirty && x.r.hasActiveDeals) h += `<div class="note info">${ic('history')}<span>진행 중인 협상이 있음. 바꾼 조건은 새 오퍼부터 적용됨</span></div>`;
+  return h;
+}
+function rightHTML(id) {
+  const x = resolveRight(state, id), errs = validateRight(state, id), dirty = rightChanged(id);
+  return `<div class="right ${dirty ? 'is-dirty' : ''} ${x.active ? '' : 'is-off'}" data-rid="${id}" id="r-${id}">
+    ${rowHTML(id, x, errs, dirty)}
+    <div class="notes" aria-live="polite">${notesHTML(id, x, errs, dirty)}</div>
+    ${ui.detail.has(id) && !isMobile() ? panelHTML(id, x, true) : ''}
+  </div>`;
+}
+
+/* ---------- 직접 설정 4섹션 ---------- */
+function sectionHTML(id, x, key, sfx = '') {
+  const R = x.R, d = x.detail;
+  if (key === 'scope') {
+    const sc = d.scope || {}, P = 'detail.scope.';
+    const ai = sc.ai || {};
+    const aiErr = R.ai && !aiSet(d);
+    const aiBtns = [['generation', '생성'], ['training', '학습'], ['synthesis', '합성'], ['none', 'AI 활용 불허']].map(([k, l]) =>
+      `<button type="button" class="tog" aria-pressed="${!!ai[k]}" data-act="ai" data-id="${id}" data-key="${k}" data-fk="ai-${id}-${k}${sfx}">${l}</button>`).join('');
+    return `<h4><span class="n">1</span>권리 범위</h4>
+      ${fld('매체·플랫폼 범위', multiH(id, P + 'media', sc.media || [], MEDIA_OPTS, [], sfx), sc.media?.length ? '' : '선택하지 않으면 전체 매체')}
+      ${fld('허용 행위', multiH(id, P + 'acts', sc.acts || defaultActs(x), ACT_OPTS, defaultActs(x), sfx), '', !sc.acts)}
+      ${fld('영리 이용 범위', segH(id, P + 'commercial', sc.commercial || 'commercial', [['commercial', '영리'], ['noncommercial', '비영리'], ['both', '둘 다']], sfx), '', !sc.commercial)}
+      ${fld('우선협상권 (ROFR)', swH(id, P + 'rofr', sc.rofr, '후속 권리에 우선협상권 부여', sfx))}
+      ${fld('라이선싱 언어', multiH(id, P + 'languages', sc.languages || state.ipDefaults.languages, LANGS.slice(0, 4), state.ipDefaults.languages, sfx), '', !sc.languages)}
+      <div class="fld" id="ai-${id}${sfx}"><span class="fld-l">AI 활용 허용${R.ai ? ' <span style="color:var(--error-500)">*</span>' : ''}</span><div class="tog-set" style="${aiErr ? 'outline:1px solid var(--error-500);outline-offset:3px;border-radius:8px' : ''}">${aiBtns}</div>${aiErr ? '<span class="fld-h" style="color:var(--err-fg)">하나 이상 고르거나 불허를 선택해야 함</span>' : ''}</div>
+      ${fld('2차 창작 변경 한도', segH(id, P + 'changeLimit', sc.changeLimit || 'mid', [['low', '낮음'], ['mid', '보통'], ['high', '높음']], sfx), '', !sc.changeLimit)}`;
+  }
+  if (key === 'oblig') {
+    const ob = d.obligations || {}, P = 'detail.obligations.';
+    const on = x.startDeadline != null;
+    return `<h4><span class="n">2</span>조건·의무</h4>
+      <div class="fld"><span class="fld-l">제작 착수 의무${'startDeadlineMonths' in ob ? '' : '<span class="auto">자동</span>'}</span>
+        ${swH(id, P + 'startDeadlineMonths', on, on ? '기한 안에 착수하지 않으면 권리 회수' : '착수 의무 없음', sfx, 'deadline')}
+        ${on ? numH(id, P + 'startDeadlineMonths', x.startDeadline, '개월', { min: 1, max: 60 }, sfx) : ''}</div>
+      ${fld('조기 종료 · Cure period', numH(id, P + 'curePeriodDays', ob.curePeriodDays ?? 30, '일', { min: 0, max: 180 }, sfx), '계약 위반·지급 불이행 시 시정 기간')}
+      ${R.group === 'E' ? fld('MOQ (최소 주문 수량)', numH(id, P + 'moq', ob.moq, '개', { ph: '500' }, sfx)) : ''}
+      ${fld('크레딧 표기', txtH(id, P + 'credit', ob.credit, '원작: 「검은 달의 계약자」 (문하린)', sfx))}
+      ${fld('특약 사항', txtH(id, P + 'specialTerms', ob.specialTerms, '계약서 특약란에 들어갈 내용', sfx, true))}`;
+  }
+  if (key === 'elig') {
+    const el = d.eligibility || {}, P = 'detail.eligibility.';
+    return `<h4><span class="n">3</span>구매 자격·혜택</h4>
+      ${fld('구매 자격', segH(id, P + 'buyerType', x.buyerType, [['anyone', '누구나'], ['business', '사업자'], ['invite', '초대 전용']], sfx), '', el.buyerType === undefined)}
+      ${fld('컨택 허용', swH(id, P + 'contactAllowed', x.contactAllowed, '채팅·오퍼 받기', sfx))}
+      ${fld('번들 포함', multiH(id, P + 'bundleIds', x.bundleIds, BUNDLES.map(b => [b.id, `${b.name} −${b.disc}%`]), x.bundleIds, sfx), '', el.bundleIds === undefined)}
+      ${fld('제공 자료 레벨', segH(id, P + 'materialLevel', x.materialLevel, [['Lv3', 'Lv3 트리트먼트'], ['Lv4', 'Lv4 완고']], sfx), '', el.materialLevel === undefined)}
+      ${fld('에스크로 필수', swH(id, P + 'escrow', x.escrow, x.escrow ? '대금을 에스크로로 보관' : '즉시 정산', sfx), '', el.escrow === undefined)}
+      ${x.mode === 'creator' ? fld('Creator 분배율', selH(id, P + 'creatorShare', el.creatorShare, [['', '티어별 자동 (추정 10~25%)'], ['10', '10%'], ['15', '15%'], ['20', '20%'], ['25', '25%'], ['30', '30%']], sfx)) : ''}
+      ${x.sold ? fld('다음 판매 예약', swH(id, P + 'nextSaleReserved', el.nextSaleReserved, `${x.next || '가용일'}부터 자동 판매 재개`, sfx)) : ''}`;
+  }
+  // special
+  const sp = d.special || {}, P = 'detail.special.';
+  const parts = [];
+  R.special.forEach(k => {
+    const v = sp[k] || {};
+    if (k === 'option') parts.push(fld('옵션 기간', numH(id, P + 'option.months', v.months, '개월', { ph: '12' }, sfx)) + `<div class="pgrid">${fld('옵션료', numH(id, P + 'option.fee', v.fee, '만원', { scale: 1e4 }, sfx))}${fld('본계약 전환가', numH(id, P + 'option.conversionPrice', v.conversionPrice, '만원', { scale: 1e4 }, sfx))}</div>`);
+    if (k === 'sync') parts.push(fld('Sync / Master', swH(id, P + 'sync.split', v.split, '분리 판매', sfx)) + fld('음원 권리자 승인', fileH(id, P + 'sync.approvalFile', v.approvalFile, '음원권리자_승인서.pdf', sfx)));
+    if (k === 'lang') parts.push(`<div id="lang-${id}${sfx}">${fld('대상 언어', multiH(id, P + 'lang.targets', v.targets || [], LANGS.slice(1), [], sfx), (v.targets || []).length ? '언어당 1건씩 판매됨' : '<span style="color:var(--err-fg)">1개 이상 선택해야 함</span>', false, true)}</div>` + fld('용어집 첨부', fileH(id, P + 'lang.glossary', v.glossary, '용어집_검은달_v2.xlsx', sfx)));
+    if (k === 'fanwork') parts.push(fld('지정 플랫폼', selH(id, P + 'fanwork.platform', v.platform, [['', '선택'], ['hub', 'ipbeginz 팬창작 허브'], ['pixiv', 'pixiv'], ['postype', '포스타입'], ['x', 'X']], sfx, !v.platform), '', false, true) + fld('수익화 허용', segH(id, P + 'fanwork.monetize', v.monetize || 'none', [['none', '불가'], ['ads', '광고 수익만'], ['all', '전체']], sfx)));
+    if (k === 'voice') parts.push(fld('보이스 클론', swH(id, P + 'voice.clone', v.clone, '보이스 클론 허용', sfx)) + fld('퍼블리시티권 동의', fileH(id, P + 'voice.consentFile', v.consentFile, '퍼블리시티권_동의서_성우A.pdf', sfx)));
+    if (k === 'chatbot') parts.push(fld('페르소나 가이드', fileH(id, P + 'chatbot.personaFile', v.personaFile, '페르소나_가이드_세레나.pdf', sfx)) + fld('금지 대화 주제', txtH(id, P + 'chatbot.banned', v.banned, '정치, 혐오, 성적 대화', sfx)));
+    if (k === 'ppl') parts.push(fld('노출 방식', multiH(id, P + 'ppl.modes', v.modes || [], [['line', '대사'], ['prop', '소품'], ['bg', '배경']], [], sfx)) + fld('노출 시간 상한', numH(id, P + 'ppl.maxSeconds', v.maxSeconds, '초', { ph: '60' }, sfx)) + fld('심의', swH(id, P + 'ppl.review', v.review ?? true, '방송광고 심의 준수', sfx)));
+    if (k === 'goods') parts.push(fld('제품 카테고리', multiH(id, P + 'goods.categories', v.categories || ['문구', '의류'], [['문구', '문구'], ['의류', '의류'], ['피규어', '피규어'], ['생활용품', '생활용품'], ['식품', '식품']], ['문구', '의류'], sfx), '카테고리당 슬롯이 따로 계산됨') + fld('MOQ', numH(id, P + 'goods.moq', v.moq, '개', { ph: '300' }, sfx)));
+    if (k === 'store') parts.push(fld('최대 점포 수', numH(id, P + 'store.max', v.max, '곳', { ph: '20' }, sfx)) + fld('영상 상영', swH(id, P + 'store.screening', v.screening, '매장 내 영상 상영 포함', sfx)));
+    if (k === 'micro') parts.push(fld('판매 단위', segH(id, P + 'micro.unit', v.unit || 'image', [['image', '이미지 1컷'], ['clip', '음원·영상 5초'], ['text', '텍스트 900자']], sfx)) + fld('IP당 누적 구매 한도', numH(id, P + 'micro.cap', v.cap, '건', { ph: '50' }, sfx)) + fld('무음 처리', swH(id, P + 'micro.mute', v.mute ?? true, '음원 미승인 클립 무음 처리', sfx)));
+    if (k === 'meme') parts.push(fld('지정 해시태그', txtH(id, P + 'meme.hashtags', v.hashtags, '#검은달챌린지', sfx)) + fld('허용 음원 구간', txtH(id, P + 'meme.audioRange', v.audioRange, '0:15–0:30', sfx)) + fld('변형 허용 범위', segH(id, P + 'meme.variation', v.variation || 'mid', [['low', '낮음'], ['mid', '보통'], ['high', '높음']], sfx)) + fld('상업 이용', swH(id, P + 'meme.convert', v.convert ?? true, '상업 이용 시 계약 전환', sfx)));
+    if (k === 'aitdm') parts.push(fld('용도', segH(id, P + 'aitdm.purpose', v.purpose || 'split', [['train', '학습만'], ['infer', '추론만'], ['split', '둘 다 분리 계약']], sfx)) + fld('출력물 유사도 상한', numH(id, P + 'aitdm.similarity', v.similarity, '%', { max: 100, ph: '30' }, sfx)) + fld('옵트아웃 처리', segH(id, P + 'aitdm.optout', v.optout || 'tdm', [['tdm', 'TDM 예약 표시'], ['list', '옵트아웃 목록'], ['none', '없음']], sfx)));
+  });
+  const fixed = FIXED_CLAUSE_IDS.includes(id) ? `<div class="fixed">${ic('lock')}<span><b>플랫폼 고정 조항</b> · 미성년 설정 캐릭터의 성적 2차 창작 전면 금지. 해제할 수 없음</span></div>` : '';
+  return `<h4><span class="n">4</span>권한 특화</h4>${parts.join('') || (fixed ? '' : '<p class="none-note">이 권한은 특화 필드가 없음</p>')}${fixed}`;
+}
+function autoSummary(x) {
+  if (!x.active) return '마켓에 노출되지 않음';
+  const M = x.M;
+  return `${M.icon} ${M.label} 자동값 · ${exclusivityText(x)} · ${M.approval === 'pre' ? '사전 승인' : '자동 승인'} · ${M.process === 'negotiation' ? '🤝 협의 구매' : '⚡ 즉시 구매'} · 템플릿 ${M.template}`;
+}
+function panelHTML(id, x, anim) {
+  return `<div class="panel" id="panel-${id}" role="region" aria-label="${esc(x.R.name)} 직접 설정" ${anim ? '' : 'style="animation:none"'}>
+    <div class="panel-grid">${['scope', 'oblig', 'elig', 'special'].map(k => `<section class="psec">${sectionHTML(id, x, k)}</section>`).join('')}</div>
+    <div class="panel-foot"><span class="auto-sum">${autoSummary(x)}</span>
+      <button type="button" class="btn btn-sm" data-act="resetRight" data-id="${id}">${ic('undo')}기본값으로 되돌리기</button>
+      <button type="button" class="btn btn-sm" data-act="copyRight" data-id="${id}">${ic('copy')}이 조건을 다른 권한에 복사</button></div>
+  </div>`;
+}
+
+/* ---------- 상단 요약 · IP 기본값 · 툴바 ---------- */
+function renderSummary() {
+  const c = modeCounts(state);
+  const sold = RIGHTS.filter(R => resolveRight(state, R.id).sold).length;
+  const errN = Object.keys(errorsAll()).length;
+  $('#summary').innerHTML = MODE_KEYS.map(k => `<button type="button" class="sum" data-act="sumMode" data-val="${k}" aria-pressed="${ui.modes.has(k)}" aria-label="${SALE_MODES[k].label} ${c[k]}개 필터"><span aria-hidden="true">${SALE_MODES[k].icon}</span>${SALE_MODES[k].short}<b>${c[k]}</b></button>`).join('')
+    + `<span class="sum-div" aria-hidden="true"></span>`
+    + `<button type="button" class="sum s-sold" data-act="sumStatus" data-val="sold" aria-pressed="${ui.status === 'sold'}">판매완료<b>${sold}</b></button>`
+    + (errN ? `<button type="button" class="sum s-err" data-act="sumStatus" data-val="error" aria-pressed="${ui.status === 'error'}">${ic('alert')}오류<b>${errN}</b></button>` : `<span class="sum">오류<b>0</b></span>`);
+}
+function renderStrip() {
+  const ip = state.ipDefaults;
+  const vis = [['public', '공개마켓'], ['private', '비공개'], ['invite', '초대전용']];
+  $('#ipStrip').innerHTML = `<span class="st-l">IP 기본값</span>
+    <div class="sf">공개 범위<div class="seg" role="radiogroup" aria-label="공개 범위">${vis.map(([v, l]) => `<button type="button" role="radio" aria-checked="${ip.visibility === v}" data-act="ipSet" data-path="visibility" data-val="${attrVal(v)}" data-fk="ip-vis-${v}">${l}</button>`).join('')}</div></div>
+    <div class="sf">1:1 거래<button type="button" class="sw" role="switch" aria-checked="${ip.oneToOne}" aria-label="1:1 거래" data-act="ipSet" data-path="oneToOne" data-val="${attrVal(!ip.oneToOne)}" data-fk="ip-1to1"></button></div>
+    <div class="sf"><label for="ipCur">통화</label><select id="ipCur" class="sel" data-ipfield="currency" data-fk="ip-cur">${Object.keys(FX).map(k => `<option ${ip.currency === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div>
+    <div class="sf">라이선싱 언어<div class="tog-set">${LANGS.slice(0, 4).map(([v]) => `<button type="button" class="tog" aria-pressed="${ip.languages.includes(v)}" data-act="ipLang" data-val="${v}" data-fk="ip-lang-${v}">${v}</button>`).join('')}</div></div>
+    <div class="sf">기본 지역<button type="button" class="vchip" data-act="pop" data-pop="terr" data-scope="ip" data-fk="ip-terr" aria-haspopup="dialog"><span class="t">${territoryText(ip.territory)}</span></button></div>
+    <div class="sf"><label for="ipTerm">기본 기간</label><select id="ipTerm" class="sel" data-ipfield="termMonths" data-fk="ip-term">${TERMS.map(([m, l]) => `<option value="${m}" ${ip.termMonths === m ? 'selected' : ''}>${l}</option>`).join('')}</select></div>`;
+}
+function renderChips() {
+  $('#groupChips').innerHTML = `<button type="button" class="chip-f" data-act="fGroup" data-val="all" aria-pressed="${ui.group === 'all'}">전체</button>`
+    + GROUPS.map(g => `<button type="button" class="chip-f" style="--gc:var(${g.v})" data-act="fGroup" data-val="${g.code}" aria-pressed="${ui.group === g.code}" title="${g.name}"><span class="dot" aria-hidden="true"></span>${g.code}<span class="sr-only"> ${g.name}</span></button>`).join('');
+  $('#modeChips').innerHTML = MODE_KEYS.map(k => `<button type="button" class="chip-f" data-act="fMode" data-val="${k}" aria-pressed="${ui.modes.has(k)}" title="${SALE_MODES[k].label}"><span aria-hidden="true">${SALE_MODES[k].icon}</span><span class="sr-only">${SALE_MODES[k].label}</span></button>`).join('');
+  $('#statusFilter').value = ui.status;
+  const allOpen = GROUPS.every(g => ui.open.has(g.code));
+  $('#expandBtn').textContent = allOpen ? '모두 접기' : '모두 펼치기';
+}
+
+/* ---------- 목록 ---------- */
+function matchFilter(R) {
+  const q = ui.q.trim().toLowerCase();
+  if (q && ![R.name, R.code, R.id, R.en].some(s => s.toLowerCase().includes(q))) return false;
+  if (ui.group !== 'all' && R.group !== ui.group) return false;
+  const x = resolveRight(state, R.id);
+  if (ui.modes.size && !ui.modes.has(x.mode)) return false;
+  if (ui.status === 'override' && !x.hasOverrides) return false;
+  if (ui.status === 'sold' && !x.sold) return false;
+  if (ui.status === 'error' && !validateRight(state, R.id).length) return false;
+  if (ui.status === 'changed' && !rightChanged(R.id)) return false;
+  return true;
+}
+function distHTML(code) {
+  const c = { negotiated: 0, instant: 0, creator: 0, off: 0 };
+  RIGHTS.filter(R => R.group === code).forEach(R => c[resolveRight(state, R.id).mode]++);
+  return MODE_KEYS.filter(k => k !== 'off' || c.off).map(k => `${SALE_MODES[k].icon}${c[k]}`).join(' ');
+}
+function groupControlsHTML(code, sfx = '') {
+  const gd = state.groupDefaults[code], ip = state.ipDefaults, name = GROUP_MAP[code].name;
+  const slotT = gd.saleMode === 'creator' || gd.slots == null ? '∞' : (gd.slotUnit === 'total' ? `슬롯 ${gd.slots}` : `${UNITS[gd.slotUnit]} ${gd.slots}`);
+  const ctl = {
+    mode: `<select class="sel ms-${gd.saleMode}" data-gfield="saleMode" data-g="${code}" data-fk="gmode-${code}${sfx}" aria-label="${name} 기본 판매 방식">${MODE_KEYS.map(k => `<option value="${k}" ${gd.saleMode === k ? 'selected' : ''}>${SALE_MODES[k].icon} ${SALE_MODES[k].short}</option>`).join('')}</select>`,
+    price: `<button type="button" class="vchip ${sfx ? 'full' : ''}" data-act="pop" data-pop="price" data-scope="group" data-g="${code}" data-fk="gprice-${code}${sfx}" aria-haspopup="dialog" aria-label="${name} 가격 범위"><span class="t">${moneyRange(gd.priceRange[0], gd.priceRange[1])}</span></button>`,
+    terr: `<button type="button" class="vchip ${gd.territory ? '' : 'inh'} ${sfx ? 'full' : ''}" data-act="pop" data-pop="terr" data-scope="group" data-g="${code}" data-fk="gterr-${code}${sfx}" aria-haspopup="dialog" aria-label="${name} 지역"><span class="t">${territoryText(gd.territory || ip.territory)}</span>${gd.territory ? '' : '<span class="lab">IP</span>'}</button>`,
+    term: `<select class="sel ${gd.termMonths == null ? 'inh' : ''}" data-gfield="termMonths" data-g="${code}" data-fk="gterm-${code}${sfx}" aria-label="${name} 기간"><option value="" ${gd.termMonths == null ? 'selected' : ''}>${termLabel(ip.termMonths)} · IP</option>${TERMS.map(([m, l]) => `<option value="${m}" ${gd.termMonths === m ? 'selected' : ''}>${l}</option>`).join('')}</select>`,
+    slot: `<button type="button" class="vchip ${sfx ? 'full' : ''}" data-act="pop" data-pop="slot" data-scope="group" data-g="${code}" data-fk="gslot-${code}${sfx}" ${gd.saleMode === 'creator' ? 'disabled title="Creator 개방은 ∞ 고정"' : ''} aria-haspopup="dialog" aria-label="${name} 슬롯"><span class="t">${slotT}</span></button>`
+  };
+  if (sfx) return `<div class="basic">${fld('판매 방식', ctl.mode, '예외가 없는 권한이 바로 따라옴')}${fld('가격 범위', ctl.price)}${fld('지역', ctl.terr)}${fld('기간', ctl.term)}${fld('슬롯', ctl.slot)}</div>`;
+  return `<span class="gd-l">그룹 기본값</span>${ctl.mode}${ctl.price}${ctl.terr}${ctl.term}${ctl.slot}`;
+}
+const COLHEAD = `<div class="colhead" aria-hidden="true"><span class="c-name">권한</span><span class="c-mode">판매 방식</span><span class="c-price r">가격</span><span class="c-terr">지역</span><span class="c-term">기간</span><span class="c-slot">슬롯</span><span class="c-stat">현황</span><span class="c-badge">조건</span><span class="c-act"></span></div>`;
+function renderList() {
+  const list = $('#list');
+  const fk = rememberFocus();
+  if (ui.loading) {
+    list.innerHTML = GROUPS.map(() => `<div class="sk-grp" aria-hidden="true"><div class="skel h"></div><div class="skel r"></div><div class="skel r"></div><div class="skel r"></div></div>`).join('') + '<span class="sr-only" role="status">권한 목록을 불러오는 중</span>';
+    return;
+  }
+  if (ui.loadFail) {
+    list.innerHTML = `<div class="state-box err" role="alert"><div class="art" aria-hidden="true">⚠️</div><h2>권한 목록을 불러오지 못함</h2><p>일시적인 네트워크 문제일 수 있음. 다시 불러오면 마지막 저장 상태로 열림.</p><div class="acts"><button type="button" class="btn btn-primary" data-act="reload">${ic('refresh')}다시 불러오기</button></div></div>`;
+    return;
+  }
+  const c = modeCounts(state);
+  if (c.off === RIGHTS.length) {
+    list.innerHTML = `<div class="state-box"><div class="art" aria-hidden="true">🔒🛒🌟</div><h2>아직 판매 중인 권한이 없음</h2><p>38종 권한이 모두 '판매 안 함'임. 위저드로 5분 안에 배치하거나 추천 배치를 바로 적용할 수 있음.</p><div class="acts"><button type="button" class="btn btn-primary" data-act="wizard">${ic('wand')}위저드로 시작하기</button><button type="button" class="btn" data-act="applyRec">추천 배치 적용</button></div></div>`;
+    return;
+  }
+  const visible = RIGHTS.filter(matchFilter);
+  if (!visible.length) {
+    list.innerHTML = `<div class="state-box"><div class="art" aria-hidden="true">🔍</div><h2>${ui.q ? `'${esc(ui.q)}'와 일치하는 권한이 없음` : '조건에 맞는 권한이 없음'}</h2><p>검색어나 필터를 바꿔 보거나 초기화하면 38종이 모두 보임.</p><div class="acts"><button type="button" class="btn" data-act="resetFilters">필터 초기화</button></div></div>`;
+    return;
+  }
+  const filtering = ui.q || ui.status !== 'all' || ui.modes.size;
+  list.innerHTML = GROUPS.map(g => {
+    const rows = visible.filter(R => R.group === g.code);
+    if (!rows.length) return '';
+    const open = ui.open.has(g.code) || filtering;
+    return `<section class="grp ${open ? 'open' : ''}" data-g="${g.code}" style="--gc:var(${g.v})" aria-label="${g.code} ${g.name}">
+      <div class="grp-head">
+        <button type="button" class="grp-toggle" data-act="grpToggle" data-g="${g.code}" aria-expanded="${open}" aria-controls="gb-${g.code}" data-fk="gt-${g.code}"><span class="grp-code" aria-hidden="true">${g.code}</span><span class="grp-name">${g.name}</span><span class="grp-dist num" data-dist="${g.code}">${distHTML(g.code)}</span>${ic('chevronDown')}</button>
+        <div class="gd">${groupControlsHTML(g.code)}</div>
+        <button type="button" class="btn btn-sm gd-m" data-act="grpSheet" data-g="${g.code}">${ic('sliders')}기본값</button>
+      </div>
+      <div class="grp-body" id="gb-${g.code}" ${open ? '' : 'hidden'}>${COLHEAD}${rows.map(R => rightHTML(R.id)).join('')}</div>
+    </section>`;
+  }).join('');
+  restoreFocus(fk);
+}
+function refreshMeta() {
+  CUR = state.ipDefaults.currency;
+  renderSummary();
+  renderSaveBar();
+  $$('[data-dist]').forEach(el => { el.innerHTML = distHTML(el.dataset.dist); });
+  if ($('#previewDrawer').classList.contains('on')) renderPreview();
+}
+function refreshRight(id, { panel = true } = {}) {
+  const el = document.getElementById('r-' + id);
+  if (el) {
+    const fk = rememberFocus();
+    const x = resolveRight(state, id), errs = validateRight(state, id), dirty = rightChanged(id);
+    el.className = `right ${dirty ? 'is-dirty' : ''} ${x.active ? '' : 'is-off'}`;
+    const tmp = document.createElement('div'); tmp.innerHTML = rowHTML(id, x, errs, dirty);
+    el.querySelector('.row').replaceWith(tmp.firstElementChild);
+    el.querySelector('.notes').innerHTML = notesHTML(id, x, errs, dirty);
+    if (panel) {
+      const p = el.querySelector('.panel');
+      const want = ui.detail.has(id) && !isMobile();
+      if (want) { tmp.innerHTML = panelHTML(id, x, !p); if (p) p.replaceWith(tmp.firstElementChild); else el.appendChild(tmp.firstElementChild); }
+      else if (p) p.remove();
+    }
+    restoreFocus(fk);
+  }
+  if (panel && ui.sheet && ui.sheet.kind === 'right' && ui.sheet.key === id) renderSheet();
+  refreshMeta();
+}
+function renderAll() {
+  CUR = state.ipDefaults.currency;
+  renderSummary(); renderStrip(); renderChips(); renderList(); renderSaveBar();
+  if ($('#previewDrawer').classList.contains('on')) renderPreview();
+  if (ui.sheet) renderSheet();
+  if (ui.pop) renderPop();
+}
+
+/* ---------- 상태 변경 ---------- */
+function setRightPath(id, path, v, opts) { setPath(state.rights[id], path, v); prune(state.rights[id].detail); prune(state.rights[id].overrides); state.rights[id].overrides ||= {}; state.rights[id].detail ||= {}; refreshRight(id, opts); }
+function confirmDialog({ title, body, ok, danger }) {
+  return new Promise(res => {
+    openModal(`<div class="modal-head"><h2 id="modalTitle">${title}</h2><p>${body}</p></div><div class="modal-foot"><button type="button" class="btn" data-mres="0">취소</button><button type="button" class="btn ${danger ? 'btn-danger' : 'btn-primary'}" data-mres="1">${ok}</button></div>`);
+    const m = $('#modal');
+    const h = e => { const b = e.target.closest('[data-mres]'); if (!b) return; m.removeEventListener('click', h); closeModal(); res(b.dataset.mres === '1'); };
+    m.addEventListener('click', h);
+    ui.modalCancel = () => { m.removeEventListener('click', h); res(false); };
+  });
+}
+async function setMode(id, val) {
+  const R = RIGHT_MAP[id], r = state.rights[id], g = state.groupDefaults[R.group];
+  const newMode = val || g.saleMode, before = resolveRight(state, id);
+  if (newMode === 'off' && r.hasActiveDeals && before.mode !== 'off') {
+    const ok = await confirmDialog({ title: '진행 중인 협상이 있는 권한임', body: `「${R.name}」을 판매 안 함으로 바꾸면 새 오퍼를 받지 않음. 진행 중인 협상은 그대로 이어짐.`, ok: '판매 안 함으로 바꾸기', danger: true });
+    if (!ok) { refreshRight(id); return; }
+  }
+  if (!val || val === g.saleMode) delete r.saleMode; else r.saleMode = val;
+  const c = r.overrides.compensation;
+  if (c && c.type === 'free' && newMode !== 'creator') r.overrides.compensation = { type: 'lump' };
+  if (newMode === 'creator') { delete r.overrides.slots; delete r.overrides.slotUnit; }
+  refreshRight(id);
+  const x = resolveRight(state, id);
+  if (newMode !== 'off') toast(`${R.name} · ${x.M.label} → ${exclusivityText(x)}, ${x.M.approval === 'pre' ? '사전 승인' : '자동 승인'}${x.M.creator ? ', Creator 패키지 포함' : ''}`);
+}
+function setGroupField(code, field, value, silent) {
+  state.groupDefaults[code][field] = value;
+  const ids = RIGHTS.filter(R => R.group === code).map(R => R.id);
+  if (field === 'saleMode') ids.forEach(id => { if (state.rights[id].saleMode === value) delete state.rights[id].saleMode; });
+  const key = { saleMode: null, priceRange: 'compensation', territory: 'territory', termMonths: 'termMonths', slots: 'slots', slotUnit: 'slots' }[field];
+  const kept = ids.filter(id => key ? state.rights[id].overrides[key] !== undefined : !!state.rights[id].saleMode).length;
+  renderList(); refreshMeta();
+  if (ui.sheet?.kind === 'group') renderSheet();
+  if (!silent) toast(`${GROUP_MAP[code].name} 기본값을 바꿈 · 예외 ${kept}개 유지됨`);
+}
+function setTerritory(scope, key, val) {
+  if (scope === 'right') { if (val === undefined) delete state.rights[key].overrides.territory; else state.rights[key].overrides.territory = val; refreshRight(key, { panel: false }); if (ui.sheet) renderSheet(); }
+  else if (scope === 'group') { setGroupField(key, 'territory', val ?? null, true); }
+  else { state.ipDefaults.territory = val; renderStrip(); renderList(); refreshMeta(); }
+}
+function setSlots(scope, key, slots, unit) {
+  if (scope === 'right') {
+    const o = state.rights[key].overrides;
+    if (slots === undefined) { delete o.slots; delete o.slotUnit; } else { o.slots = slots; o.slotUnit = unit; }
+    refreshRight(key, { panel: false }); if (ui.sheet) renderSheet();
+  } else { state.groupDefaults[key].slots = slots; state.groupDefaults[key].slotUnit = unit; setGroupField(key, 'slots', slots, true); }
+}
+
+/* ---------- 팝오버 ---------- */
+function openPop(type, scope, key, fk) {
+  closePop(true);
+  ui.pop = { type, scope, key, fk };
+  ui.terrMode = null; ui.terrQ = '';
+  const pop = $('#pop'); pop.hidden = false;
+  renderPop(); positionPop();
+  requestAnimationFrame(() => pop.classList.add('on'));
+  const first = pop.querySelector('input:not([type=checkbox]),[aria-checked="true"],button,select');
+  first && first.focus({ preventScroll: true });
+}
+function closePop(silent) {
+  if (!ui.pop) return;
+  const fk = ui.pop.fk, pop = $('#pop');
+  if (ui.pop.scope === 'group' && ui.pop.type !== 'menu' && ui.pop.dirty) toast(`${GROUP_MAP[ui.pop.key].name} 기본값을 바꿈 · 예외가 있는 권한은 유지됨`);
+  pop.classList.remove('on'); pop.hidden = true; pop.innerHTML = ''; ui.pop = null;
+  if (!silent) restoreFocus(fk);
+}
+function positionPop() {
+  if (!ui.pop || isMobile()) return;
+  const pop = $('#pop'), a = document.querySelector(`[data-fk="${CSS.escape(ui.pop.fk)}"]`);
+  if (!a) return;
+  const r = a.getBoundingClientRect(); if (!r.width) return;
+  const w = pop.offsetWidth, h = pop.offsetHeight;
+  let left = Math.min(r.left, innerWidth - w - 8), top = r.bottom + 6;
+  if (top + h > innerHeight - 8) top = Math.max(8, r.top - h - 6);
+  pop.style.left = Math.max(8, left) + 'px'; pop.style.top = top + 'px';
+}
+function fxLine(base) {
+  if (!(base > 0)) return '';
+  const cv = Object.keys(PPP).map(k => `${k} ≈ <b>${money(base, k)}</b>`).join('');
+  const ppp = Object.keys(PPP).map(k => `${k} ${money(base * PPP[k], k)}`).join(' · ');
+  return `<div class="fxline">${cv}<span class="tip" title="PPP 추천가(추정): ${ppp}" tabindex="0">PPP 추천가</span></div>`;
+}
+function netHTML(c) {
+  let base, label = '거래 금액';
+  if (c.type === 'royalty') { base = 1e8 * (c.royaltyPct || 0) / 100; label = `매출 ₩1억 기준 로열티 ${c.royaltyPct || 0}%`; }
+  else if (c.type === 'hybrid') { base = c.upfront; label = '선급금'; }
+  else if (c.type === 'perUnit') { base = c.amount; label = '1건 금액'; }
+  else base = c.amount;
+  if (c.type === 'free') return `<div class="net"><div><span>수령액 미리보기</span><span>무료 · 분배 수익만 발생</span></div></div>`;
+  if (!(base > 0)) return `<div class="net"><div><span>수령액 미리보기</span><span>금액을 입력하면 계산됨</span></div></div>`;
+  const fee = base * 0.15, tax = (base - fee) * 0.1;
+  return `<div class="net"><div><span>${label}</span><span>${fullWon(base)}</span></div><div><span>플랫폼 수수료 15%</span><span>−${fullWon(fee)}</span></div><div><span>세금 10% (추정)</span><span>−${fullWon(tax)}</span></div><div class="tot"><span>예상 수령액</span><span>${fullWon(base - fee - tax)}</span></div></div>`;
+}
+const pnum = (key, val, suf, scale = 1, ph = '', cls = '') =>
+  `<div class="fld ${cls}"><span class="fld-l">${suf[0]}</span><div class="inp-wrap"><input class="inp num" type="number" inputmode="decimal" min="0" step="any" value="${val == null ? '' : val / scale}" placeholder="${ph}" data-pbind="${key}" data-scale="${scale}" data-fk="pb-${key}"><span class="suf">${suf[1]}</span></div></div>`;
+function popLiveHTML(id) {
+  const x = resolveRight(state, id), c = x.comp;
+  const errs = validateRight(state, id).filter(e => e.cell === 'price');
+  const base = c.type === 'hybrid' ? c.upfront : c.amount;
+  return (errs.map(e => `<div class="note err" style="margin-top:10px">${ic('alert')}${e.msg}</div>`).join(''))
+    + (c.type !== 'range' && c.type !== 'free' && c.type !== 'royalty' ? fxLine(base) : '')
+    + (c.type !== 'range' ? netHTML(c) : '');
+}
+function renderPop() {
+  const p = ui.pop; if (!p) return;
+  const pop = $('#pop');
+  let h = '';
+  if (p.type === 'menu') {
+    h = `<div class="menu" role="menu"><button type="button" role="menuitem" data-act="history">${ic('history')}변경 이력</button><button type="button" role="menuitem" data-act="wizard">${ic('wand')}위저드로 다시 설정</button><button type="button" role="menuitem" data-act="loadOther">${ic('import')}다른 IP 설정 불러오기</button></div>`;
+  } else if (p.type === 'price' && p.scope === 'right') {
+    const x = resolveRight(state, p.key), R = x.R, c = x.comp;
+    const cur = x.compSrc === 'group' ? 'inherit' : c.type;
+    const types = [['inherit', '그룹 기본값'], ['free', '무료'], ['lump', '일시불'], ['perUnit', '건당'], ['royalty', '로열티'], ['hybrid', 'Hybrid']];
+    const title = R.code === 'PPL' ? '노출비(수령)' : x.mode === 'negotiated' ? '시작가' : '가격';
+    const sub = R.code === 'PPL' ? '브랜드가 IP 측에 노출비를 지급하는 역방향 구조임' : x.mode === 'negotiated' ? '바이어에게 "~부터"로 표시되고 협상으로 확정됨' : x.mode === 'creator' ? 'Creator 개방은 무료로 둘 수 있음' : '바이어가 이 가격에 바로 구매함';
+    let f = '';
+    if (cur === 'inherit') f = `<p class="hint">그룹 가격 범위 <b>${moneyRange(c.min, c.max)}</b>를 따름. 하한가가 표시됨.</p>`;
+    if (cur === 'free') f = `<p class="hint">바이어는 무료로 쓰고, Creator 분배 수익만 발생함.</p>`;
+    if (cur === 'lump') f = `<div class="pgrid">${pnum('amount', c.amount, [x.mode === 'negotiated' ? '시작가' : '금액', '만원'], 1e4, '3000', 'full')}</div>`;
+    if (cur === 'perUnit') f = `<div class="pgrid">${pnum('amount', c.amount, ['건당 금액', '만원'], 1e4, '30')}${pnum('cap', c.cap, ['IP당 누적 한도', '건'], 1, '50')}</div>`;
+    if (cur === 'royalty') f = `<div class="pgrid">${pnum('royaltyPct', c.royaltyPct, ['로열티율', '%'], 1, '7')}<div class="fld"><span class="fld-l">보고 주기</span><select class="sel" data-pbind="reportCycle" data-fk="pb-cycle">${[['month', '월'], ['quarter', '분기'], ['half', '반기']].map(([v, l]) => `<option value="${v}" ${c.reportCycle === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div></div>`;
+    if (cur === 'hybrid') f = `<div class="pgrid">${pnum('upfront', c.upfront, ['선급금', '만원'], 1e4, '8000')}${pnum('royaltyPct', c.royaltyPct, ['로열티율', '%'], 1, '5')}${pnum('mg', c.mg, ['MG (최소보장)', '만원'], 1e4, '2000', 'full')}</div>`;
+    const disc = (cur !== 'inherit' && cur !== 'free') ? `<div class="pgrid" style="margin-top:10px">${pnum('preStageDiscountPct', c.preStageDiscountPct, ['제작 단계 할인', '%'], 1, '0')}<p class="hint" style="align-self:end">Pre-Prod·Prod 단계 구매 시 적용</p></div>` : '';
+    h = `<h3 id="popTitle">${R.icon} ${esc(R.name)} · ${title}</h3><p class="sub">${sub}</p>
+      <div class="ptype" role="radiogroup" aria-label="대가 유형">${types.map(([v, l]) => `<button type="button" role="radio" aria-checked="${cur === v}" data-act="compType" data-val="${v}" data-fk="ct-${v}" ${v === 'free' && x.mode !== 'creator' && cur !== 'free' ? 'disabled title="Creator 개방에서만 선택 가능"' : ''}>${l}</button>`).join('')}</div>
+      ${f}${disc}<div class="pop-live" aria-live="polite">${popLiveHTML(p.key)}</div>
+      <p class="hint">추천값 ${R.rec.price ? money(R.rec.price, 'KRW') : '무료'} · ${termLabel(R.rec.term)} (더미 추정치)</p>
+      <div class="pop-foot"><button type="button" class="btn btn-primary btn-sm" data-act="closePop">완료</button></div>`;
+  } else if (p.type === 'price') {
+    const gd = state.groupDefaults[p.key];
+    const bad = gd.priceRange[0] > gd.priceRange[1];
+    h = `<h3>${p.key} ${GROUP_MAP[p.key].name} · 가격 범위</h3><p class="sub">가격을 직접 정하지 않은 권한은 하한가로 표시됨</p>
+      <div class="pgrid"><div class="fld"><span class="fld-l">하한</span><div class="inp-wrap"><input class="inp num ${bad ? 'err' : ''}" type="number" min="0" value="${gd.priceRange[0] / 1e4}" data-gpbind="0" data-fk="gp-0"><span class="suf">만원</span></div></div>
+      <div class="fld"><span class="fld-l">상한</span><div class="inp-wrap"><input class="inp num ${bad ? 'err' : ''}" type="number" min="0" value="${gd.priceRange[1] / 1e4}" data-gpbind="1" data-fk="gp-1"><span class="suf">만원</span></div></div></div>
+      <div class="pop-live">${bad ? `<div class="note err" style="margin-top:10px">${ic('alert')}하한이 상한보다 큼</div>` : `<p class="hint">${moneyRange(gd.priceRange[0], gd.priceRange[1])}</p>`}</div>
+      <div class="pop-foot"><button type="button" class="btn btn-primary btn-sm" data-act="closePop">완료</button></div>`;
+  } else if (p.type === 'terr') {
+    let eff, explicit, name;
+    if (p.scope === 'right') { const x = resolveRight(state, p.key); eff = x.territory; explicit = x.terrSrc === 'override'; name = x.R.name; }
+    else if (p.scope === 'group') { const gd = state.groupDefaults[p.key]; eff = gd.territory || state.ipDefaults.territory; explicit = !!gd.territory; name = `${p.key} ${GROUP_MAP[p.key].name}`; }
+    else { eff = state.ipDefaults.territory; explicit = true; name = 'IP 기본값'; }
+    const sel = new Set(eff.includes('GLOBAL') ? ALL_COUNTRIES : eff);
+    const all = ALL_COUNTRIES.every(c => sel.has(c));
+    const mode = ui.terrMode || (all ? 'all' : (sel.size >= ALL_COUNTRIES.length / 2 ? 'except' : 'only'));
+    const exclList = ALL_COUNTRIES.filter(c => !sel.has(c));
+    const q = (ui.terrQ || '').trim().toLowerCase();
+    const summary = (all && mode !== 'only') ? `전 세계 ${ALL_COUNTRIES.length}개국`
+      : mode === 'except' ? `거래 가능 ${sel.size}개국 · 제외 ${exclList.length} (${exclList.slice(0, 3).map(countryName).join(' · ')}${exclList.length > 3 ? ' 외 ' + (exclList.length - 3) : ''})`
+      : `거래 가능 ${sel.size}개국 · ${[...sel].slice(0, 3).map(countryName).join(' · ')}${sel.size > 3 ? ' 외 ' + (sel.size - 3) : ''}`;
+    const chk = c => mode === 'except' ? !sel.has(c) : sel.has(c);
+    const kidLabel = mode === 'except' ? '제외할 국가' : '거래 가능 국가';
+    h = `<h3>${esc(name)} · 거래 가능 지역</h3><p class="sub">${explicit ? '' : '지금은 기본값을 따름 · '}몇 나라만 빼려면 「전 세계에서 제외」가 빠름</p>
+      <div class="seg" role="radiogroup" aria-label="지역 방식" style="margin-bottom:10px;display:flex;width:100%">
+        <button type="button" role="radio" aria-checked="${mode === 'all'}" data-act="terrMode" data-val="all" style="flex:1;white-space:nowrap">전 세계</button>
+        <button type="button" role="radio" aria-checked="${mode === 'only'}" data-act="terrMode" data-val="only" style="flex:1;white-space:nowrap">선택 국가만</button>
+        <button type="button" role="radio" aria-checked="${mode === 'except'}" data-act="terrMode" data-val="except" style="flex:1;white-space:nowrap">전 세계에서 제외</button>
+      </div>
+      ${mode === 'all' ? '' : `<input id="terrQ" class="inp" type="search" placeholder="국가 · 대륙 검색" value="${esc(ui.terrQ || '')}" style="margin-bottom:8px" aria-label="국가 검색">
+      <div class="tree" style="max-height:300px;overflow:auto">${terrTreeHTML(q, chk)}
+      </div>
+      <p class="hint" style="margin:6px 0 0">${kidLabel}에 체크</p>`}
+      <div class="note ok" style="margin-top:10px">${ic('check')}${summary}</div>
+      <div class="pop-foot">${p.scope !== 'ip' ? `<button type="button" class="btn btn-sm left" data-act="terrReset" ${explicit ? '' : 'disabled'}>기본값 따르기</button>` : ''}<button type="button" class="btn btn-primary btn-sm" data-act="closePop">완료</button></div>`;
+  } else if (p.type === 'term') {
+    const x = resolveRight(state, p.key), o = x.r.overrides;
+    const inhTerm = x.g.termMonths ?? state.ipDefaults.termMonths;
+    h = `<h3>${x.R.icon} ${esc(x.R.name)} · 기간</h3><p class="sub">${o.termMonths == null ? '지금은 기본값을 따름' : '이 권한만 다른 기간을 씀'}</p>
+      <div class="ptype" style="grid-template-columns:repeat(4,1fr)" role="radiogroup" aria-label="기간">
+        <button type="button" role="radio" aria-checked="${o.termMonths == null}" data-act="termPick" data-val="" data-fk="tp-inh">기본값 ${termLabel(inhTerm)}</button>
+        ${TERMS.map(([m, l]) => `<button type="button" role="radio" aria-checked="${o.termMonths === m}" data-act="termPick" data-val="${m}" data-fk="tp-${m}">${l}</button>`).join('')}
+      </div>
+      ${swH(p.key, '', x.autoRenew, '만료 시 자동갱신', '-p', 'autoRenew')}
+      <div class="pop-foot"><button type="button" class="btn btn-primary btn-sm" data-act="closePop">완료</button></div>`;
+  } else if (p.type === 'slot') {
+    let slots, unit, explicit, name, mode;
+    if (p.scope === 'right') { const x = resolveRight(state, p.key); slots = x.slots; unit = x.unit; explicit = x.slotSrc === 'override'; name = x.R.name; mode = x.mode; }
+    else { const gd = state.groupDefaults[p.key]; slots = gd.slots; unit = gd.slotUnit; explicit = true; name = `${p.key} ${GROUP_MAP[p.key].name}`; mode = gd.saleMode; }
+    const inf = slots == null;
+    const meaning = inf ? '무제한 비독점 — 누구나 계속 구매할 수 있음'
+      : slots === 1 ? { total: '1건 팔리면 판매완료 (독점)', region: '지역마다 1건 (지역독점)', media: '매체마다 1건 (분야독점)', language: '언어마다 1건', category: '카테고리마다 1건' }[unit]
+        : `동시 라이선시 최대 ${slots}${unit !== 'total' ? ` (${UNITS[unit]})` : ''}${mode === 'negotiated' ? ' · 협의 판매라 준독점으로 표시됨' : ''}`;
+    h = `<h3>${esc(name)} · 판매 슬롯</h3><p class="sub">독점성·판매완료·잔여 수량을 슬롯 하나로 정함</p>
+      <div class="fld">${swH('', '', inf, '∞ 무제한', '', 'slotInf')}</div>
+      <div class="fld"><span class="fld-l">슬롯 수</span><div class="stepper"><button type="button" data-act="slotStep" data-val="-1" aria-label="줄이기" ${inf || slots <= 1 ? 'disabled' : ''} data-fk="ss-m">${ic('minus')}</button><input class="inp num" type="number" min="1" max="99" value="${inf ? '' : slots}" ${inf ? 'disabled' : ''} data-sbind aria-label="슬롯 수" data-fk="ss-i"><button type="button" data-act="slotStep" data-val="1" aria-label="늘리기" ${inf || slots >= 99 ? 'disabled' : ''} data-fk="ss-p">${ic('plus')}</button></div></div>
+      <div class="fld"><span class="fld-l">슬롯 단위</span><div class="seg" role="radiogroup">${Object.entries(UNITS).map(([k, l]) => `<button type="button" role="radio" aria-checked="${unit === k}" data-act="slotUnit" data-val="${k}" ${inf ? 'disabled' : ''} data-fk="su-${k}">${l}</button>`).join('')}</div></div>
+      <p class="hint" aria-live="polite">${meaning}</p>
+      <div class="pop-foot">${p.scope === 'right' ? `<button type="button" class="btn btn-sm left" data-act="slotReset" ${explicit ? '' : 'disabled'}>기본값 따르기</button>` : ''}<button type="button" class="btn btn-primary btn-sm" data-act="closePop">완료</button></div>`;
+  }
+  const fk = rememberFocus();
+  pop.innerHTML = h;
+  pop.setAttribute('aria-label', pop.querySelector('h3')?.textContent || '메뉴');
+  $$('input[data-ind="true"]', pop).forEach(i => { i.indeterminate = true; });
+  restoreFocus(fk);
+  positionPop();
+}
+function updatePopLive() {
+  const p = ui.pop; if (!p) return;
+  const live = $('#pop .pop-live'); if (!live) return;
+  if (p.type === 'price' && p.scope === 'right') live.innerHTML = popLiveHTML(p.key);
+  if (p.type === 'price' && p.scope === 'group') {
+    const gd = state.groupDefaults[p.key], bad = gd.priceRange[0] > gd.priceRange[1];
+    live.innerHTML = bad ? `<div class="note err" style="margin-top:10px">${ic('alert')}하한이 상한보다 큼</div>` : `<p class="hint">${moneyRange(gd.priceRange[0], gd.priceRange[1])}</p>`;
+    $$('#pop [data-gpbind]').forEach(i => i.classList.toggle('err', bad));
+  }
+}
+function setCompType(id, t) {
+  const r = state.rights[id], prev = resolveRight(state, id).comp;
+  if (t === 'inherit') delete r.overrides.compensation;
+  else {
+    const base = prev.type === 'range' ? prev.min : (prev.amount ?? prev.upfront);
+    const n = { type: t };
+    if (t === 'lump' || t === 'perUnit') n.amount = base || RIGHT_MAP[id].rec.price || undefined;
+    if (t === 'perUnit') n.cap = prev.cap ?? 50;
+    if (t === 'royalty') { n.royaltyPct = prev.royaltyPct ?? 7; n.reportCycle = prev.reportCycle ?? 'quarter'; }
+    if (t === 'hybrid') { n.upfront = base || undefined; n.royaltyPct = prev.royaltyPct ?? 5; n.mg = prev.mg ?? 0; }
+    if (prev.preStageDiscountPct) n.preStageDiscountPct = prev.preStageDiscountPct;
+    r.overrides.compensation = clone(n);
+  }
+  refreshRight(id, { panel: false }); if (ui.sheet) renderSheet(); renderPop();
+}
+function onTerrCheck(t) {
+  const p = ui.pop;
+  let eff = p.scope === 'right' ? resolveRight(state, p.key).territory : p.scope === 'group' ? (state.groupDefaults[p.key].territory || state.ipDefaults.territory) : state.ipDefaults.territory;
+  const sel = new Set(eff.includes('GLOBAL') ? ALL_COUNTRIES : eff);
+  const kind = t.dataset.tact;
+  if (!ui.terrMode) ui.terrMode = sel.size >= ALL_COUNTRIES.length / 2 ? 'except' : 'only';
+  const except = ui.terrMode === 'except';
+  const on = except ? !t.checked : t.checked; /* 제외 모드에서는 체크 = 제외 */
+  if (kind === 'region') { const cs = REGIONS.find(r => r.code === t.dataset.code).countries.map(c => c[0]); cs.forEach(c => on ? sel.add(c) : sel.delete(c)); if (t.checked) ui.treeOpen.add(t.dataset.code); }
+  if (kind === 'country') { on ? sel.add(t.dataset.code) : sel.delete(t.dataset.code); }
+  if (!sel.size) { toast('거래 가능 국가를 1곳 이상 남겨야 함'); renderPop(); return; }
+  const val = ALL_COUNTRIES.every(c => sel.has(c)) ? ['GLOBAL'] : ALL_COUNTRIES.filter(c => sel.has(c));
+  if (p.scope === 'group') p.dirty = true;
+  setTerritory(p.scope, p.key, val);
+  renderPop();
+}
+
+/* ---------- 레이어: 시트 · 드로어 · 모달 ---------- */
+function syncScrim() {
+  const any = $('#modal').classList.contains('on') || $('#sheet').classList.contains('on') || $$('.drawer.on').length;
+  $('#layerScrim').classList.toggle('on', !!any);
+}
+function openModal(html) { const m = $('#modal'); ui.modalReturn = document.activeElement; m.innerHTML = html; m.classList.add('on'); syncScrim(); setTimeout(() => (m.querySelector('.btn-primary:not(:disabled), input, button') || m).focus(), 30); }
+function closeModal() { const m = $('#modal'); if (!m.classList.contains('on')) return; m.classList.remove('on'); syncScrim(); ui.modalReturn?.focus?.({ preventScroll: true }); }
+function openDrawer(elId) { $$('.drawer.on').forEach(d => d.classList.remove('on')); const d = $('#' + elId); ui.drawerReturn = document.activeElement; d.classList.add('on'); syncScrim(); setTimeout(() => d.querySelector('.icon-btn').focus(), 30); }
+function closeDrawers() { if (!$$('.drawer.on').length) return; $$('.drawer.on').forEach(d => d.classList.remove('on')); syncScrim(); ui.drawerReturn?.focus?.({ preventScroll: true }); }
+function openSheet(kind, key, tab = 'basic') { ui.sheet = { kind, key, tab }; ui.sheetReturn = document.activeElement; renderSheet(); $('#sheet').classList.add('on'); syncScrim(); setTimeout(() => $('#sheet .icon-btn').focus(), 30); }
+function closeSheet() { if (!ui.sheet) return; ui.sheet = null; $('#sheet').classList.remove('on'); syncScrim(); ui.sheetReturn?.focus?.({ preventScroll: true }); }
+function renderSheet() {
+  const s = ui.sheet; if (!s) return;
+  const fk = rememberFocus();
+  const body = $('#sheetBody');
+  if (s.kind === 'group') {
+    $('#sheetTitle').textContent = `${s.key} ${GROUP_MAP[s.key].name} · 그룹 기본값`;
+    body.innerHTML = groupControlsHTML(s.key, '-s');
+  } else {
+    const id = s.key, x = resolveRight(state, id), errs = validateRight(state, id), R = x.R;
+    $('#sheetTitle').textContent = `${R.icon} ${R.name}`;
+    const tabs = [['basic', '기본 조건'], ['scope', '권리 범위'], ['oblig', '의무'], ['elig', '자격·혜택'], ['special', '특화']];
+    let inner;
+    if (s.tab === 'basic') {
+      inner = `<div class="basic">
+        <div class="notes">${notesHTML(id, x, errs, rightChanged(id), '-s')}</div>
+        ${fld('판매 방식', modeSelectHTML(id, x, '-s').replace('class="sel', 'style="width:100%" class="sel'), autoSummary(x))}
+        ${fld(R.code === 'PPL' ? '노출비(수령)' : x.mode === 'negotiated' ? '시작가' : '가격', priceChipHTML(id, x, errs, '-s'))}
+        ${fld('지역', terrChipHTML(id, x, '-s'))}
+        ${fld('기간 · 자동갱신', termChipHTML(id, x, '-s'))}
+        ${fld('판매 슬롯', slotChipHTML(id, x, '-s'))}
+        ${fld('판매 현황', `<div class="stat-line c-stat">${statusHTML(x)}</div>`)}
+        ${x.sold ? badgeCellHTML(id, x, '-s') : `<div class="c-badge">${badgeCellHTML(id, x, '-s')}</div>`}
+      </div>`;
+    } else inner = `<section class="psec">${sectionHTML(id, x, s.tab, '-s')}</section>`;
+    body.innerHTML = `<div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" aria-selected="${s.tab === k}" data-act="sheetTab" data-val="${k}" data-fk="stab-${k}">${l}</button>`).join('')}</div>
+      <div role="tabpanel">${inner}</div>
+      <div class="sheet-foot"><button type="button" class="btn" data-act="resetRight" data-id="${id}">기본값으로 되돌리기</button><button type="button" class="btn" data-act="copyRight" data-id="${id}">다른 권한에 복사</button></div>`;
+  }
+  restoreFocus(fk);
+}
+function renderPreview() {
+  const f = $('#pvFrame');
+  f.classList.toggle('mobile', ui.pvSize === 'mobile');
+  $$('[data-act="pvSize"]').forEach(b => b.setAttribute('aria-checked', b.dataset.val === ui.pvSize));
+  const activeN = RIGHTS.filter(R => resolveRight(state, R.id).active).length;
+  f.innerHTML = `<div class="pv-hero"><div class="ip-thumb" style="width:40px;height:52px" aria-hidden="true"><span>黒月</span></div><div><b>검은 달의 계약자</b><small>프랜차이즈 권한 ${activeN}종 판매 중 · ${state.ipDefaults.visibility === 'public' ? '공개마켓' : state.ipDefaults.visibility === 'private' ? '비공개' : '초대전용'}</small></div></div>`
+    + GROUPS.map(g => {
+      const rows = RIGHTS.filter(R => R.group === g.code).map(R => buyerRowHTML(state, R.id)).join('');
+      return rows ? `<div class="pv-g" style="--gc:var(${g.v})">${g.code} ${g.name}</div>${rows}` : '';
+    }).join('');
+}
+
+/* ---------- 변경 이력 ---------- */
+const HISTORY = [
+  { t: '2026-09-15 10:20', who: '문하린', ini: '문', color: '#4F46E5', id: 'A-02', field: '가격', before: '₩8,000만~', after: '₩8,000만~ · Hybrid', revert: { path: 'overrides.compensation', value: { type: 'lump', amount: 80000000 } } },
+  { t: '2026-09-15 09:41', who: '문민혁', ini: 'MH', color: '#0EA5E9', id: 'C-04', field: '슬롯', before: '3', after: '5', revert: { path: 'overrides.slots', value: 3, unit: 'total' } },
+  { t: '2026-09-14 18:05', who: '문하린', ini: '문', color: '#4F46E5', id: 'F-01', field: '대가 유형', before: '일시불 ₩30만', after: '건당 ₩30만', revert: { path: 'overrides.compensation', value: { type: 'lump', amount: 300000 } } },
+  { t: '2026-09-14 17:52', who: '문하린', ini: '문', color: '#4F46E5', id: 'A-09', field: '기간', before: '3년', after: '2년', revert: { path: 'overrides.termMonths', value: 36 } },
+  { t: '2026-09-13 11:10', who: '이서준 (Finance)', ini: '이', color: '#059669', id: 'E-04', field: '슬롯 단위', before: '지역당', after: '카테고리당', revert: { path: 'overrides.slotUnit', value: 'region' } },
+  { t: '2026-09-12 16:33', who: '문하린', ini: '문', color: '#4F46E5', id: 'A-03', field: '지역', before: 'Global', after: 'KR·JP', revert: null },
+  { t: '2026-09-11 14:02', who: '문하린', ini: '문', color: '#4F46E5', id: 'B-03', field: '판매 방식', before: '🛒 즉시', after: '🌟 Creator', revert: { path: 'saleMode', value: undefined } },
+  { t: '2026-09-10 09:15', who: '시스템 (위저드)', ini: 'S', color: '#6B7280', group: 'A', field: '그룹 기간', before: '3년', after: '5년', revert: { group: 'A', field: 'termMonths', value: 36 } }
+];
+function renderHistory() {
+  $('#historyBody').innerHTML = HISTORY.map((h, i) => {
+    const R = h.id ? RIGHT_MAP[h.id] : null;
+    const locked = R && resolveRight(state, R.id).sold;
+    const target = R ? `${R.icon} ${R.name}` : `그룹 ${h.group} ${GROUP_MAP[h.group].name}`;
+    return `<div class="hs"><div class="when">${h.t}</div><span class="who" style="background:${h.color}" aria-hidden="true">${h.ini}</span>
+      <div class="what"><b>${esc(h.who)}</b> · ${target} · ${h.field}<div class="diff"><del>${esc(h.before)}</del> → <b>${esc(h.after)}</b></div></div>
+      ${h.revert && !locked ? `<button type="button" class="btn btn-xs" data-act="histRevert" data-val="${i}">${ic('undo')}되돌리기</button>` : `<span class="fld-h" style="grid-column:2">${locked ? '판매완료로 잠겨 되돌릴 수 없음' : ''}</span>`}</div>`;
+  }).join('');
+}
+function histRevert(i) {
+  const h = HISTORY[i], rv = h.revert;
+  if (rv.group) { setGroupField(rv.group, rv.field, rv.value, true); }
+  else {
+    const r = state.rights[h.id];
+    if (rv.path === 'saleMode') delete r.saleMode; else setPath(r, rv.path, clone(rv.value ?? null) ?? undefined);
+    if (rv.unit) r.overrides.slotUnit = rv.unit;
+    refreshRight(h.id);
+  }
+  toast(`${h.field}을 이전 값으로 되돌림 · 저장해야 반영됨`);
+}
+
+/* ---------- 모달: 다른 IP 불러오기 · 조건 복사 ---------- */
+const OTHER_IPS = [
+  { id: 'ip_7c10', name: '달빛 조향사', meta: '웹툰 · 로맨스판타지 · Live', modes: { 'A-06': 'instant', 'A-10': 'creator', 'B-03': 'creator', 'E-05': 'creator', 'D-06': 'off', 'F-03': 'off' }, groups: { E: { termMonths: 24 } } },
+  { id: 'ip_3b44', name: '서울 2089: 네온 레퀴엠', meta: '게임 시나리오 · SF스릴러 · Prod', modes: { 'D-03': 'negotiated', 'D-06': 'negotiated', 'A-09': 'negotiated', 'F-02': 'off' }, groups: { D: { saleMode: 'negotiated', slots: 1 } } },
+  { id: 'ip_55de', name: '왕의 정원사', meta: '드라마 대본 · 사극 · Pre-Prod', modes: { 'D-05': 'negotiated', 'C-04': 'off', 'F-01': 'off' }, groups: { A: { termMonths: 120 } } }
+];
+function openLoadOther() {
+  openModal(`<div class="modal-head"><h2 id="modalTitle">다른 IP 설정 불러오기</h2><p>불러온 값은 저장하기 전까지 반영되지 않음. 판매완료 권한은 바뀌지 않음.</p></div>
+    <div class="modal-body"><div class="pick">${OTHER_IPS.map((o, i) => `<label><input type="radio" name="oip" value="${i}" ${i === 0 ? 'checked' : ''}><span><b>${o.name}</b><small>${o.meta}</small></span></label>`).join('')}</div>
+    <p class="fld-l" style="margin:14px 0 6px">가져올 항목</p>
+    <label class="chk"><input type="checkbox" name="oopt" value="modes" checked>판매 방식 배치</label>
+    <label class="chk"><input type="checkbox" name="oopt" value="groups" checked>그룹 기본값</label>
+    <label class="chk"><input type="checkbox" name="oopt" value="clear">예외값 초기화 (가격·기간·슬롯)</label></div>
+    <div class="modal-foot"><button type="button" class="btn" data-act="closeModal">취소</button><button type="button" class="btn btn-primary" data-act="doLoadOther">불러오기</button></div>`);
+}
+function doLoadOther() {
+  const o = OTHER_IPS[+$('input[name=oip]:checked').value];
+  const opts = $$('input[name=oopt]:checked').map(i => i.value);
+  const soldIds = RIGHTS.filter(R => resolveRight(state, R.id).sold).map(R => R.id);
+  if (opts.includes('groups')) Object.entries(o.groups).forEach(([g, patch]) => Object.assign(state.groupDefaults[g], patch));
+  if (opts.includes('modes')) Object.entries(o.modes).forEach(([id, m]) => { if (soldIds.includes(id)) return; if (m === state.groupDefaults[id[0]].saleMode) delete state.rights[id].saleMode; else state.rights[id].saleMode = m; });
+  if (opts.includes('clear')) RIGHTS.forEach(R => { if (!soldIds.includes(R.id)) state.rights[R.id].overrides = {}; });
+  RIGHTS.forEach(R => { const r = state.rights[R.id]; if (r.saleMode && r.saleMode === state.groupDefaults[R.group].saleMode) delete r.saleMode; });
+  closeModal(); renderAll();
+  toast(`「${o.name}」 설정을 불러옴 · 저장해야 반영됨`);
+}
+function openCopy(src) {
+  const R = RIGHT_MAP[src];
+  openModal(`<div class="modal-head"><h2 id="modalTitle">이 조건을 다른 권한에 복사</h2><p>${R.icon} ${esc(R.name)}의 판매 방식·가격·지역·기간·슬롯과 권리 범위·의무·자격을 복사함. 특화 필드와 판매완료 권한의 잠긴 값은 제외됨.</p></div>
+    <div class="modal-body"><div class="copy-list">${GROUPS.map(g => `<h5>${g.code} ${g.name} <button type="button" class="link-btn" data-act="copyGroupAll" data-g="${g.code}">모두 선택</button></h5>${RIGHTS.filter(x => x.group === g.code && x.id !== src).map(x => `<label class="chk"><input type="checkbox" data-copy value="${x.id}" data-grp="${g.code}">${x.icon} ${esc(x.name)} <small style="color:var(--text-3)">${x.id}</small></label>`).join('')}`).join('')}</div></div>
+    <div class="modal-foot"><button type="button" class="btn" data-act="closeModal">취소</button><button type="button" class="btn btn-primary" data-act="doCopy" data-id="${src}" id="copyGo" disabled>선택한 0개에 복사</button></div>`);
+}
+function syncCopyBtn() { const n = $$('#modal [data-copy]:checked').length; const b = $('#copyGo'); if (b) { b.disabled = !n; b.textContent = `선택한 ${n}개에 복사`; } }
+function doCopy(src) {
+  const s = state.rights[src];
+  const targets = $$('#modal [data-copy]:checked').map(i => i.value);
+  targets.forEach(id => {
+    const t = state.rights[id], sold = resolveRight(state, id).sold;
+    const tg = state.groupDefaults[id[0]].saleMode, sm = s.saleMode || state.groupDefaults[src[0]].saleMode;
+    if (sm === tg) delete t.saleMode; else t.saleMode = sm;
+    const o = clone(s.overrides || {});
+    if (sold) { ['compensation', 'territory', 'termMonths'].forEach(k => { if (t.overrides[k] !== undefined) o[k] = t.overrides[k]; else delete o[k]; }); }
+    t.overrides = o;
+    const d = clone(s.detail || {}); delete d.special; if (d.eligibility) delete d.eligibility.nextSaleReserved;
+    t.detail = Object.assign(d, t.detail?.special ? { special: t.detail.special } : {});
+  });
+  closeModal(); renderAll();
+  toast(`${targets.length}개 권한에 복사함`, { label: '실행 취소', run: () => { state = ui.copyUndo; renderAll(); } });
+}
+function resetRight(id) {
+  const snap = clone(state), r = state.rights[id], x = resolveRight(state, id);
+  const keep = {};
+  if (x.sold) ['compensation', 'territory', 'termMonths'].forEach(k => { if (r.overrides[k] !== undefined) keep[k] = r.overrides[k]; });
+  delete r.saleMode; r.overrides = keep; r.detail = {};
+  refreshRight(id);
+  toast(`${x.R.name}을 기본값으로 되돌림`, { label: '실행 취소', run: () => { state = snap; renderAll(); } });
+}
+
+/* ---------- 저장 · 충돌 · 취소 ---------- */
+function renderSaveBar() {
+  const bar = $('#savebar');
+  const ch = changeList(), errN = Object.keys(errorsAll()).length, cf = ui.conflicts.length;
+  const show = ch.length || cf || ui.saveError;
+  bar.hidden = !show;
+  document.body.classList.toggle('has-savebar', !!show);
+  if (!show) return;
+  bar.classList.toggle('failed', ui.saveError);
+  const blocked = errN > 0 || cf > 0 || ui.saving || (!ch.length && !ui.saveError);
+  const msg = ui.saveError ? '저장하지 못함. 네트워크를 확인한 뒤 다시 시도' : cf ? '충돌을 먼저 정리해야 저장할 수 있음' : errN ? '오류를 해결해야 저장할 수 있음' : '저장 전까지 바이어 화면에 반영되지 않음';
+  bar.innerHTML = `<div class="cnts"><span>변경 <b class="num">${ch.length}</b>건</span>${errN ? `<button type="button" class="link-btn e" data-act="gotoErr">오류 ${errN}건</button>` : ''}${cf ? `<button type="button" class="link-btn w" data-act="gotoConflict">충돌 ${cf}건</button>` : ''}</div>
+    <span class="msg" role="status">${msg}</span>
+    <div class="acts"><button type="button" class="btn" data-act="cancel" ${ch.length && !ui.saving ? '' : 'disabled'}>변경 취소</button>
+    <button type="button" class="btn btn-primary" data-act="save" ${blocked ? 'disabled' : ''}>${ui.saving ? '<span class="spin" aria-hidden="true"></span>저장 중' : ui.saveError ? `${ic('refresh')}다시 시도` : '변경사항 저장'}</button></div>`;
+}
+function injectConflict() {
+  const before = saved.rights['A-02'].overrides.termMonths ?? 36;
+  saved.rights['A-02'].overrides.termMonths = 60;
+  ui.conflicts = [{ rightId: 'A-02', field: 'termMonths', label: '기간', before: before === 60 ? 36 : before, theirs: 60, by: 'MH', byName: '문민혁' }];
+  ui.mockConflictUsed = true;
+  ui.open.add('A');
+}
+function scrollToRight(id) {
+  const el = document.getElementById('r-' + id);
+  if (!el) return;
+  el.scrollIntoView({ block: 'center' });
+  (el.querySelector('.conflict .btn, .note .btn, .row select') || el).focus({ preventScroll: true });
+}
+async function save() {
+  if (ui.saving || ui.conflicts.length || Object.keys(errorsAll()).length) return;
+  const retry = ui.saveError;
+  const ch = changeList();
+  ui.saving = true; ui.saveError = false; renderSaveBar();
+  const payload = { version: state.version, changes: ch.map(c => c.kind === 'right' ? { rightId: c.id, patch: pickRight(state.rights[c.id]) } : c.kind === 'group' ? { groupId: c.id, patch: state.groupDefaults[c.id] } : { ipDefaults: state.ipDefaults }) };
+  console.log('[mock API] PATCH /api/studio/ips/ip_9f21/franchise-rights', clone(payload));
+  await sleep(700);
+  ui.saving = false;
+  if (ui.forceSaveFail && !retry) { ui.saveError = true; console.warn('[mock API] 503 Service Unavailable'); renderSaveBar(); return; }
+  ui.forceSaveFail = false;
+  if (!ch.length) { renderSaveBar(); toast('저장할 변경이 없어 오류 표시만 지움'); return; }
+  if (!ui.mockConflictUsed) {
+    saved = clone(state);
+    injectConflict();
+    state.version += 1; saved.version = state.version;
+    console.log('[mock API] 409 Conflict', { conflicts: [{ rightId: 'A-02', field: 'termMonths', theirs: 60, mine: resolveRight(state, 'A-02').term, by: 'user_02' }] });
+    ui.status = 'all'; renderAll();
+    toast('충돌 없는 변경은 저장됨 · 충돌 1건을 정리해야 함');
+    setTimeout(() => scrollToRight('A-02'), 50);
+    return;
+  }
+  const prev = clone(saved);
+  state.version += 1; saved = clone(state);
+  console.log('[mock API] 200 OK', { version: state.version });
+  renderAll();
+  toast('변경사항 저장됨', { label: '되돌리기', run: () => { state = clone(prev); saved = clone(prev); renderAll(); console.log('[mock API] PATCH revert → version', prev.version); toast('저장 전 상태로 되돌림'); } }, 5000);
+}
+function cancelChanges() {
+  const discarded = clone(state), cf = ui.conflicts;
+  state = clone(saved); ui.conflicts = [];
+  renderAll();
+  toast('변경을 취소함', { label: '다시 적용', run: () => { state = discarded; ui.conflicts = cf; renderAll(); } });
+}
+
+/* ---------- 개발용 상태 스위처 ---------- */
+function setDev(v) {
+  if (ui.devSnap) { state = ui.devSnap.state; saved = ui.devSnap.saved; ui.q = ui.devSnap.q; $('#q').value = ui.q; if ('mcu' in ui.devSnap) { ui.mockConflictUsed = ui.devSnap.mcu; ui.conflicts = []; } ui.devSnap = null; }
+  ui.loading = ui.loadFail = ui.saveError = ui.forceSaveFail = false;
+  ui.dev = v;
+  if (v === 'loading') ui.loading = true;
+  if (v === 'empty') { ui.devSnap = { state: clone(state), saved: clone(saved), q: ui.q }; RIGHTS.forEach(R => { state.rights[R.id].saleMode = 'off'; }); saved = clone(state); }
+  if (v === 'noresult') { ui.devSnap = { state: clone(state), saved: clone(saved), q: ui.q }; ui.q = '우주 오페라 VR'; $('#q').value = ui.q; }
+  if (v === 'savefail') { ui.forceSaveFail = true; ui.saveError = true; }
+  if (v === 'conflict') { ui.devSnap = { state: clone(state), saved: clone(saved), q: ui.q, mcu: ui.mockConflictUsed }; injectConflict(); }
+  if (v === 'loadfail') ui.loadFail = true;
+  renderAll();
+  if (v === 'conflict') setTimeout(() => scrollToRight('A-02'), 50);
+}
+
+/* ---------- 이동 · 이탈 방지 ---------- */
+function wizardHref() {
+  const g = {}; GROUPS.forEach(x => { g[x.code] = state.groupDefaults[x.code]; });
+  return `franchise-rights-setup.html?id=${state.ipId}&m=${encodePlacement(state)}&g=${encodeURIComponent(JSON.stringify(g))}`;
+}
+function navigate(href, label) {
+  const go = () => {
+    if (/franchise-rights(-setup)?\.html/.test(href)) { ui.leaving = true; location.href = href; }
+    else toast(`프로토타입: 「${label}」 화면은 이 파일에 포함되지 않음`);
+  };
+  const n = changeList().length;
+  if (!n) return go();
+  openModal(`<div class="modal-head"><h2 id="modalTitle">저장하지 않은 변경 ${n}건이 있음</h2><p>이 페이지를 나가면 변경 내용이 사라짐.</p></div><div class="modal-foot"><button type="button" class="btn" data-act="closeModal">계속 편집</button><button type="button" class="btn btn-danger" data-act="leaveNow" data-href="${esc(href)}" data-label="${esc(label)}">저장하지 않고 나가기</button></div>`);
+  ui.pendingGo = go;
+}
+
+/* ---------- 이벤트 ---------- */
+document.addEventListener('click', async e => {
+  const nav = e.target.closest('a[data-nav]');
+  if (nav) { e.preventDefault(); $('#sidebar').classList.remove('on'); $('#navScrim').classList.remove('on'); navigate(nav.getAttribute('href'), nav.textContent.trim()); return; }
+  if (e.target.closest('a[data-self]')) { e.preventDefault(); return; }
+  const t = e.target.closest('[data-act]'); if (!t || t.disabled) return;
+  const a = t.dataset.act, id = t.dataset.id, g = t.dataset.g, val = t.dataset.val;
+  const pv = () => JSON.parse(val);
+  switch (a) {
+    case 'theme': toggleTheme(); break;
+    case 'preview': closePop(true); renderPreview(); openDrawer('previewDrawer'); break;
+    case 'history': closePop(true); renderHistory(); openDrawer('historyDrawer'); break;
+    case 'wizard': closePop(true); closeModal(); navigate(wizardHref(), '위저드'); break;
+    case 'loadOther': closePop(true); openLoadOther(); break;
+    case 'doLoadOther': doLoadOther(); break;
+    case 'moreMenu': openPop('menu', 'page', null, 'more'); t.dataset.fk = 'more'; positionPop(); break;
+    case 'closeLayer': closeSheet(); closeDrawers(); closeModal(); break;
+    case 'closeModal': ui.modalCancel?.(); ui.modalCancel = null; closeModal(); break;
+    case 'leaveNow': closeModal(); ui.pendingGo?.(); break;
+    case 'pvSize': ui.pvSize = val; renderPreview(); break;
+    case 'histRevert': histRevert(+val); renderHistory(); break;
+    case 'copyGroupAll': $$(`#modal [data-copy][data-grp="${g}"]`).forEach(i => { i.checked = true; }); syncCopyBtn(); break;
+    case 'doCopy': ui.copyUndo = clone(state); doCopy(id); break;
+    case 'copyRight': closeSheet(); openCopy(id); break;
+    case 'resetRight': resetRight(id); break;
+    case 'sumMode': case 'fMode': ui.modes.has(val) ? ui.modes.delete(val) : ui.modes.add(val); renderChips(); renderSummary(); renderList(); break;
+    case 'sumStatus': ui.status = ui.status === val ? 'all' : val; renderChips(); renderSummary(); renderList(); break;
+    case 'fGroup': ui.group = val; renderChips(); renderList(); break;
+    case 'resetFilters': ui.q = ''; $('#q').value = ''; ui.group = 'all'; ui.modes.clear(); ui.status = 'all'; if (ui.dev === 'noresult') { ui.devSnap = null; ui.dev = 'normal'; $('#devState').value = 'normal'; } renderChips(); renderSummary(); renderList(); break;
+    case 'expandAll': { const allOpen = GROUPS.every(x => ui.open.has(x.code)); ui.open = allOpen ? new Set() : new Set(GROUPS.map(x => x.code)); renderChips(); renderList(); break; }
+    case 'grpToggle': ui.open.has(g) ? ui.open.delete(g) : ui.open.add(g); renderChips(); renderList(); break;
+    case 'grpSheet': openSheet('group', g); break;
+    case 'reload': ui.loadFail = false; ui.loading = true; renderList(); await sleep(800); ui.loading = false; ui.dev = 'normal'; $('#devState').value = 'normal'; renderAll(); break;
+    case 'applyRec': placementFromRec(state); renderAll(); toast('추천 배치를 적용함 · 저장해야 반영됨'); break;
+    case 'ipSet': setPath(state.ipDefaults, t.dataset.path, pv()); renderStrip(); refreshMeta(); break;
+    case 'ipLang': { const L = state.ipDefaults.languages; const i = L.indexOf(val); if (i >= 0) { if (L.length === 1) { toast('언어를 1개 이상 남겨야 함'); break; } L.splice(i, 1); } else L.push(val); renderStrip(); renderList(); refreshMeta(); break; }
+    case 'detail':
+      if (isMobile()) { openSheet('right', id, 'basic'); break; }
+      ui.detail.has(id) ? ui.detail.delete(id) : ui.detail.add(id); refreshRight(id); break;
+    case 'sheetTab': ui.sheet.tab = val; renderSheet(); break;
+    case 'pop': {
+      const key = t.dataset.scope === 'group' ? g : t.dataset.scope === 'ip' ? 'ip' : id;
+      if (ui.pop && ui.pop.fk === t.dataset.fk) { closePop(); break; }
+      openPop(t.dataset.pop, t.dataset.scope, key, t.dataset.fk); break;
+    }
+    case 'closePop': closePop(); break;
+    case 'compType': setCompType(ui.pop.key, val); break;
+    case 'treeExp': ui.treeOpen.has(val) ? ui.treeOpen.delete(val) : ui.treeOpen.add(val); renderPop(); break;
+    case 'terrMode': {
+      const p = ui.pop; ui.terrMode = val; ui.terrQ = '';
+      if (val === 'all') { setTerritory(p.scope, p.key, ['GLOBAL']); if (p.scope === 'group') p.dirty = true; }
+      else {
+        const eff = p.scope === 'right' ? resolveRight(state, p.key).territory : p.scope === 'group' ? (state.groupDefaults[p.key].territory || state.ipDefaults.territory) : state.ipDefaults.territory;
+        if (eff.includes('GLOBAL') && val === 'only') { setTerritory(p.scope, p.key, ['KR']); if (p.scope === 'group') p.dirty = true; }
+        ui.treeOpen.add('EA');
+      }
+      renderPop(); break;
+    }
+    case 'terrReset': setTerritory(ui.pop.scope, ui.pop.key, undefined); if (ui.pop.scope === 'group') ui.pop.dirty = true; renderPop(); break;
+    case 'slotInf': case 'slotStep': case 'slotUnit': case 'slotReset': {
+      const p = ui.pop;
+      const cur = p.scope === 'right' ? resolveRight(state, p.key) : { slots: state.groupDefaults[p.key].slots, unit: state.groupDefaults[p.key].slotUnit };
+      if (p.scope === 'group') p.dirty = true;
+      if (a === 'slotReset') setSlots(p.scope, p.key, undefined);
+      if (a === 'slotInf') setSlots(p.scope, p.key, cur.slots == null ? 1 : null, cur.slots == null ? cur.unit : 'total');
+      if (a === 'slotStep') setSlots(p.scope, p.key, Math.min(99, Math.max(1, (cur.slots || 1) + (+val))), cur.unit);
+      if (a === 'slotUnit') setSlots(p.scope, p.key, cur.slots, val);
+      renderPop(); break;
+    }
+    case 'autoRenew': { const o = state.rights[id].overrides; if (o.autoRenew) delete o.autoRenew; else o.autoRenew = true; refreshRight(id, { panel: false }); if (ui.sheet) renderSheet(); if (ui.pop) renderPop(); break; }
+    case 'termPick': { const k = ui.pop.key, o = state.rights[k].overrides; if (val === '') delete o.termMonths; else o.termMonths = +val; refreshRight(k, { panel: false }); if (ui.sheet) renderSheet(); renderPop(); break; }
+    case 'reserve': { const cur = !!state.rights[id].detail?.eligibility?.nextSaleReserved; setRightPath(id, 'detail.eligibility.nextSaleReserved', cur ? undefined : true); toast(cur ? '다음 판매 예약을 취소함' : `${resolveRight(state, id).next}부터 판매를 자동으로 다시 엶`); break; }
+    case 'seg': setRightPath(id, t.dataset.path, pv()); break;
+    case 'sw': setRightPath(id, t.dataset.path, t.getAttribute('aria-checked') !== 'true'); break;
+    case 'deadline': setRightPath(id, t.dataset.path, t.getAttribute('aria-checked') === 'true' ? null : 18); break;
+    case 'multi': {
+      const cur = [...(getPath(state.rights[id], t.dataset.path) ?? JSON.parse(t.dataset.def))];
+      const v = pv(), i = cur.indexOf(v);
+      if (i >= 0) cur.splice(i, 1); else cur.push(v);
+      setRightPath(id, t.dataset.path, cur); break;
+    }
+    case 'ai': {
+      const ai = clone(state.rights[id].detail?.scope?.ai || {}), k = t.dataset.key;
+      if (k === 'none') { const on = !ai.none; Object.keys(ai).forEach(z => delete ai[z]); if (on) ai.none = true; }
+      else { delete ai.none; if (ai[k]) delete ai[k]; else ai[k] = true; }
+      setRightPath(id, 'detail.scope.ai', Object.keys(ai).length ? ai : undefined); break;
+    }
+    case 'file': setRightPath(id, t.dataset.path, t.dataset.val || undefined); break;
+    case 'fix': {
+      const f = t.dataset.fix;
+      if (f === 'price') { if (isMobile()) { openSheet('right', id, 'basic'); setTimeout(() => openPop('price', 'right', id, `price-${id}-s`), 260); } else openPop('price', 'right', id, `price-${id}`); }
+      if (f === 'clampRoyalty') { const c = state.rights[id].overrides.compensation; c.royaltyPct = Math.min(50, Math.max(0.1, c.royaltyPct || 0)); refreshRight(id); if (ui.pop) renderPop(); }
+      if (f === 'fanHub') { setRightPath(id, 'detail.special.fanwork.platform', 'hub'); toast('ipbeginz 팬창작 허브를 지정함'); }
+      if (f === 'openScope' || f === 'openLang') {
+        const tab = f === 'openScope' ? 'scope' : 'special', anchor = f === 'openScope' ? `ai-${id}` : `lang-${id}`;
+        if (isMobile()) { openSheet('right', id, tab); setTimeout(() => $(`#${anchor}-s button`)?.focus(), 280); }
+        else { ui.detail.add(id); refreshRight(id); const n = $(`#${anchor}`); n?.scrollIntoView({ block: 'center' }); n?.querySelector('button')?.focus({ preventScroll: true }); }
+      }
+      break;
+    }
+    case 'conflictMine': ui.conflicts = ui.conflicts.filter(c => c.rightId !== id); refreshRight(id); toast('내 값으로 덮어씀 · 저장하면 반영됨'); break;
+    case 'conflictTheirs': state.rights[id].overrides.termMonths = ui.conflicts.find(c => c.rightId === id).theirs; ui.conflicts = ui.conflicts.filter(c => c.rightId !== id); refreshRight(id); toast('문민혁님 값을 유지함'); break;
+    case 'gotoErr': { const first = RIGHTS.find(R => validateRight(state, R.id).length); if (first) { ui.open.add(first.group); if (!matchFilter(first)) { ui.status = 'error'; renderChips(); } renderList(); scrollToRight(first.id); } break; }
+    case 'gotoConflict': scrollToRight(ui.conflicts[0].rightId); break;
+    case 'save': if (ui.saveError) ui.forceSaveFail = false; save(); break;
+    case 'cancel': cancelChanges(); break;
+  }
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.matches('[data-rfield="saleMode"]')) return setMode(t.dataset.id, t.value);
+  if (t.matches('[data-gfield]')) { const f = t.dataset.gfield; return setGroupField(t.dataset.g, f, f === 'termMonths' ? (t.value === '' ? null : +t.value) : t.value); }
+  if (t.matches('[data-ipfield]')) { state.ipDefaults[t.dataset.ipfield] = t.dataset.ipfield === 'termMonths' ? +t.value : t.value; return renderAll(); }
+  if (t.matches('[data-bind][data-kind="sel"]')) return setRightPath(t.dataset.id, t.dataset.path, t.value || undefined);
+  if (t.matches('[data-tact]')) return onTerrCheck(t);
+  if (t.matches('[data-pbind="reportCycle"]')) { state.rights[ui.pop.key].overrides.compensation.reportCycle = t.value; return refreshRight(ui.pop.key, { panel: false }); }
+  if (t.matches('[data-gpbind]') && ui.pop) { ui.pop.dirty = true; return; }
+  if (t.matches('[data-sbind]')) return renderPop();
+  if (t.matches('[data-copy]')) return syncCopyBtn();
+  if (t.id === 'statusFilter') { ui.status = t.value; renderSummary(); return renderList(); }
+  if (t.id === 'devState') return setDev(t.value);
+});
+let qTimer;
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'q') { clearTimeout(qTimer); qTimer = setTimeout(() => { ui.q = t.value; renderList(); }, 120); return; }
+  if (t.id === 'terrQ') { const pos = t.selectionStart; ui.terrQ = t.value; renderPop(); const n = document.getElementById('terrQ'); if (n) { n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) {} } return; }
+  if (t.matches('[data-bind][data-kind="num"], [data-bind][data-kind="txt"]')) {
+    let v;
+    if (t.dataset.kind === 'num') v = t.value === '' ? undefined : Number(t.value) * Number(t.dataset.scale || 1);
+    else v = t.value === '' ? undefined : t.value;
+    return setRightPath(t.dataset.id, t.dataset.path, v, { panel: false });
+  }
+  if (t.matches('[data-pbind]') && ui.pop && t.dataset.pbind !== 'reportCycle') {
+    const c = state.rights[ui.pop.key].overrides.compensation; if (!c) return;
+    const k = t.dataset.pbind;
+    if (t.value === '') delete c[k]; else c[k] = Number(t.value) * Number(t.dataset.scale || 1);
+    refreshRight(ui.pop.key, { panel: false });
+    if (ui.sheet) { const fk = rememberFocus(); renderSheet(); restoreFocus(fk); }
+    return updatePopLive();
+  }
+  if (t.matches('[data-gpbind]') && ui.pop) {
+    const gd = state.groupDefaults[ui.pop.key];
+    const n = t.value === '' ? 0 : Number(t.value) * 1e4;
+    const pr = [...gd.priceRange]; pr[+t.dataset.gpbind] = n;
+    gd.priceRange = pr; ui.pop.dirty = true;
+    renderList(); refreshMeta(); if (ui.sheet) renderSheet();
+    return updatePopLive();
+  }
+  if (t.matches('[data-sbind]') && ui.pop && t.value !== '') {
+    const p = ui.pop, n = Math.min(99, Math.max(1, Math.round(+t.value)));
+    const unit = p.scope === 'right' ? resolveRight(state, p.key).unit : state.groupDefaults[p.key].slotUnit;
+    if (p.scope === 'group') p.dirty = true;
+    setSlots(p.scope, p.key, n, unit);
+  }
+});
+document.addEventListener('mousedown', e => {
+  if (!ui.pop) return;
+  if (e.target.closest('#pop')) return;
+  const a = e.target.closest('[data-fk]');
+  if (a && a.dataset.fk === ui.pop.fk) return;
+  closePop(true);
+});
+document.addEventListener('keydown', e => {
+  const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName);
+  if (e.key === '/' && !typing) { e.preventDefault(); $('#q').focus(); return; }
+  if (e.key === 'Escape') {
+    if (ui.pop) { closePop(); return; }
+    if ($('#modal').classList.contains('on')) { ui.modalCancel?.(); ui.modalCancel = null; closeModal(); return; }
+    if (ui.sheet) { closeSheet(); return; }
+    closeDrawers();
+  }
+});
+$('#layerScrim').addEventListener('click', () => {
+  if ($('#modal').classList.contains('on')) { ui.modalCancel?.(); ui.modalCancel = null; closeModal(); }
+  else if (ui.sheet) closeSheet(); else closeDrawers();
+});
+window.addEventListener('scroll', () => { positionPop(); $('#toolbar').classList.toggle('stuck', $('#toolbar').getBoundingClientRect().top <= parseInt(getComputedStyle(document.documentElement).getPropertyValue('--topbar')) + 1); }, { passive: true });
+window.addEventListener('resize', () => { positionPop(); });
+window.addEventListener('beforeunload', e => { if (!ui.leaving && changeList().length) { e.preventDefault(); e.returnValue = ''; } });
+matchMedia('(max-width:767px)').addEventListener('change', () => { closePop(true); if (!isMobile()) closeSheet(); renderList(); });
+
+/* ---------- 시작 ---------- */
+hydrateIcons();
+initTheme();
+initNavDrawer();
+ui.loading = true; renderAll();
+setTimeout(() => {
+  ui.loading = false; renderAll();
+  if (urlApplied) toast('위저드에서 저장한 배치를 불러옴');
+}, 450);
+
+</script>
+</body>
+</html>
