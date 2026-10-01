@@ -12767,6 +12767,420 @@ class Component extends DCLogic {
       if (saved && typeof SOCIAL_LINKS !== 'undefined') Object.keys(saved).forEach(k => { SOCIAL_LINKS[k] = saved[k]; });
     } catch (e) {}
   }
+  /* ── 계정 프로필 편집(view=edit) 값 · 핸들러 ── */
+  editVals(s) {
+    const BLURB_MAX = 300;
+    const name = s.editName || ACCOUNT.name;
+    const blurb = s.editBlurb || '';
+    const links = s.accountLinks || [];
+    const langs = s.accountLangs || [];
+    const majors = s.authCatSel || [];
+    const subs = s.authSubSel || [];
+    const scope = SCOPES.find(x => x.id === s.editVis) || SCOPES[0];
+    const covers = s.coverList || [];
+    const fits = s.coverFits || [];
+    const touch = patch => this.setState(Object.assign({ editSaved: false }, patch));
+    const fitOf = (i) => fits[i] || 'background-size: cover; background-position: center';
+    const PRESETS = [
+      { label: '공식 웹사이트', glyph: 'language', url: 'https://' },
+      { label: 'YouTube', glyph: 'smart_display', url: 'https://youtube.com/@' },
+      { label: 'TikTok', glyph: 'music_note', url: 'https://tiktok.com/@' },
+      { label: 'Instagram', glyph: 'photo_camera', url: 'https://instagram.com/' },
+      { label: 'X', glyph: 'alternate_email', url: 'https://x.com/' },
+      { label: '블로그', glyph: 'rss_feed', url: 'https://' }
+    ];
+    return {
+      editName: s.editName || '', editHandle: s.editHandle || '', editBlurb: blurb, editSaved: !!s.editSaved,
+      setEditName: e => touch({ editName: e.target.value }),
+      setEditHandle: e => touch({ editHandle: e.target.value.replace(/[^a-z0-9._-]/gi, '').toLowerCase() }),
+      setEditBlurb: e => touch({ editBlurb: e.target.value.slice(0, BLURB_MAX) }),
+      blurbMax: BLURB_MAX,
+      blurbCount: blurb.length + '/' + BLURB_MAX,
+      blurbCountStyle: 'margin-left: auto; font-size: 12px; font-variant-numeric: tabular-nums; color: ' + (blurb.length >= BLURB_MAX ? '#b0405c' : '#9b90ab'),
+
+      hasAvatarImg: !!s.avatarImg,
+      editAvatarInitial: s.avatarImg ? '' : name.trim().charAt(0),
+      editAvatarStyle: 'width: 84px; height: 84px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 28px; font-weight: 700; color: #fff; '
+        + (s.avatarImg
+          ? 'background-image: url("' + s.avatarImg + '"); background-repeat: no-repeat; ' + (s.avatarFit || 'background-size: cover; background-position: center')
+          : 'background: ' + this.autoTint(name)),
+      avatarInputRef: el => { this._editAvatarInput = el || this._editAvatarInput; },
+      coverInputRef: el => { this._editCoverInput = el || this._editCoverInput; },
+      openAvatarPicker: () => { if (this._editAvatarInput) this._editAvatarInput.click(); else this.toast('이미지 선택창을 열 수 없습니다'); },
+      openCoverPicker: () => { if (this._editCoverInput) this._editCoverInput.click(); else this.toast('이미지 선택창을 열 수 없습니다'); },
+      pickAvatar: e => {
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        this.setState({ crop: { target: 'avatar', url: URL.createObjectURL(f), zoom: 100, x: 50, y: 50 } });
+        e.target.value = '';
+      },
+      pickCovers: e => {
+        const files = [...(e.target.files || [])];
+        if (!files.length) return;
+        const urls = files.map(f => URL.createObjectURL(f));
+        this.setState(st => ({
+          coverList: (st.coverList || []).concat(urls).slice(0, 3),
+          coverFits: (st.coverFits || []).concat(urls.map(() => '')).slice(0, 3),
+          editSaved: false
+        }));
+        e.target.value = '';
+      },
+      clearAvatar: () => { touch({ avatarImg: '', avatarFit: '' }); this.toast('계정 이미지를 삭제했습니다 · 이름 첫 글자가 표시됩니다'); },
+      avatarFallbackNote: s.avatarImg ? '' : ' · 이미지가 없으면 이름 첫 글자가 표시됩니다',
+      coverFallbackNote: covers.length
+        ? covers.length + '장 등록 · 헤더에 나란히 표시되고, 「조정」으로 보이는 위치를 바꿀 수 있습니다'
+        : '커버가 없으면 대표 프로젝트 프로필 이미지가 헤더에 나란히 표시됩니다 · 1600×700 이상 권장 · JPG/PNG/WebP · 10MB',
+      coverMiniGridStyle: 'display: grid; gap: 2px; grid-template-columns: repeat(' + Math.max(1, covers.length || Math.min(3, (s.coverPicks || []).length) || 1) + ', minmax(0, 1fr))',
+      coverMini: (covers.length
+        ? covers.map((url, i) => ({ url, fit: fitOf(i) }))
+        : (s.coverPicks || []).map(id => (PROFILES.find(p => p.id === id) || {}).img).filter(Boolean).map(url => ({ url, fit: 'background-size: cover; background-position: center' }))
+      ).slice(0, 3).map(c => ({ style: 'display: block; min-width: 0; background-image: url("' + c.url + '"); background-repeat: no-repeat; ' + c.fit })),
+      coverSlots: covers.map((url, i) => ({
+        filled: true, mark: '',
+        style: 'position: absolute; inset: 0; display: block; background-image: url("' + url + '"); background-repeat: no-repeat; ' + fitOf(i),
+        remove: () => touch({ coverList: (this.state.coverList || []).filter((x, j) => j !== i), coverFits: (this.state.coverFits || []).filter((x, j) => j !== i) }),
+        adjust: () => this.setState({ crop: { target: 'cover', index: i, url, zoom: 100, x: 50, y: 50 } })
+      })),
+      canAddCover: covers.length < 3,
+      coverCountLabel: '추가 ' + (covers.length + 1) + '/3',
+
+      catMajorOpts: CAT_MAJOR.filter(m => majors.indexOf(m) < 0),
+      interestCountLabel: majors.length + '/5',
+      addCatMajor: e => {
+        const v = e.target.value;
+        if (!v) return;
+        const cur = this.state.authCatSel || [];
+        if (cur.indexOf(v) >= 0) return;
+        if (cur.length >= 5) return this.toast('대분류는 최대 5개까지 고를 수 있습니다');
+        touch({ authCatSel: cur.concat([v]) });
+      },
+      catSubOpts: majors.reduce((acc, m) => acc.concat(
+        catMinorGroupsFor(m).reduce((a, g) => a.concat(g.items), []).map(g => ({ key: m + '|' + g, label: m + ' › ' + g }))
+      ), []).filter(o => subs.indexOf(o.key) < 0),
+      catSubPlaceholder: majors.length ? '소분류 선택 · ' + subs.length + '개 선택됨' : '대분류를 먼저 고르세요',
+      addCatSub: e => {
+        const v = e.target.value;
+        if (!v) return;
+        const cur = this.state.authSubSel || [];
+        if (cur.indexOf(v) >= 0) return;
+        touch({ authSubSel: cur.concat([v]) });
+      },
+      hasInterestChips: majors.length + subs.length > 0,
+      interestChips: majors.map(m => ({
+        label: m,
+        remove: () => touch({
+          authCatSel: (this.state.authCatSel || []).filter(x => x !== m),
+          authSubSel: (this.state.authSubSel || []).filter(x => x.split('|')[0] !== m)
+        })
+      })).concat(subs.map(k => ({
+        label: k.split('|').join(' › '),
+        remove: () => touch({ authSubSel: (this.state.authSubSel || []).filter(x => x !== k) })
+      }))),
+
+      langOptions: ['한국어', 'English', '日本語', '中文', 'Español', 'Tiếng Việt'].map(l => {
+        const on = langs.indexOf(l) >= 0;
+        return {
+          label: l,
+          pick: () => { const cur = this.state.accountLangs || []; touch({ accountLangs: on ? cur.filter(x => x !== l) : cur.concat([l]) }); },
+          style: 'border-radius: 999px; padding: 7px 13px; font-size: 14px; white-space: nowrap; '
+            + (on ? 'background: #6846db; color: #fff; font-weight: 700; border: 1px solid #6846db' : 'border: 1px solid #e2ddeb; color: #4c455a; background: #fff')
+        };
+      }),
+
+      editLinks: links.map((l, i) => ({
+        label: l.label || '', url: l.url || '',
+        setLabel: e => { const v = e.target.value; touch({ accountLinks: (this.state.accountLinks || []).map((x, j) => j === i ? Object.assign({}, x, { label: v }) : x) }); },
+        setUrl: e => { const v = e.target.value; touch({ accountLinks: (this.state.accountLinks || []).map((x, j) => j === i ? Object.assign({}, x, { url: v }) : x) }); },
+        remove: () => touch({ accountLinks: (this.state.accountLinks || []).filter((x, j) => j !== i) })
+      })),
+      canAddLink: links.length < 10,
+      linkCountLabel: links.length + '/10',
+      linkPresets: PRESETS.filter(p => !links.some(l => l.label === p.label)).map(p => ({
+        label: p.label, glyph: p.glyph,
+        add: () => touch({ accountLinks: (this.state.accountLinks || []).concat([{ label: p.label, url: p.url }]).slice(0, 10) }),
+        style: 'display: inline-flex; align-items: center; gap: 6px; border: 1px solid #e2ddeb; border-radius: 999px; padding: 8px 14px; font-size: 14px; color: #4c455a; background: #fff'
+      })),
+      addEditLink: () => touch({ accountLinks: (this.state.accountLinks || []).concat([{ label: '', url: '' }]).slice(0, 10) }),
+
+      toggleEditScopeMenu: () => this.setState(st => ({ editScopeMenuOpen: !st.editScopeMenuOpen })),
+      editScopeMenuOpen: !!s.editScopeMenuOpen,
+      editScopeGlyph: scope.glyph,
+      editScope: scope.id,
+      editScopeHint: scope.hint,
+      editVisibility: SCOPES.map(v => {
+        const on = v.id === scope.id;
+        return {
+          glyph: v.glyph, label: v.id, desc: v.hint,
+          pick: () => touch({ editVis: v.id, editScopeMenuOpen: false }),
+          style: 'display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border-radius: 9px; text-align: left; '
+            + (on ? 'background: #eee8fa; color: #5836c4' : 'color: #3d3748')
+        };
+      }),
+      saveEdit: () => {
+        const nm = (this.state.editName || '').trim();
+        const hd = (this.state.editHandle || '').trim();
+        if (!nm) return this.toast('계정 이름을 입력해 주세요');
+        if (!hd) return this.toast('계정 아이디를 입력해 주세요');
+        this.setState({ editName: nm, editHandle: hd, editBlurb: (this.state.editBlurb || '').trim(), editSaved: true, editScopeMenuOpen: false });
+        this.toast('계정 프로필을 저장했습니다');
+        this.resetTo({ view: 'hub', accountTab: 'projects', rail: 'my' });
+      }
+    };
+  }
+
+  /* ── 셀프 프로모션(view=selfpromo · 템플릿 카드 상세설정) 값 · 핸들러 ── */
+  spVals(s, sp) {
+    const pid = s.spId || 'momo';
+    const prof = sp.profile;
+    const isCreator = pid === 'loop';
+    const services = SP_SERVICES[isCreator ? 'creator' : 'influencer'];
+    const chans = PROOFS[pid] || [];
+    const off = s.spOffChannels || [];
+    const onChans = chans.filter(c => off.indexOf(c.ch) < 0);
+    const won = n => '₩' + Number(n || 0).toLocaleString();
+    const fol = onChans.reduce((a, c) => a + (c.n || 0), 0);
+    const folLabel = fol >= 1000 ? (fol / 1000).toFixed(1).replace(/\.0$/, '') + 'K' : String(fol);
+    const title = (s.spTitle || '').trim() || sp.titlePh;
+    const openNc = () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my' }, this.ncBlank(pid), { ncProfile: pid, ncFlow: '수익 · 이용권 판매', ncSubType: 'mktin' }));
+    const todos = [
+      { label: '캠페인 제목', hint: '템플릿 제목 대신 내 서비스를 한 줄로 적으세요', done: !!(s.spTitle || '').trim() },
+      { label: '기본 단가', hint: '템플릿 기본값이 아닌 내 실제 단가로 맞추세요', done: !!s.spRateTouched },
+      { label: '내가 해주는 일', hint: '실제로 가능한 일만 남기세요', done: !!s.spServiceTouched },
+      { label: '소개 · 강점', hint: '실적 숫자를 넣으면 섭외율이 올라갑니다', done: !!(s.spPitch || '').trim() }
+    ];
+    return {
+      activeTemplate: s.usedTemplate || (isCreator ? '크리에이터 · 제작 서비스' : '크리에이터 · 인플루언서 홍보'),
+      openTemplateTab: () => this.setState({ panelOpen: true, panelTab: 'template' }),
+      useTemplate: openNc,
+      useBtnStyle: 'font-size: 14px; font-weight: 700; color: #fff; background: #6846db; border-radius: 9px; padding: 7px 14px; white-space: nowrap',
+      useBtnLabel: '캠페인 만들기로 가져오기',
+      spUsed: !!s.spUsed,
+      todoSummary: todos.filter(t => !t.done).length + '개 남음',
+      spTodos: todos.map(t => ({
+        label: t.label, hint: t.hint, mark: t.done ? '✓' : '!', state: t.done ? '완료' : '수정 필요', color: t.done ? '#3f8460' : '#96681a',
+        style: 'display: flex; align-items: center; gap: 12px; border-radius: 11px; padding: 11px 13px; border: 1px solid ' + (t.done ? '#e8e5ed; background: #fff' : '#efe4cd; background: #fdf9f0'),
+        markStyle: 'width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: none; ' + (t.done ? 'background: #eef7f1; color: #3f8460' : 'background: #fdf6e9; color: #96681a')
+      })),
+      spProfiles: PROFILES.filter(p => p.type === '크리에이터' && !p.external).map(p => {
+        const on = p.id === pid;
+        return {
+          name: p.name, kind: p.kind,
+          pick: () => this.setState({ spId: p.id, spService: SP_SERVICES[p.id === 'loop' ? 'creator' : 'influencer'][0], spOffChannels: [], spServiceTouched: false, spRateTouched: false, spTitle: '', spDone: false }),
+          imgStyle: this.bg(p.img, 'width: 34px; height: 34px; border-radius: 50%; flex: none'),
+          style: 'border-radius: 13px; padding: 10px 14px; text-align: left; ' + (on ? 'border: 1.5px solid #6846db; background: #f3effc' : 'border: 1px solid #e2ddeb; background: #fff')
+        };
+      }),
+      spServices: services.map(sv => {
+        const on = sv === s.spService;
+        return {
+          label: sv,
+          pick: () => this.setState({ spService: sv, spServiceTouched: true, spDone: false }),
+          style: 'border-radius: 999px; padding: 8px 14px; font-size: 14px; white-space: nowrap; '
+            + (on ? 'background: #6846db; color: #fff; font-weight: 700; border: 1px solid #6846db' : 'border: 1px solid #e2ddeb; color: #4c455a; background: #fff')
+        };
+      }),
+      spTitle: s.spTitle || '',
+      setSpTitle: e => this.setState({ spTitle: e.target.value, spDone: false }),
+      spTitlePlaceholder: sp.titlePh,
+      spChannels: chans.map(c => {
+        const on = off.indexOf(c.ch) < 0;
+        return {
+          ch: c.ch, handle: c.handle + (c.verified ? ' · 연동됨' : ' · 직접 입력'), followers: c.followers, metric: c.metric, mark: '✓',
+          toggle: () => this.setState(st => { const cur = st.spOffChannels || []; return { spOffChannels: on ? cur.concat([c.ch]) : cur.filter(x => x !== c.ch) }; }),
+          rowStyle: 'display: flex; align-items: center; gap: 11px; border-radius: 11px; padding: 11px 13px; border: 1px solid ' + (on ? '#e8e5ed; background: #fff' : '#f0edf5; background: #faf9fc; opacity: 0.72'),
+          boxStyle: 'width: 18px; height: 18px; border-radius: 5px; flex: none; display: grid; place-items: center; font-size: 12px; ' + (on ? 'background: #6846db; color: #fff' : 'border: 1.5px solid #ded8e8; color: transparent')
+        };
+      }),
+      spPayModes: SP_PAY.map(pm => {
+        const on = pm.label === s.spPay;
+        return {
+          label: pm.label, desc: pm.desc,
+          pick: () => this.setState({ spPay: pm.label }),
+          style: 'text-align: left; border-radius: 11px; padding: 11px 13px; ' + (on ? 'border: 1.5px solid #6846db; background: #f3effc' : 'border: 1px solid #e2ddeb; background: #fff')
+        };
+      }),
+      spRateLabel: won(s.spRate) + ' / ' + sp.unit,
+      spRate: s.spRate,
+      setSpRate: e => this.setState({ spRate: Number(e.target.value), spRateTouched: true }),
+      spCapacity: sp.caps.map(cp => ({ label: cp, pick: () => this.setState({ spCap: cp }), style: this.chip(cp === s.spCap) })),
+      spPitch: s.spPitch || '',
+      setSpPitch: e => this.setState({ spPitch: e.target.value }),
+      spPitchPlaceholder: sp.pitchPh,
+      spPreview: {
+        name: prof.name,
+        imgStyle: this.bg(prof.img, 'width: 34px; height: 34px; border-radius: 50%; flex: none'),
+        channels: onChans.length ? onChans.map(c => c.ch).join(' · ') : '연동 채널 없음',
+        title,
+        tags: [s.spService, prof.kind, isCreator ? '제작 납품' : '라이브 · 숏폼'].filter(Boolean),
+        rate: won(s.spRate) + ' / ' + sp.unit,
+        payKind: s.spPay === '성과' ? '성과 보상' : '고정 보상',
+        capacity: s.spCap,
+        followers: fol ? folLabel : prof.subs
+      },
+      publishSp: () => { this.toast('템플릿 값을 캠페인 만들기로 가져왔습니다'); openNc(); },
+      spDone: !!s.spDone
+    };
+  }
+
+  /* ── 카탈로그 등록(view=catalog) 값 · 핸들러 ── */
+  catVals(s) {
+    const minors = s.catMinors || [];
+    const ext = s.catPlace === '외부';
+    const nameT = (s.catName || '').trim();
+    const priceNum = Number((s.catPrice || '').replace(/\D/g, '')) || 0;
+    const won = n => '₩' + Number(n || 0).toLocaleString();
+    const box = on => 'width: 18px; height: 18px; border-radius: 5px; flex: none; display: grid; place-items: center; font-size: 12px; '
+      + (on ? 'background: #6846db; color: #fff' : 'border: 1.5px solid #ded8e8; color: transparent');
+    return {
+      catPlaces: [
+        { id: '내부', label: '내부 판매', desc: 'IPBeginz 안에서 결제 · 정산까지 처리합니다' },
+        { id: '외부', label: '외부 판매처', desc: '스마트스토어 등 외부 상품 페이지로 연결합니다' }
+      ].map(cp => ({
+        label: cp.label, desc: cp.desc,
+        pick: () => this.setState({ catPlace: cp.id, catalogDone: false }),
+        style: 'flex: 1 1 0; min-width: 0; text-align: left; border-radius: 12px; padding: 13px 15px; ' + (s.catPlace === cp.id ? 'border: 1.5px solid #6846db; background: #f3effc' : 'border: 1px solid #e2ddeb; background: #fff')
+      })),
+      catIsExternal: ext,
+      catPlatform: s.catPlatform,
+      setCatPlatform: e => this.setState({ catPlatform: e.target.value }),
+      platformList: PLATFORMS,
+      catUrl: s.catUrl || '',
+      setCatUrl: e => this.setState({ catUrl: e.target.value, catalogDone: false }),
+      catUrlNote: (s.catUrl || '').trim()
+        ? '상품명 · 가격 · 이미지는 ' + s.catPlatform + ' 상품 페이지에서 불러옵니다. 클릭 · 전환은 트래킹 링크로 집계됩니다.'
+        : '외부 판매처는 상품 페이지 URL을 넣어야 등록됩니다. 클릭 · 전환은 트래킹 링크로 집계됩니다.',
+      setNcProfile: e => this.setState({ ncProfile: e.target.value }),
+      ncProfileOptions: PROFILES.filter(p => !p.external).map(p => ({ value: p.id, label: p.name + ' · ' + p.kind })),
+      catMajor: s.catMajor,
+      setCatMajor: e => this.setState({ catMajor: e.target.value, catMinors: [] }),
+      catMajorList: CAT_MAJOR,
+      toggleMinorPanel: () => this.setState(st => ({ minorPanelOpen: !st.minorPanelOpen })),
+      minorPanelOpen: !!s.minorPanelOpen,
+      catMinorColor: minors.length ? '#3d3748' : '#9b90ab',
+      catMinorSummary: minors.length ? minors.join(' · ') : '소분류 선택 · 여러 개 가능',
+      catMinorGroups: catMinorGroupsFor(s.catMajor).map(g => ({
+        group: g.group,
+        items: g.items.map(m => {
+          const on = minors.indexOf(m) >= 0;
+          return {
+            label: m, mark: '✓',
+            toggle: () => this.setState(st => { const cur = st.catMinors || []; return { catMinors: cur.indexOf(m) >= 0 ? cur.filter(x => x !== m) : cur.concat([m]) }; }),
+            rowStyle: 'display: flex; align-items: center; gap: 9px; width: 100%; padding: 7px 8px; border-radius: 8px; text-align: left; ' + (on ? 'background: #f3effc' : ''),
+            boxStyle: box(on)
+          };
+        })
+      })),
+      catName: s.catName || '',
+      setCatName: e => this.setState({ catName: e.target.value, catalogDone: false }),
+      catImageNote: nameT
+        ? '「' + nameT + '」 대표 이미지 · 1000×1000 권장 · 등록 후 교체 가능'
+        : '대표 이미지 · 1000×1000 이상 · JPG/PNG · 상품 이름을 넣으면 자동 생성 안을 제안합니다',
+      catPrice: s.catPrice || '',
+      setCatPrice: e => { const d = e.target.value.replace(/\D/g, ''); this.setState({ catPrice: d ? Number(d).toLocaleString() : '', catalogDone: false }); },
+      catCommission: s.catCommission,
+      setCatCommission: e => this.setState({ catCommission: Number(e.target.value) }),
+      catCommissionLabel: s.catCommission + '%' + (priceNum ? ' · 판매 1건당 ' + won(Math.round(priceNum * s.catCommission / 100)) : ''),
+      toggleCatOpen: () => this.setState(st => ({ catOpen: !st.catOpen })),
+      catOpenBoxStyle: box(!!s.catOpen),
+      catOpenMark: '✓',
+      catOpenNote: s.catOpen
+        ? '등록과 동시에 「' + (nameT || '이 상품') + '」 판매 캠페인을 열어 크리에이터를 모집합니다. 커미션 ' + s.catCommission + '%가 캠페인 기본 조건이 됩니다.'
+        : '지금은 카탈로그에만 등록합니다. 나중에 Showcase에서 「판매 캠페인 열기」로 크리에이터를 모집할 수 있습니다.',
+      catalogDone: !!s.catalogDone,
+      catalogDoneMsg: '카탈로그에 등록했습니다' + (s.catOpen ? ' · 판매 캠페인 초안이 만들어졌습니다' : ''),
+      submitCatalog: () => {
+        const st = this.state;
+        if (!(st.catName || '').trim()) return this.toast('상품 이름을 입력해 주세요');
+        if (!(st.catPrice || '').replace(/\D/g, '')) return this.toast('판매가를 입력해 주세요');
+        if (st.catPlace === '외부' && !(st.catUrl || '').trim()) return this.toast('상품 페이지 URL을 입력해 주세요');
+        this.setState({ catalogDone: true, minorPanelOpen: false });
+        this.toast('카탈로그에 등록했습니다');
+        this.resetTo({ view: 'hub', accountTab: 'showcase', rail: 'my' });
+      }
+    };
+  }
+
+  /* ── 공용 모달(프랜차이즈 라인 · 스타 선물 · 전달 · 캠페인 프로필 선택) + 파트너 프로모 카드 값 · 핸들러 ── */
+  modalVals(s) {
+    const tag = (s.editHandle || 'me').replace(/[^a-z0-9]/gi, '').slice(0, 12) || 'me';
+    const promoCode = 'DC3-' + tag.toUpperCase() + '-10';
+    const slug = str => String(str || '').trim().toLowerCase().replace(/[^a-z0-9가-힣]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'post';
+    const lineName = (s.lineDraftName || '').trim();
+    return {
+      lineFormOpen: !!s.lineFormOpen,
+      closeLineForm: () => this.setState({ lineFormOpen: false }),
+      saveLine: () => { this.setState({ lineFormOpen: false }); this.toast('프랜차이즈 라인 저장은 프랜차이즈 권한 고도화 단계에서 구현됩니다'); },
+      lineFormFields: [{
+        label: '라인 이름', req: true, isText: true, isChips: false, value: s.lineDraftName || '',
+        ph: '예: 굿즈 상품화 · 국내 · 2년',
+        set: e => this.setState({ lineDraftName: e.target.value }),
+        hint: '세부 권한 조건(38종)은 「프랜차이즈 권한 조건 설정」 화면에서 정합니다. 라인 저장은 고도화 단계에서 열립니다.'
+      }],
+      linePreviewName: lineName || '프랜차이즈 라인',
+      linePreviewTerms: lineName ? ['조건 미설정'] : [],
+      linePreviewPrice: '미입력',
+
+      giftModalOpen: !!s.giftOpen,
+      closeGiftModal: () => this.setState({ giftOpen: false, giftPost: null, giftSent: false, giftMsg: '' }),
+      giftAmounts: [5, 20, 50, 100].map(n => ({
+        n: n + ' 스타', won: '₩' + (n * 100).toLocaleString(),
+        pick: () => this.setState({ giftAmount: n, giftSent: false }),
+        style: 'border-radius: 11px; padding: 11px 6px; text-align: center; ' + (s.giftAmount === n ? 'border: 1.5px solid #6846db; background: #f3effc' : 'border: 1px solid #e2ddeb; background: #fff')
+      })),
+      giftMsg: s.giftMsg || '',
+      setGiftMsg: e => this.setState({ giftMsg: e.target.value }),
+      sendGift: () => {
+        const st = this.state;
+        if (st.giftSent) return this.setState({ giftOpen: false, giftPost: null, giftSent: false, giftMsg: '' });
+        const amt = st.giftAmount || 5;
+        if ((st.stars || 0) < amt) return this.toast('스타가 부족합니다 · 보유 ' + (st.stars || 0) + ' 스타');
+        this.setState({ stars: (st.stars || 0) - amt, giftSent: true, starSent: (st.starSent || 0) + amt });
+        this.toast((st.giftTarget ? st.giftTarget + '에게 ' : '') + amt + ' 스타를 보냈습니다');
+      },
+      sendGiftStyle: 'width: 100%; margin-top: 12px; border-radius: 11px; padding: 13px 0; font-size: 14px; font-weight: 700; ' + (s.giftSent ? 'background: #eef7f1; color: #3f8460' : 'background: #6846db; color: #fff'),
+      sendGiftLabel: s.giftSent ? '보냈습니다 · 닫기' : (s.giftAmount || 5) + ' 스타 보내기 (₩' + ((s.giftAmount || 5) * 100).toLocaleString() + ')',
+
+      shareModalOpen: !!s.shareModal,
+      closeShareModal: () => this.setState({ shareModal: false, shareCopied: false }),
+      shareTiles: [
+        { glyph: 'chat', label: '메시지' }, { glyph: 'mail', label: '이메일' }, { glyph: 'forum', label: '카카오톡' }, { glyph: 'alternate_email', label: 'X' },
+        { glyph: 'photo_camera', label: '인스타그램' }, { glyph: 'smart_display', label: '유튜브' }, { glyph: 'qr_code_2', label: 'QR 코드' }, { glyph: 'more_horiz', label: '더보기' }
+      ].map(t => ({
+        glyph: t.glyph, label: t.label,
+        act: () => { this.setState({ shareModal: false, shareCopied: false }); this.toast(t.label + ' 완료'); },
+        tileStyle: 'width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: #f3effc; color: #6846db'
+      })),
+      shareUrl: 'ipbeginz.com/' + (s.editHandle || 'moonlight-archive') + '/post/' + slug(s.shareSubject),
+      copyShareUrl: () => { this.setState({ shareCopied: true }); this.toast('링크를 복사했습니다'); },
+      shareCopyLabel: s.shareCopied ? '복사됨' : '링크 복사',
+
+      ncPickerOpen: !!s.ncPickerOpen,
+      closeNcPicker: () => this.setState({ ncPickerOpen: false }),
+      ncPickerRows: PROFILES.filter(p => !p.external).map(p => ({
+        name: p.name, kind: p.kind,
+        imgStyle: this.bg(p.img, 'width: 40px; height: 40px; border-radius: 12px; flex: none'),
+        pick: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my', ncPickerOpen: false }, this.ncBlank(p.id), { ncProfile: p.id })),
+        style: 'display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 13px; border: 1px solid #eeebf3; border-radius: 13px; background: #fff; text-align: left'
+      })),
+      ncPickerCreate: () => this.resetTo({ view: 'create', rail: 'my', cOpen: 'type', ncPickerOpen: false }),
+
+      mineLink: 'ipbz.to/' + tag,
+      copyLink: () => { this.flashCopy('mine-link'); this.toast('추적 링크를 복사했습니다'); },
+      copyLabel: s.copiedIssue === 'mine-link' ? '복사됨' : '복사',
+      qrIssued: !!s.myQr,
+      qrNotIssued: !s.myQr,
+      toggleQr: () => { const on = !this.state.myQr; this.setState({ myQr: on }); this.toast(on ? 'QR 코드를 발급했습니다' : 'QR 코드를 회수했습니다'); },
+      qrBtnStyle: 'margin-top: 8px; border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 700; ' + (s.myQr ? 'border: 1px solid #dad6e1; background: #fff; color: #7e6a93' : 'background: #6846db; color: #fff'),
+      qrBtnLabel: s.myQr ? 'QR 회수' : 'QR 발급',
+      promoIssued: !!s.myPromo,
+      promoNotIssued: !s.myPromo,
+      promoCode,
+      issuePromo: () => { this.setState({ myPromo: true, promoCopied: false }); this.toast('프로모 코드를 발급했습니다 · ' + promoCode); },
+      copyPromo: () => { this.setState({ promoCopied: true }); this.toast('프로모 코드를 복사했습니다 · ' + promoCode); },
+      promoCopyLabel: s.promoCopied ? '복사됨' : '복사'
+    };
+  }
+
   renderVals() {
     const v = this.renderValsBase();
     const OWN = ['assetCards', 'rightsRows', 'sellingCards', 'profAssetCards', 'profileCampaignCards', 'profileCatalogCards'];
@@ -19580,8 +19994,12 @@ class Component extends DCLogic {
       isAffiliate: s.view === 'affiliate',
       isCatalog: s.view === 'catalog',
       isSelfPromo: s.view === 'selfpromo',
+      ...this.editVals(s),
+      ...this.spVals(s, sp),
+      ...this.catVals(s),
+      ...this.modalVals(s),
 
-      starBalance: '320',
+      starBalance: String(s.stars === undefined ? 320 : s.stars),
       rubyBalance: '2,480',
       fabLabel: 'AI 에이전트',
       togglePanel: () => this.setState(st => ({ panelOpen: !st.panelOpen })),
