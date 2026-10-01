@@ -3301,7 +3301,9 @@
                       <span style="display: block; font-size: 12px; color: #6f6879; margin-top: 2px">{{ cv.meta }}</span>
                     </span>
                     <span style="font-size: 14px; font-weight: 700; color: #27252f; white-space: nowrap">{{ cv.price }}</span>
+                    <sc-if value="{{ cv.canOrder }}" hint-placeholder-val="{{ true }}">
                     <button onClick="{{ cv.order }}" style="border: 1px solid #6846db; color: #6846db; background: #fff; border-radius: 9px; padding: 7px 12px; font-size: 12.5px; font-weight: 700; white-space: nowrap" style-hover="background: #f6f1fb">이 서비스 주문</button>
+                    </sc-if>
                   </div>
                 </sc-for>
               </div>
@@ -4245,6 +4247,13 @@
                 </span>
               </div>
               <div style="font-size: 11.5px; color: #8d8399; line-height: 1.7; margin-top: 6px">지원은 프로필로 보냅니다. 상대는 이 프로필의 채널 · 분야 · 가격표를 봅니다.</div>
+              <sc-if value="{{ applyNeedOn }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px; background: #fdf9f0; border: 1px solid #efe4cd; border-radius: 12px; padding: 11px 13px; flex-wrap: wrap">
+                  <span class="msym" style="font-size: 17px; color: #96681a; flex: none">warning</span>
+                  <span style="min-width: 0; flex: 1 1 200px; font-size: 12.5px; color: #4c455a; line-height: 1.7">{{ applyNeedText }}</span>
+                  <button onClick="{{ applyGoCreate }}" style="flex: none; min-width: 82px; background: #6846db; color: #fff; border-radius: 9px; padding: 8px 14px; font-size: 13px; font-weight: 700; white-space: nowrap" style-hover="background: #5836c4">프로필 만들기</button>
+                </div>
+              </sc-if>
             </div>
             <div>
               <div style="font-size: 13.5px; font-weight: 700; color: #3d3748; margin-bottom: 6px">지원 금액<span style="color: #b0405c"> *</span></div>
@@ -4260,7 +4269,9 @@
             </div>
             <div style="display: flex; gap: 8px; justify-content: flex-end">
               <button onClick="{{ closeApply }}" style="min-width: 82px; border: 1px solid #dad6e1; border-radius: 10px; padding: 10px 16px; font-size: 13.5px; color: #6f6879; background: #fff" style-hover="background: #f6f1fb">취소</button>
-              <button onClick="{{ submitApply }}" style="min-width: 82px; background: #6846db; color: #fff; border-radius: 10px; padding: 10px 18px; font-size: 13.5px; font-weight: 700; white-space: nowrap" style-hover="background: #5836c4">지원하기</button>
+              <sc-if value="{{ applyCanSubmit }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ submitApply }}" style="min-width: 82px; background: #6846db; color: #fff; border-radius: 10px; padding: 10px 18px; font-size: 13.5px; font-weight: 700; white-space: nowrap" style-hover="background: #5836c4">지원하기</button>
+              </sc-if>
             </div>
           </div>
         </div>
@@ -5388,7 +5399,7 @@
       <div style="display: flex; flex-direction: column; gap: 20px">
         <div style="display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap">
           <div style="min-width: 0; flex: 1 1 320px">
-            <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; margin-bottom: 6px">WORKSPACE</div>
+            <div style="font-size: 11.5px; letter-spacing: 0.14em; color: #8265b9; margin-bottom: 6px">INBOX</div>
             <h1 style="font-size: 25px; margin: 0; letter-spacing: -0.03em; font-weight: 700; color: #27252f">{{ workTitle }}</h1>
           </div>
         </div>
@@ -6368,6 +6379,15 @@
           </div>
         </div>
 
+        <sc-if value="{{ ncDone }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; flex-wrap: wrap; background: #eef7f1; border: 1px solid #cfe5d9; border-radius: 12px; padding: 12px 14px">
+            <span class="msym" style="font-size: 18px; color: #3f8460; flex: none">check_circle</span>
+            <span style="flex: 1 1 200px; min-width: 0; font-size: 14px; color: #2f6b4d">{{ ncDoneMsg }}</span>
+            <button onClick="{{ ncPromote }}" style="min-width: 82px; border: 1px solid #cfe5d9; border-radius: 9px; padding: 8px 14px; font-size: 14px; background: #fff; color: #4c455a; white-space: nowrap" style-hover="background: #f6f1fb">광고하기 (선택)</button>
+            <button onClick="{{ ncGoManage }}" style="min-width: 82px; border: 1px solid #dad6e1; border-radius: 9px; padding: 8px 14px; font-size: 14px; background: #fff; color: #4c455a; white-space: nowrap" style-hover="background: #f6f1fb">캠페인 관리</button>
+            <button onClick="{{ ncOpenDone }}" style="min-width: 82px; border-radius: 9px; padding: 8px 14px; font-size: 14px; font-weight: 700; background: #2a1f4d; color: #fff; white-space: nowrap" style-hover="background: #3b2d6b">캠페인 보기</button>
+          </div>
+        </sc-if>
         <div style="position: relative; margin-top: -8px">
           <sc-if value="{{ ncNotApproved }}" hint-placeholder-val="{{ false }}">
             <div style="background: #fdf9f0; border: 1px solid #efe4cd; border-radius: 12px; padding: 12px 15px; display: flex; gap: 9px; align-items: flex-start">
@@ -8551,10 +8571,6 @@
               <div style="font-size: 14px; color: #55705f; line-height: 1.7; margin-top: 4px">게시하면 총 결제액 <b>₩{{ ncTotalText }}</b>(보상 ₩{{ ncBudgetText }} + 수수료 ₩{{ ncFeeOutText }})이 이 캠페인에 묶입니다. 크리에이터 실수령액은 ₩{{ ncPayoutText }}, 남은 사용 가능 예치금은 ₩{{ ncAfterText }}입니다.</div>
             </div>
           </div>
-        </sc-if>
-
-        <sc-if value="{{ ncDone }}" hint-placeholder-val="{{ false }}">
-          <div style="font-size: 14px; color: #4f9a72; text-align: right">{{ ncDoneMsg }}</div>
         </sc-if>
 
         <div style="text-align: center; font-size: 14px; color: #9b90ab">시안 안에서 등록·게시 흐름을 체험할 수 있어요. 작성 내용은 새로고침하면 초기화돼요.</div>
@@ -11097,7 +11113,7 @@ class Component extends DCLogic {
     authTermSel: [], authMoreOpen: false, authTermsOpen: false, chConnectIdx: null, chWaiting: false, authChList: [{ type: '유튜브', url: '', purpose: '실적 연동' }], kycType: '개인', kycBank: '', kycAccount: '', kycHolder: '', kycSkipped: false,
     view: 'hub', profileId: 'demon-child', campaignId: 'dc-affiliate',
     query: '', filter: '전체', subscribed: false, joined: false, copied: false,
-    history: [], campTab: 'overview', approved: ['a1', 'a2', 'a3', 'a4', 'a5'], rejected: ['a7'],
+    history: [], campTab: 'overview', approvedBy: { 'dc-affiliate': ['a1', 'a2', 'a3', 'a4', 'a5'] }, rejectedBy: { 'dc-affiliate': ['a7'] }, joinedIds: [], appExtra: [], ctExtra: [],
     applicantTab: '전체', apMode: 'received', outState: {}, outExtra: [], outForm: {}, outFormFor: null, outPickOpen: false, outPickQuery: '', apQuery: '', apSelected: [], apPage: 0, pageSize: 10, eligOpen: false, promoCopied: false, myPromo: false, myQr: false, copiedIssue: '', mineDone: [0, 1],
     remixMode: 'commission', remixType: '포스터 · 굿즈', brief: '', reward: '성과', split: 35,
     remixDone: false, newRole: 'holder', newType: '캐릭터·스토리', newName: '', features: ['어필리에이트 캠페인', '2nd License'],
@@ -11118,7 +11134,7 @@ class Component extends DCLogic {
     ncEditId: '', ncTags: [], ncTagDraft: '', ncCycle: '월 1회 · 익월 15일', ncAttr: '라스트 클릭 60일', ncMinPayout: '30,000', ncStep: 0, ncPurpose: '', ncPurposeTouched: false, ncFlow: '수익 · 이용권 판매', ncSeed: 'paid', seedItem: '', seedQty: '', seedDelivery: '택배 발송',
     ncMajor: '', ncMid: '', ncSub: '', ncCatalog: '', ncCatalogSel: [], ncPreviewOpen: false, ncThumb: '',
     ncRegion: '국내 (대한민국)', ncLinkMode: '외부 URL 직접 연결', ncPlatform: '네이버 스마트스토어', ncUrl: '',
-    ncProfile: 'demon-child', ncKind: '어필리에이트', ncTitle: '', ncDesc: '', ncReward: '성과', ncRewardValue: '', perfRows: [{ metric: '판매 전환', min: '', max: '', weight: '1' }], perfCap: '', proofPicks: ['post', 'utm'], ncSlot: '무제한', ncDone: false, quoteTarget: '', quoteTaken: [], quoteBase: 12000000, quoteSeed: {}, quoteSel: {}, quotePicks: [], quoteAdds: [], quoteCustomDraft: '', quoteAck: false, contractMode: 'digital', contractAgree: false, quoteToast: '', deposit: 450000, depositLocked: 750000, topupAmount: '', payMethod: 'card', ncGateOpen: false,
+    ncProfile: 'demon-child', ncKind: '어필리에이트', ncTitle: '', ncDesc: '', ncReward: '성과', ncRewardValue: '', perfRows: [{ metric: '판매 전환', min: '', max: '', weight: '1' }], perfCap: '', proofPicks: ['post', 'utm'], ncSlot: '10명', ncStartAt: (() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); })(), ncPostMode: 'always', ncDone: false, quoteTarget: '', quoteTaken: [], quoteBase: 12000000, quoteSeed: {}, quoteSel: {}, quotePicks: [], quoteAdds: [], quoteCustomDraft: '', quoteAck: false, contractMode: 'digital', contractAgree: false, quoteToast: '', deposit: 450000, depositLocked: 750000, topupAmount: '', payMethod: 'card', ncGateOpen: false,
     profileType: '전체', manageFilter: '만든 캠페인', feedFilter: '전체', flowFilter: 'all', ownerFilter: 'all', unsaved: [], mineStateFilter: 'all', joinByFilter: 'all', joinStateFilter: 'all', savedSort: 'recent', catalogFilter: '전체', catOwnerFilter: 'all', catMajorFilter: 'all', catMinorFilter: 'all',
     catalogOpen: false, minorPanelOpen: false, catPlace: '내부', catPlatform: '네이버 스마트스토어', catUrl: '', catMajor: '게임 · 엔터테인먼트', catMinors: ['상품 · 굿즈'], catName: '', catPrice: '', catCommission: 22, catOpen: false, catalogDone: false, viewMode: 'list', postMenu: null, postShare: null, shareCopied: false, postLikes: [], postSaves: [], openComments: null, commentDrafts: {}, newComments: {}, profLikes: [], giftPost: null, giftAmount: 5, giftMsg: '', giftSent: false, dashRange: '30일', accountTab: 'projects', planId: 'pro', planCycle: '월간', ruby: 2480, rubyBought: '', stars: 320, starBought: '', starBoxOpen: false, starSent: 0, createMenuOpen: false, panelTab: 'agent', draft: '', chatLog: [], agentMode: 'Claude Sonnet 4.5', usedTemplate: '', panelOpen: false, templateCat: '전체',
     promoted: [], setTab: '', setGroup: 'auth', setSaved: false, setForm: {}, homeTab: 'all', walletTab: 'balance', chatId: '', chatDraft: '', chatSent: {}, acctMenuOpen: false, profSwitchOpen: false, profQuery: '', homeLikes: [], homeComments: {}, homeDrafts: {}, homeOpenComments: null,
@@ -11914,12 +11930,12 @@ class Component extends DCLogic {
   workCounts = () => {
     const s = this.state;
     return {
-      active: CONTRACTS.filter(c => c.stage !== '종료').length,
-      contracts: CONTRACTS.length,
-      received: APPLICATIONS.filter(a => a.dir === 'in').length,
-      applied: APPLICATIONS.filter(a => a.dir === 'out').length,
+      active: this.allContracts(s).filter(c => c.stage !== '종료').length,
+      contracts: this.allContracts(s).length,
+      received: this.allApplications(s).filter(a => a.dir === 'in').length,
+      applied: this.allApplications(s).filter(a => a.dir === 'out').length,
       offers: this.inboxOutreach(s).filter(o => o.state === 'pending').length,
-      sent: (s.outExtra || []).length,
+      sent: this.sentOutreach(s).filter(o => ((s.outState || {})[o.id] || o.status) !== 'cancelled').length,
       saved: SAVED.filter(x => (s.svRemoved || []).indexOf(x.id) < 0).length,
       rights: RIGHTS.length,
       shared: SHARED.length
@@ -11976,13 +11992,13 @@ class Component extends DCLogic {
     patch || {}
   )));
 
-  ncBlank = () => ({
-    ncStep: 0, ncEditId: '', ncDone: false, ncCampListOpen: false, ncPickOpen: false,
-    ncFlow: '수익 · 이용권 판매', ncSubType: '', ncSubMulti: [], ncSubCustom: '', ncSubCustomDesc: '', ncPurpose: '', ncPurposeTouched: false, ncTitle: '', ncDesc: '', ncThumb: '',
+  ncBlank = (pid) => ({
+    ncStep: 0, ncEditId: '', ncDone: false, ncDoneId: '', ncCampListOpen: false, ncPickOpen: false,
+    ncFlow: this.ncDefaultFlow(pid || this.state.ncProfile), ncSubType: '', ncSubMulti: [], ncSubCustom: '', ncSubCustomDesc: '', ncPurpose: '', ncPurposeTouched: false, ncTitle: '', ncDesc: '', ncThumb: '',
     ncSeed: 'paid', seedItem: '', seedQty: '', ncGateOpen: false,
     ncReward: '성과', ncRewardValue: '', perfRows: [{ metric: '판매 전환', min: '', max: '', weight: '1' }], perfCap: '',
     ncSlot: '10명', ncTags: [], ncTagDraft: '', ncCatalog: '', ncCatalogSel: [], ncUrl: '',
-    ncPlatform: '네이버 스마트스토어', ncLinkMode: '외부 URL 직접 연결', ncRegion: '국내 (대한민국)', ncStartAt: '', ncEndAt: '',
+    ncPlatform: '네이버 스마트스토어', ncLinkMode: '외부 URL 직접 연결', ncRegion: '국내 (대한민국)', ncStartAt: this.todayISO(), ncEndAt: '', ncPostMode: 'always',
     ncTerrRegion: { mode: 'all', list: [] }, ncTerrTarget: { mode: 'all', list: [] }, ncTerrLic: { mode: 'all', list: [] }, ncTerrRegionOpen: false, ncTerrTargetOpen: false, ncTerrLicOpen: false,
     ncMajor: '', ncMid: '', ncSub: '', ncPreviewOpen: false, ncBlockOpen: false,
     ncTgtAge: [], ncTgtGender: '', ncTgtInterest: [], ncTgtChannel: [], ncTgtFollower: [], ncTargetNote: '',
@@ -12369,6 +12385,114 @@ class Component extends DCLogic {
     return (s.ncFlow || '수익 · 이용권 판매') === '수익 · 이용권 판매';
   }
 
+  /* 프로필 유형이 정하는 기본 흐름 — 브랜드는 지출형, 크리에이터 · IP는 수익형으로 시작 (차단 상태로 시작하지 않는다) */
+  ncDefaultFlow(pid) {
+    const pt = ((PROFILES.find(p => p.id === pid) || {}).type) || 'IP';
+    return pt === '브랜드' ? '지출 · 제작·홍보 의뢰' : '수익 · 이용권 판매';
+  }
+
+  /* 이 프로필로 이 흐름을 열 수 있는지 — setter · 게시에서 사전 검사 */
+  ncFlowAllowed(pid, flow) {
+    const pt = ((PROFILES.find(p => p.id === pid) || {}).type) || 'IP';
+    const earn = /수익/.test(flow || '');
+    return !((pt === '크리에이터' && !earn) || (pt === '브랜드' && earn));
+  }
+
+  todayISO() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  /* 지원자 승인 · 반려는 캠페인별로 따로 — approvedBy[campaignId] · rejectedBy[campaignId] */
+  apOk(s) { return ((s.approvedBy || {})[s.campaignId]) || []; }
+  apNo(s) { return ((s.rejectedBy || {})[s.campaignId]) || []; }
+  apPatch(st, ok, no) {
+    return {
+      approvedBy: Object.assign({}, st.approvedBy, { [st.campaignId]: ok }),
+      rejectedBy: Object.assign({}, st.rejectedBy, { [st.campaignId]: no })
+    };
+  }
+
+  /* 캠페인이 모집하는 유형의 내 프로필 — 홍보 · 퀵오더 · PPL → 크리에이터 / 콜라보 → IP · 브랜드 / IP 구매 의뢰 · 사용권 신청 → IP. 외부 · 캠페인 소유 프로필 제외 */
+  applyOptsFor(campaign) {
+    const kl = this.campKindLabel(campaign);
+    const wantTypes = kl === 'Collab' ? ['IP', '브랜드'] : (kl === 'Buy' || kl === 'Licensee') ? ['IP'] : ['크리에이터'];
+    const opts = PROFILES.filter(p => p.id !== campaign.ipId && !p.external && wantTypes.indexOf(p.type) >= 0);
+    return { wantTypes, opts };
+  }
+
+  /* 지원 금액 프리필 — 캠페인 보상이 원화 금액일 때만. 「판매액 22%」 같은 배분형은 비워 둔다 */
+  applyPrefill(c) {
+    const r = String((c || {}).reward || '');
+    const m = r.match(/₩\s*([0-9,]{4,})/);
+    return m ? m[1] : '';
+  }
+
+  /* 내 지원 — 초기 데이터 + 이 세션에서 보낸 지원 */
+  allApplications(s) { return APPLICATIONS.concat(s.appExtra || []); }
+  isJoined(s, id) { return (s.joinedIds || []).indexOf(id) >= 0; }
+
+  /* 계약 — 초기 데이터 + 섭외 수락 · 지원 승인으로 이 세션에 생긴 계약 */
+  allContracts(s) { return CONTRACTS.concat(s.ctExtra || []); }
+
+  /* 내가 보낸 섭외 — 초기 OUTREACH(캠페인 기준으로 보낸 프로필을 역산) + 이 세션에서 보낸 것. 캠페인 › 보낸 섭외와 인박스 › 보낸 섭외가 같은 집합을 본다 */
+  sentOutreach(s) {
+    const seeded = OUTREACH.map(o => {
+      const camp = CAMPAIGNS.find(c => c.id === o.campaignId) || null;
+      const owner = camp ? PROFILES.find(p => p.id === camp.ipId) : null;
+      return Object.assign({ campId: o.campaignId, campTitle: camp ? camp.title : '', fromId: camp ? camp.ipId : '', from: owner ? owner.name : '', kind: 'invite' }, o);
+    });
+    return seeded.concat(s.outExtra || []);
+  }
+
+  /* 섭외 수락 → 「캠페인 참여」 계약 생성 (토스트 문구와 실제 상태를 일치시킨다) */
+  addContractFrom(o, from) {
+    const camp = o.campId ? CAMPAIGNS.find(c => c.id === o.campId) : (o.campaignId ? CAMPAIGNS.find(c => c.id === o.campaignId) : null);
+    const row = {
+      id: 'ct-' + Date.now(), profileId: o.profileId || '', kind: '캠페인 참여',
+      title: o.campTitle || (camp ? camp.title : (o.kind === 'order' ? '서비스 주문 · ' + (o.name || '') : '캠페인 참여')),
+      side: 'sell', counterpart: from || (camp ? ((PROFILES.find(p => p.id === camp.ipId) || {}).name || '') : ''),
+      amount: o.rate ? '₩' + Number(o.rate).toLocaleString() : '조건 협의',
+      terms: String(o.note || '').replace(/^\[[^\]]*\]\s*/, '') || (camp ? camp.desc : ''),
+      period: this.todayISO() + ' ~ ' + (camp && camp.status === '상시' ? '상시' : '납품 승인까지'),
+      stage: '진행 중', next: '착수 후 결과물 · 게시물 링크 제출', doc: '캠페인 참여 계약서 (전자 동의)', img: o.img || ''
+    };
+    this.setState(st => ({ ctExtra: (st.ctExtra || []).concat([row]) }));
+  }
+
+  /* 게시 → 런타임 CAMPAIGNS · CAMPAIGN_META · MANAGE_SCOPE에 반영. 캠페인 관리 · 마켓 · 프로필 캠페인 탭에 바로 보인다 */
+  ncCommit(s) {
+    const prof = PROFILES.find(x => x.id === s.ncProfile) || PROFILES[0];
+    const earn = this.ncIsEarn(s);
+    const sub = this.ncSubEff(s) || (earn ? 'dist' : 'mktout');
+    const subName = this.subKindLabel(Object.assign({}, s, { ncSubType: sub })).replace(/^[^·]*·\s*/, '');
+    const kind = earn ? (sub === 'mktin' ? 'service' : 'license') : ((sub === 'svcout' || sub === 'buy' || sub === 'licout') ? 'remix' : 'affiliate');
+    const free = !earn && (s.ncSeed || 'paid') === 'free';
+    const per = this.ncPerHead(s);
+    const reward = earn ? ((s.ncRewardValue || '').trim() ? '₩' + (parseInt(String(s.ncRewardValue).replace(/[^0-9]/g, '')) || 0).toLocaleString() : '협의')
+      : free ? this.rewardText(s) : (per ? '₩' + per.toLocaleString() + ' / 1명' : '협의');
+    const rewardKind = earn ? (sub === 'dist' ? '저작권 이전 · 에스크로' : sub === 'license' ? '사용권 · 기간 계약' : '서비스 가격표')
+      : free ? '무가 시딩' : (s.ncReward || '고정');
+    const slots = earn ? (sub === 'mktin' ? '섭외 가능' : '1건') : (s.ncSlot || '무제한');
+    const period = (s.ncStartAt || this.todayISO()) + (s.ncPostMode === 'always' || !s.ncEndAt ? ' ~ 상시' : ' ~ ' + s.ncEndAt);
+    const id = s.ncEditId || ('nc-' + Date.now());
+    const existing = CAMPAIGNS.find(c => c.id === id);
+    const row = {
+      id, ipId: prof.id, kind, kindLabel: subName, glyph: earn ? '◆' : '↗', status: '모집 중',
+      title: (s.ncTitle || '').trim(), reward, rewardKind, slots,
+      desc: (s.ncDesc || '').trim() || (s.ncSubject || '').trim(), tags: (s.ncTags || []).slice(),
+      terms: [['보상', reward], ['모집', slots], ['게시 기간', period]].concat(s.ncSubject ? [['대상', s.ncSubject]] : []),
+      reqs: (s.ncQual || []).slice()
+    };
+    if (existing) Object.assign(existing, row); else { CAMPAIGNS.push(row); prof.campaigns = (prof.campaigns || 0) + 1; }
+    CAMPAIGN_META[id] = Object.assign({}, CAMPAIGN_META[id] || {}, {
+      subType: subName, owner: prof.type, industry: s.ncMajor || (CAMPAIGN_META[id] || {}).industry || '', minor: s.ncMid || '',
+      seed: free ? 'free' : 'paid', pay: s.ncReward || '고정', registered: !!prof.verified, certified: !!prof.verified, isNew: !existing, budget: this.ncBudget(s)
+    });
+    MANAGE_SCOPE[id] = '만든 캠페인';
+    return id;
+  }
+
   /* 지금 고른(또는 기본으로 잡힌) 세부 유형 목록 */
   ncSubList(s) {
     const earn = this.ncIsEarn(s);
@@ -12426,7 +12550,7 @@ class Component extends DCLogic {
     })[pt] || [];
     return ({
       'IP': ['mktout', 'svcout'],
-      '브랜드': ['buy', 'licout', 'mktout', 'ppl', 'svcout', 'collab'],
+      '브랜드': ['mktout', 'svcout', 'ppl', 'collab', 'licout', 'buy'],
       '크리에이터': []
     })[pt] || [];
   }
@@ -12683,7 +12807,7 @@ class Component extends DCLogic {
     const isCreatorCamp = campaign.kind === 'service';
     const allowedTabs = isOwner
       ? (isCreatorCamp ? ['overview', 'inbox'] : isEarn ? ['overview', 'applicants', 'review'] : ['applicants', 'review', 'overview'])
-      : (isEarn ? ['overview'] : s.joined ? ['overview', 'mine', 'deliver'] : ['overview', 'deliver']);
+      : (isEarn ? ['overview'] : this.isJoined(s, campaign.id) ? ['overview', 'mine', 'deliver'] : ['overview', 'deliver']);
     const campTab = (s.campTabAuto && s.campTabAuto === campaign.id && allowedTabs.indexOf(s.campTab) >= 0)
       ? s.campTab
       : allowedTabs[0];
@@ -12707,7 +12831,7 @@ class Component extends DCLogic {
     const outAccepted = OUTREACH.concat(s.outExtra || []).filter(o => ((s.outState || {})[o.id] || o.status) === 'accepted');
     const apq = s.apQuery.trim().toLowerCase();
     const apVisible = APPLICANTS.filter(a => {
-      const ok = s.approved.indexOf(a.id) >= 0, no = s.rejected.indexOf(a.id) >= 0;
+      const ok = this.apOk(s).indexOf(a.id) >= 0, no = this.apNo(s).indexOf(a.id) >= 0;
       if (s.apMode === 'picked' && !ok) return false;
       const tabOk = s.apMode === 'picked' ? true
         : s.applicantTab === '전체' ? true
@@ -12736,7 +12860,7 @@ class Component extends DCLogic {
     const first = c => ({
       id: c.id, title: c.title, meta: c.kindLabel + ' · ' + c.status + ' · 모집 ' + c.slots,
       reward: c.reward, rewardKind: c.rewardKind, glyph: c.glyph,
-      open: () => this.go('campaign', { campaignId: c.id, joined: false })
+      open: () => this.go('campaign', { campaignId: c.id })
     });
 
     const q = s.query.trim();
@@ -12918,9 +13042,9 @@ class Component extends DCLogic {
         const read = s.notifRead || [];
         const N = [
           { id: 'n1', glyph: 'how_to_reg', tone: '#5836c4', title: '지원자 3명이 참여 승인을 기다립니다', body: '데몬 차일드 3권 예약판매 어필리에이트', when: '10분 전',
-            patch: { view: 'campaign', campaignId: 'dc-affiliate', campTab: 'applicants', rail: 'my' } },
+            patch: { view: 'campaign', campaignId: 'dc-affiliate', campTab: 'applicants', rail: 'my', visitor: false } },
           { id: 'n2', glyph: 'fact_check', tone: '#96681a', title: '시딩 콘텐츠 1건이 검수 대기입니다', body: '모모 · 팬아트 3컷 + 릴스 15초', when: '1시간 전',
-            patch: { view: 'campaign', campaignId: 'dc-remix', campTab: 'review', rail: 'my' } },
+            patch: { view: 'campaign', campaignId: 'dc-remix', campTab: 'review', rail: 'my', visitor: false } },
           { id: 'n3', glyph: 'account_balance_wallet', tone: '#3f8460', title: '정산 ₩1,240,000이 입금되었습니다', body: '9월 1차 어필리에이트 정산', when: '어제',
             patch: { view: 'wallet', walletTab: 'balance', rail: 'my' } },
           { id: 'n4', glyph: 'gavel', tone: '#1f5786', title: '계약서 서명이 완료되었습니다', body: '루프 스튜디오 · 숏폼 제작 커미션', when: '2일 전',
@@ -13239,7 +13363,7 @@ class Component extends DCLogic {
               ? (this.campKindLabel(c) === 'Creator'
                 ? ({ pending: '요청 중', accepted: '수락됨 · 참여 확정' }[this.outStatusFor(c.ipId)] || '섭외 제안')
                 : this.campKindLabel(c) === 'Sale' ? '구매 문의' : '사용권 문의')
-              : '지원하기',
+              : (this.isJoined(s, c.id) ? '지원함 · 상세' : '지원하기'),
             primaryStyle: 'flex: 1; border-radius: 9px; padding: 8px 0; font-size: 14px; font-weight: 500; '
               + ((earn && this.campKindLabel(c) === 'Creator' && this.outStatusFor(c.ipId)) ? 'background: #f2f0f6; color: #77727e; cursor: default' : 'background: #6846db; color: #fff'),
             open: () => this.resetTo({ view: 'campaign', campaignId: c.id, rail: 'market', campTab: 'overview', visitor: true }),
@@ -13251,6 +13375,7 @@ class Component extends DCLogic {
                 const t = APPLICANTS.find(a => a.profileId === c.ipId);
                 if (t) return this.setState({ outFormFor: t.id, outForm: { from: 'market', rate: String(t.rate), due: '7일 이내', work: '' } });
               }
+              if (!earn && !this.isJoined(s, c.id)) return this.resetTo({ view: 'campaign', campaignId: c.id, rail: 'market', campTab: 'overview', visitor: true, applyOpen: true, applyAmount: this.applyPrefill(c), applyNote: '' });
               this.resetTo({ view: 'campaign', campaignId: c.id, rail: 'market', campTab: 'overview', visitor: true });
             },
             sec: () => this.resetTo({ view: 'campaign', campaignId: c.id, rail: 'market', campTab: 'overview', visitor: true })
@@ -13720,7 +13845,7 @@ class Component extends DCLogic {
                 const pid = ((PROFILES.filter(p => p.type === want).slice(-1)[0]) || PROFILES[0] || {}).id;
                 this.setState({ askOffers: false }, () => this.resetTo(Object.assign(
                   { view: 'newcampaign', rail: this.state.rail || 'my' },
-                  this.ncBlank(),
+                  this.ncBlank(pid),
                   { ncProfile: pid },
                   isCreator ? {
                     ncFlow: '수익 · 이용권 판매', ncSubType: 'mktin',
@@ -15019,7 +15144,7 @@ class Component extends DCLogic {
       })(),
       campTabs: allowedTabs.map(t => {
         const label = { applicants: '지원자', overview: '캠페인 정보', mine: '내 지원 · 진행', review: '시딩 검수', inbox: '받은 요청', deliver: this.delivWord(campaign) }[t];
-        const cnt = t === 'applicants' ? APPLICANTS.filter(a => s.approved.indexOf(a.id) < 0 && s.rejected.indexOf(a.id) < 0).length
+        const cnt = t === 'applicants' ? APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) < 0 && this.apNo(s).indexOf(a.id) < 0).length
           : t === 'inbox' ? OUTREACH.concat(s.outExtra || []).filter(o => o.profileId === campaign.ipId && ((s.outState || {})[o.id] || o.status) === 'pending').length : 0;
         const on = campTab === t;
         return {
@@ -15038,7 +15163,7 @@ class Component extends DCLogic {
       campStripStats: [
         { label: '보상', value: campaign.reward },
         { label: '모집', value: campaign.slots },
-        { label: '지원 · 섭외', value: APPLICANTS.filter(a => s.approved.indexOf(a.id) < 0 && s.rejected.indexOf(a.id) < 0).length + '명 대기 · 섭외 ' + OUTREACH.concat(s.outExtra || []).filter(o => ((s.outState || {})[o.id] || o.status) === 'pending').length + '명 요청 중' }
+        { label: '지원 · 섭외', value: APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) < 0 && this.apNo(s).indexOf(a.id) < 0).length + '명 대기 · 섭외 ' + OUTREACH.concat(s.outExtra || []).filter(o => ((s.outState || {})[o.id] || o.status) === 'pending').length + '명 요청 중' }
       ],
       campHeroCoverStyle: this.bg((PROFILES.find(x => x.id === campaign.ipId) || PROFILES[0]).img, 'display: block; min-height: 190px; border-radius: 17px 0 0 17px'),
       campHeroFlow: CAMPAIGN_FLOW[campaign.kind] === 'earn' ? '수익형' : '지출형',
@@ -15136,20 +15261,25 @@ class Component extends DCLogic {
           if (t) return this.setState({ outFormFor: t.id, outForm: { from: 'market', rate: String(t.rate), due: '7일 이내', work: '' } });
         }
         if (isEarn) return this.toast(this.campKindLabel(campaign) === 'Sale' ? '구매 문의를 보냈습니다. 판매자가 답하면 알려 드립니다.' : '사용권 문의를 보냈습니다. 권리자가 답하면 알려 드립니다.');
-        if (s.joined) return this.setState({ joined: false }, () => this.toast('지원을 취소했습니다'));
-        this.setState({ applyOpen: true, applyAmount: String(campaign.reward || '').replace(/[^0-9,]/g, ''), applyNote: '' });
+        if (this.isJoined(s, campaign.id)) return this.setState(st => ({
+          joinedIds: (st.joinedIds || []).filter(x => x !== campaign.id),
+          appExtra: (st.appExtra || []).filter(a => a.campaignId !== campaign.id)
+        }), () => this.toast('지원을 취소했습니다'));
+        this.setState({ applyOpen: true, applyAmount: this.applyPrefill(campaign), applyNote: '' });
       },
       applyOpen: !!s.applyOpen,
-      // 지원은 프로필로 — 캠페인 소유자가 아닌 내 크리에이터 프로필 중 하나를 고른다(없으면 모든 내 프로필)
+      // 지원은 프로필로 — 캠페인이 모집하는 유형의 내 프로필만 고른다(홍보 · 퀵오더 · PPL → 크리에이터 / 콜라보 → IP · 브랜드 / IP 구매 의뢰 · 사용권 신청 → IP). 외부 프로필 · 캠페인 소유 프로필은 제외
       ...(() => {
-        const mine = PROFILES.filter(p => p.id !== campaign.ipId);
-        const crs = mine.filter(p => p.type === '크리에이터');
-        const opts = crs.length ? crs : mine;
+        const { wantTypes, opts } = this.applyOptsFor(campaign);
         const pid = (s.applyProfile && opts.some(p => p.id === s.applyProfile)) ? s.applyProfile : ((opts[0] || {}).id || '');
         const p = opts.find(x => x.id === pid) || {};
         const sk = (typeof CREATOR_SKILLS !== 'undefined' ? CREATOR_SKILLS[pid] : null) || { fields: [], content: [] };
         const links = ((typeof SOCIAL_LINKS !== 'undefined' ? SOCIAL_LINKS[pid] : null) || []).filter(l => l.connected);
         return {
+          applyNeedOn: opts.length === 0,
+          applyNeedText: '이 캠페인은 ' + wantTypes.join(' · ') + ' 프로필로만 지원할 수 있습니다. 계정에 해당 프로필이 없으니 먼저 만들어 주세요.',
+          applyGoCreate: () => this.resetTo({ view: 'create', rail: 'my', cOpen: 'type', applyOpen: false }),
+          applyCanSubmit: opts.length > 0,
           applyProfile: pid,
           setApplyProfile: e => this.setState({ applyProfile: e.target.value }),
           applyProfileOpts: opts.map(x => ({ id: x.id, label: x.name + ' · ' + x.type })),
@@ -15167,10 +15297,11 @@ class Component extends DCLogic {
       applyAmountNote: (() => {
         const want = parseInt(String(s.applyAmount || '').replace(/[^0-9]/g, '')) || 0;
         const base = parseInt(String(campaign.reward || '').replace(/[^0-9]/g, '')) || 0;
-        if (!want) return '이 캠페인에 참여하며 받고 싶은 금액을 적습니다. 내 서비스 가격표와 달라도 됩니다.';
-        if (base && want > base) return '캠페인 제시 보상보다 ₩' + (want - base).toLocaleString() + ' 높습니다 — 브랜드가 검토 후 수락 · 조정합니다.';
-        if (base && want < base) return '캠페인 제시 보상보다 낮게 제안합니다.';
-        return '캠페인 제시 보상과 같습니다.';
+        const net = ' · 수수료 5% 차감 후 실수령 약 ₩' + Math.round(want * 0.95).toLocaleString();
+        if (!want) return '이 캠페인에 참여하며 받고 싶은 금액을 적습니다. 내 서비스 가격표와 달라도 됩니다. 실수령액은 수수료 5%를 뺀 금액입니다.';
+        if (base && want > base) return '캠페인 제시 보상보다 ₩' + (want - base).toLocaleString() + ' 높습니다 — 발주자가 검토 후 수락 · 조정합니다.' + net;
+        if (base && want < base) return '캠페인 제시 보상보다 낮게 제안합니다.' + net;
+        return '캠페인 제시 보상과 같습니다.' + net;
       })(),
       applyNote: s.applyNote || '',
       setApplyNote: e => this.setState({ applyNote: e.target.value }),
@@ -15178,20 +15309,25 @@ class Component extends DCLogic {
       submitApply: () => {
         const want = parseInt(String(s.applyAmount || '').replace(/[^0-9]/g, '')) || 0;
         if (!want) return this.toast('지원 금액을 적어 주세요');
-        const viaP = PROFILES.find(x => x.id === s.applyProfile) || PROFILES.find(x => x.type === '크리에이터' && x.id !== campaign.ipId);
-        if (!viaP) return this.toast('지원할 프로필을 골라 주세요');
-        this.setState({ joined: true, applyOpen: false, appliedVia: Object.assign({}, s.appliedVia, { [campaign.id]: viaP.id }) },
-          () => this.toast(viaP.name + ' 프로필로 지원했습니다 · 제안 금액 ₩' + want.toLocaleString() + ' — 승인되면 알려 드립니다'));
+        if (want < 1000) return this.toast('금액은 원 단위로 적어 주세요 (예: 750,000)');
+        const optsS = this.applyOptsFor(campaign).opts;
+        const viaP = optsS.find(x => x.id === s.applyProfile) || optsS[0];
+        if (!viaP) return this.toast('이 캠페인에 지원할 수 있는 프로필이 없습니다. 먼저 프로필을 만들어 주세요');
+        const ownerP = PROFILES.find(x => x.id === campaign.ipId) || {};
+        const appRow = { id: 'apx-' + Date.now(), dir: 'out', viaId: viaP.id, campaignId: campaign.id, campaign: campaign.title, owner: ownerP.name || '', img: ownerP.img || '',
+          reward: '제안 ₩' + want.toLocaleString(), applied: this.todayISO(), status: '검토 중', note: (s.applyNote || '').trim() || '지원 접수 · 발주자 검토 중' };
+        this.setState(st => ({ joinedIds: (st.joinedIds || []).concat([campaign.id]), appExtra: (st.appExtra || []).concat([appRow]), applyOpen: false, appliedVia: Object.assign({}, st.appliedVia, { [campaign.id]: viaP.id }) }),
+          () => this.toast(viaP.name + ' 프로필로 지원했습니다 · 제안 금액 ₩' + want.toLocaleString() + ' — 인박스 › 보낸 요청에서 볼 수 있습니다'));
       },
       joinBtnLabel: isEarn
         ? (this.campKindLabel(campaign) === 'Creator' ? '섭외 요청하기' : this.campKindLabel(campaign) === 'Sale' ? '구매 문의' : '사용권 문의')
-        : (s.joined ? '지원 취소' : '이 캠페인 지원하기'),
+        : (this.isJoined(s, campaign.id) ? '지원 취소' : '이 캠페인 지원하기'),
       joinBtnStyle: 'border-radius: 10px; padding: 12px 20px; font-size: 14px; font-weight: 700; white-space: nowrap; '
-        + (!isEarn && s.joined ? 'border: 1px solid #dad6e1; background: #fff; color: #6f6879' : 'background: #6846db; color: #fff'),
+        + (!isEarn && this.isJoined(s, campaign.id) ? 'border: 1px solid #dad6e1; background: #fff; color: #6f6879' : 'background: #6846db; color: #fff'),
       joinHint: isEarn
         ? (this.campKindLabel(campaign) === 'Creator' ? '캠페인 초대 또는 서비스 주문으로 보냅니다' : '문의를 보내면 상대가 조건을 답합니다')
-        : (s.joined ? '승인되면 전용 링크가 발급됩니다' : '승인 후 링크 · 코드가 발급됩니다'),
-      ownerHint: '지원자 ' + APPLICANTS.filter(a => s.approved.indexOf(a.id) < 0 && s.rejected.indexOf(a.id) < 0).length + '명 대기 · 섭외 요청 중 ' + OUTREACH.concat(s.outExtra || []).filter(o => ((s.outState || {})[o.id] || o.status) === 'pending').length + '명 · 선정 ' + (s.approved.length + outAccepted.length) + '명',
+        : (this.isJoined(s, campaign.id) ? '승인되면 전용 링크가 발급됩니다' : '승인 후 링크 · 코드가 발급됩니다'),
+      ownerHint: '지원자 ' + APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) < 0 && this.apNo(s).indexOf(a.id) < 0).length + '명 대기 · 섭외 요청 중 ' + OUTREACH.concat(s.outExtra || []).filter(o => ((s.outState || {})[o.id] || o.status) === 'pending').length + '명 · 선정 ' + (this.apOk(s).length + outAccepted.length) + '명',
       campTabApplicants: campTab === 'applicants',
       campTabInbox: campTab === 'inbox',
       ...(() => {
@@ -15216,7 +15352,7 @@ class Component extends DCLogic {
               stateLabel: v === 'pending' ? '응답 대기' : v === 'accepted' ? '수락' : '거절',
               stateStyle: 'font-size: 11.5px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; '
                 + (v === 'pending' ? 'color: #96681a; background: #fdf6e9' : v === 'accepted' ? 'color: #3f8460; background: #eef7f1' : 'color: #b0405c; background: #fbeef0'),
-              accept: () => (setSt(o.id, 'accepted'), this.toast(from + ' 요청을 수락했습니다 — 인박스에 계약이 만들어집니다')),
+              accept: () => { setSt(o.id, 'accepted'); this.addContractFrom(o, from); this.toast(from + ' 요청을 수락했습니다 — 인박스 › 계약에 「캠페인 참여」 계약이 생겼습니다'); },
               decline: () => (setSt(o.id, 'declined'), this.toast(from + ' 요청을 거절했습니다')),
               chat: () => this.resetTo({ view: 'chat', rail: 'chat' })
             };
@@ -15297,7 +15433,7 @@ class Component extends DCLogic {
           campSkillContent: sk ? sk.content : [],
           campSvcRows: svcs.map(x => {
             const vals = (x.tiers || []).map(t => numS(t.price)).filter(Boolean);
-            return { title: x.title, meta: [x.mode, x.format, x.comm ? '판매 수수료 ' + x.comm + '%' : ''].filter(Boolean).join(' · '),
+            return { canOrder: !isOwner, title: x.title, meta: [x.mode, x.format, x.comm ? '판매 수수료 ' + x.comm + '%' : ''].filter(Boolean).join(' · '),
               price: x.pricing === 'tiers' ? (vals.length ? wonS(Math.min.apply(null, vals)) + '부터' : '—') : wonS(vals[0] || 0),
               order: () => tgt ? this.setState({ outFormFor: tgt.id, outForm: { from: 'market', kind: 'order', svcId: x.id, tierIx: x.pricing === 'tiers' ? 1 : 0, ex: [], rate: String(tgt.rate), due: '7일 이내', work: '' } }) : this.toast('섭외 대상을 찾을 수 없습니다') };
           }),
@@ -15343,8 +15479,8 @@ class Component extends DCLogic {
       promoDiscount: '구매자 10% 할인',
       promoNote: '파트너가 직접 발급합니다. 코드 사용 건은 링크 클릭과 별도로 집계됩니다.',
       promoPattern: 'DC3-{파트너}-10',
-      issuedCount: '승인 ' + s.approved.length + '명 발급',
-      issuedRows: APPLICANTS.filter(a => s.approved.indexOf(a.id) >= 0).map(a => {
+      issuedCount: '승인 ' + this.apOk(s).length + '명 발급',
+      issuedRows: APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) >= 0).map(a => {
         const tag = a.handle.replace('@', '');
         const copied = s.copiedIssue === a.id;
         const codeCopied = s.copiedIssue === a.id + '-code';
@@ -15370,7 +15506,7 @@ class Component extends DCLogic {
       eligibilityLine: '팔로워 3,000 이상 · 최근 90일 내 게시물 3건 이상 · ' + campaign.kindLabel + ' 경험 우대. 지원 후 승인되면 추적 링크가 발급됩니다.',
       applicantTabs: ['참여 승인 대기', '참여 승인됨', '반려', '전체'].map(t => {
         const n = APPLICANTS.filter(a => {
-          const ok = s.approved.indexOf(a.id) >= 0, no = s.rejected.indexOf(a.id) >= 0;
+          const ok = this.apOk(s).indexOf(a.id) >= 0, no = this.apNo(s).indexOf(a.id) >= 0;
           return t === '전체' ? true : t === '참여 승인됨' ? ok : t === '반려' ? no : !ok && !no;
         }).length;
         return {
@@ -15385,13 +15521,13 @@ class Component extends DCLogic {
         const ost = s.outState || {};
         const st = o => ost[o.id] || o.status;
         const ALLOUT = OUTREACH.concat(s.outExtra || []);
-        const pendingN = APPLICANTS.filter(a => s.approved.indexOf(a.id) < 0 && s.rejected.indexOf(a.id) < 0).length;
+        const pendingN = APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) < 0 && this.apNo(s).indexOf(a.id) < 0).length;
         const MODES = [
           ['received', '받은 지원', APPLICANTS.length],
           ['sent', '보낸 섭외', ALLOUT.filter(o => st(o) !== 'cancelled').length],
-          ['picked', '선정됨', s.approved.length]
+          ['picked', '선정됨', this.apOk(s).length]
         ];
-        MODES[2][2] = s.approved.length + ALLOUT.filter(o => st(o) === 'accepted').length;
+        MODES[2][2] = this.apOk(s).length + ALLOUT.filter(o => st(o) === 'accepted').length;
         const shown = mode === 'picked' ? ALLOUT.filter(o => st(o) === 'accepted') : ALLOUT;
         const SL = { pending: ['요청 중', '#96681a', '#fdf6e9'], accepted: ['참여 확정', '#3f8460', '#eef7f1'], declined: ['거절', '#b0405c', '#fbeef0'], expired: ['만료', '#77727e', '#f2f0f6'], cancelled: ['취소함', '#77727e', '#f2f0f6'] };
         return {
@@ -15450,7 +15586,9 @@ class Component extends DCLogic {
         const target = APPLICANTS.find(a => a.id === s.outFormFor);
         // 내가 만든 캠페인 페이지에서 열 때만 "그 캠페인에 초대"로 고정. 남의 캠페인(방문자)이나 마켓에서 열면 내 프로필 기준으로 두 갈래
         const inCampaign = s.view === 'campaign' && !s.visitor && MANAGE_SCOPE[campaign.id] === '만든 캠페인' && !(target && target.profileId === campaign.ipId);
-        const myIds = PROFILES.filter(p => !target || p.id !== target.profileId).map(p => p.id);
+        // 섭외는 발주하는 쪽(IP · 브랜드)의 프로필로 보낸다. 외부 프로필 · 크리에이터 프로필은 보내는 쪽이 될 수 없다
+        const senders = PROFILES.filter(p => !p.external && p.type !== '크리에이터' && (!target || p.id !== target.profileId));
+        const myIds = senders.map(p => p.id);
         const pid = f.profileId || (inCampaign ? campaign.ipId : (myIds[0] || (PROFILES[0] || {}).id));
         const camps = CAMPAIGNS.filter(c => c.ipId === pid && CAMPAIGN_FLOW[c.kind] !== 'earn');
         const cid = (f.campaignId && camps.some(c => c.id === f.campaignId)) ? f.campaignId
@@ -15461,7 +15599,9 @@ class Component extends DCLogic {
         const patch = o => this.setState(stt => ({ outForm: Object.assign({}, stt.outForm, o) }));
         const SVCS = (target && typeof CREATOR_SERVICES !== 'undefined') ? (CREATOR_SERVICES[target.profileId] || []) : [];
         const hasSvc = SVCS.length > 0, hasCamp = camps.length > 0;
-        const kind = 'invite'; /* 서비스 주문 경로 제거 — 섭외는 항상 내 캠페인 조건으로 초대 */
+        // 두 갈래(SPEC 「섭외 · 주문 두 갈래」 · 「지원 · 요청의 주체」): 내 캠페인에 초대 / 이 크리에이터 서비스 주문(공개 가격표가 있을 때만)
+        //  - 내 캠페인 상세에서 열면 묻지 않고 그 캠페인에 초대 / 가격표 없으면 초대만 / 내 지출형 캠페인이 없으면 주문만
+        const kind = hasSvc && (f.kind === 'order' || (!inCampaign && !hasCamp)) ? 'order' : 'invite';
         const isOrder = kind === 'order';
         const numO = v => parseInt(String(v || '').replace(/[^0-9]/g, '')) || 0;
         const won6 = n => '₩' + (n || 0).toLocaleString();
@@ -15486,14 +15626,14 @@ class Component extends DCLogic {
           + (on ? 'background: #6846db; color: #fff' : 'border: 1.5px solid #ded8e8; color: transparent');
         const cardO = on => 'text-align: left; border-radius: 12px; padding: 12px 13px; background: #fff; border: ' + (on ? '2px solid #6846db' : '1px solid #e2ddeb');
         return {
-          outKindPickOn: false,
-          outKindHintOn: false,
+          outKindPickOn: !inCampaign && hasSvc && hasCamp,
+          outKindHintOn: !inCampaign && !hasSvc && hasCamp,
           outKindHint: '이 크리에이터는 서비스 가격표를 올리지 않아 내 캠페인 초대로만 제안할 수 있습니다.',
-          outNoCampOn: !inCampaign && !hasCamp,
-          outCanSend: inCampaign || hasCamp,
-          outGoNewCampaign: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my', outFormFor: null, outPickOpen: false }, this.ncBlank(), { ncProfile: s.profileId || s.ncProfile, ncFlow: '지출 · 제작·홍보 의뢰' })),
+          outNoCampOn: !inCampaign && !hasCamp && !isOrder,
+          outCanSend: inCampaign || hasCamp || isOrder,
+          outGoNewCampaign: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my', outFormFor: null, outPickOpen: false }, this.ncBlank(pid), { ncProfile: pid, ncFlow: '지출 · 제작·홍보 의뢰' })),
           outSendStyle: 'border-radius: 10px; padding: 10px 18px; font-size: 13.5px; font-weight: 500; min-width: 82px; '
-            + ((inCampaign || hasCamp) ? 'background: #6846db; color: #fff' : 'background: #ece9f2; color: #a49cb1; cursor: not-allowed'),
+            + ((inCampaign || hasCamp || isOrder) ? 'background: #6846db; color: #fff' : 'background: #ece9f2; color: #a49cb1; cursor: not-allowed'),
           outKindCards: [
             ['invite', 'campaign', '내 캠페인에 초대', '내 캠페인 조건(할 일 · 보상)으로 제안합니다. 요청 내용만 덧붙입니다.'],
             ['order', 'shopping_bag', '이 크리에이터 서비스 주문', '크리에이터가 올린 가격표에서 서비스 · 패키지 · 옵션을 골라 주문합니다.']
@@ -15568,7 +15708,7 @@ class Component extends DCLogic {
           outFormImgStyle: this.bg(target ? target.img : (PROFILES[0] || {}).img, 'width: 44px; height: 44px; border-radius: 50%; flex: none; display: block'),
           outFormProfile: pid,
           setOutFormProfile: e => patch({ profileId: e.target.value, campaignId: '' }),
-          outFormProfileOpts: PROFILES.map(p => ({ id: p.id, label: p.name + ' · ' + p.type })),
+          outFormProfileOpts: senders.length ? senders.map(p => ({ id: p.id, label: p.name + ' · ' + p.type })) : [{ id: '', label: '섭외를 보낼 IP · 브랜드 프로필이 없습니다' }],
           outFormCampaign: cid,
           setOutFormCampaign: e => patch({ campaignId: e.target.value }),
           outFormCampaignOpts: camps.length ? camps.map(c => ({ id: c.id, label: c.title })) : [{ id: '', label: '이 프로필에 캠페인이 없습니다' }],
@@ -15610,10 +15750,10 @@ class Component extends DCLogic {
               : ('게시 ' + (f.startAt || '시작일 미정') + '~' + (f.endAt || '종료일 미정')))
             + ' · 제안가 ₩' + ((parseInt(String(f.rate || '').replace(/[^0-9]/g, '')) || 0).toLocaleString())
             + ' · 응답 기한 ' + (f.due || '7일 이내')
-            + ' — 수락 즉시 참여 확정 · 게시 후 제출물: ' + ((f.proofs || ['게시 링크']).join(' · ') || '없음') + ' → 쇼케이스 등록 시 정산',
+            + ' — 수락 즉시 참여 확정 · 게시 후 제출물: ' + ((f.proofs || ['게시 링크']).join(' · ') || '없음') + ' → 검수 승인 시 지급',
           sendOutForm: () => {
             if (!target) return;
-            if (!inCampaign && !hasCamp) return this.toast('캠페인이 없으면 섭외 요청을 보낼 수 없습니다. 먼저 캠페인을 만들어 주세요');
+            if (!isOrder && !inCampaign && !hasCamp) return this.toast('캠페인이 없으면 초대를 보낼 수 없습니다. 먼저 캠페인을 만들거나, 이 크리에이터의 서비스를 주문하세요');
             if (isOrder) {
               if (!svc) return this.toast('서비스를 골라 주세요');
               if (!isFree && !total) return this.toast('제안 금액을 적어 주세요');
@@ -15648,17 +15788,16 @@ class Component extends DCLogic {
       applicantOptions: ['참여 승인 대기', '참여 승인됨', '반려', '전체'].map(t => ({
         id: t,
         label: t + ' (' + APPLICANTS.filter(a => {
-          const ok = s.approved.indexOf(a.id) >= 0, no = s.rejected.indexOf(a.id) >= 0;
+          const ok = this.apOk(s).indexOf(a.id) >= 0, no = this.apNo(s).indexOf(a.id) >= 0;
           return t === '전체' ? true : t === '참여 승인됨' ? ok : t === '반려' ? no : !ok && !no;
         }).length + ')'
       })),
-      hasPending: APPLICANTS.some(a => s.approved.indexOf(a.id) < 0 && s.rejected.indexOf(a.id) < 0),
-      approveAll: () => this.setState(st => ({
-        approved: APPLICANTS.filter(a => st.rejected.indexOf(a.id) < 0).map(a => a.id), apSelected: []
-      })),
-      predictBasis: '승인 ' + s.approved.length + '명 · 섭외 수락 ' + outAccepted.length + '명 기준',
+      hasPending: APPLICANTS.some(a => this.apOk(s).indexOf(a.id) < 0 && this.apNo(s).indexOf(a.id) < 0),
+      approveAll: () => this.setState(st => Object.assign(this.apPatch(st,
+        APPLICANTS.filter(a => this.apNo(st).indexOf(a.id) < 0).map(a => a.id), this.apNo(st)), { apSelected: [] })),
+      predictBasis: '승인 ' + this.apOk(s).length + '명 · 섭외 수락 ' + outAccepted.length + '명 기준',
       predictCells: (() => {
-        const ap = APPLICANTS.filter(a => s.approved.indexOf(a.id) >= 0);
+        const ap = APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) >= 0);
         const views = ap.reduce((n, a) => n + a.views, 0);
         const eng = ap.reduce((n, a) => n + a.likes + a.comments, 0);
         const cell = (i) => 'padding: 15px 16px; ' + (i ? 'border-left: 1px solid #f0edf5' : '');
@@ -15669,7 +15808,7 @@ class Component extends DCLogic {
         ];
       })(),
       budgetCells: (() => {
-        const ap = APPLICANTS.filter(a => s.approved.indexOf(a.id) >= 0);
+        const ap = APPLICANTS.filter(a => this.apOk(s).indexOf(a.id) >= 0);
         const sum = ap.reduce((n, a) => n + a.rate, 0) + outAccepted.reduce((n, o) => n + o.rate, 0);
         const fee = Math.round(sum * 0.05);
         const cell = (i) => 'padding: 15px 16px; ' + (i ? 'border-left: 1px solid #f0edf5' : '');
@@ -15677,7 +15816,7 @@ class Component extends DCLogic {
           { label: '보상 합계', value: '₩' + sum.toLocaleString(), style: cell(0) },
           { label: '수수료 5%', value: '₩' + fee.toLocaleString(), style: cell(1) },
           { label: '총 집행액', value: '₩' + (sum + fee).toLocaleString(), style: cell(2) },
-          { label: '선정 인원', value: (s.approved.length + outAccepted.length) + '명', style: cell(3) }
+          { label: '선정 인원', value: (this.apOk(s).length + outAccepted.length) + '명', style: cell(3) }
         ];
       })(),
       apResultLabel: apVisible.length + '명',
@@ -15720,19 +15859,15 @@ class Component extends DCLogic {
         + (apVisible.length && apVisible.every(a => (s.apSelected || []).indexOf(a.id) >= 0)
           ? 'background: #6846db; color: #fff' : 'border: 1px solid #d3cbe2; background: #fff; color: transparent'),
       selectAllMark: '✓',
-      approveSelected: () => this.setState(st => ({
-        approved: st.approved.concat((st.apSelected || []).filter(id => st.approved.indexOf(id) < 0)),
-        rejected: st.rejected.filter(id => (st.apSelected || []).indexOf(id) < 0),
-        apSelected: []
-      })),
-      rejectSelected: () => this.setState(st => ({
-        rejected: st.rejected.concat((st.apSelected || []).filter(id => st.rejected.indexOf(id) < 0)),
-        approved: st.approved.filter(id => (st.apSelected || []).indexOf(id) < 0),
-        apSelected: []
-      })),
+      approveSelected: () => this.setState(st => Object.assign(this.apPatch(st,
+        this.apOk(st).concat((st.apSelected || []).filter(id => this.apOk(st).indexOf(id) < 0)),
+        this.apNo(st).filter(id => (st.apSelected || []).indexOf(id) < 0)), { apSelected: [] })),
+      rejectSelected: () => this.setState(st => Object.assign(this.apPatch(st,
+        this.apOk(st).filter(id => (st.apSelected || []).indexOf(id) < 0),
+        this.apNo(st).concat((st.apSelected || []).filter(id => this.apNo(st).indexOf(id) < 0))), { apSelected: [] })),
       applicantRows: apVisible.slice(s.apPage * (s.pageSize || 10), (s.apPage + 1) * (s.pageSize || 10)).map(a => {
-        const ok = s.approved.indexOf(a.id) >= 0;
-        const no = s.rejected.indexOf(a.id) >= 0;
+        const ok = this.apOk(s).indexOf(a.id) >= 0;
+        const no = this.apNo(s).indexOf(a.id) >= 0;
         const sel = (s.apSelected || []).indexOf(a.id) >= 0;
         // 지원은 크리에이터의 캠페인(셀프 프로모션 · 서비스 카드)으로 들어온다 — 썸네일과 이름은 그 캠페인으로, 프로필은 보조 링크
         const apCamp = a.profileId ? (CAMPAIGNS.find(c => c.ipId === a.profileId && c.kind === 'service') || CAMPAIGNS.find(c => c.ipId === a.profileId)) : null;
@@ -15763,15 +15898,14 @@ class Component extends DCLogic {
             + (sel ? 'background: #6846db; color: #fff' : 'border: 1px solid #d3cbe2; background: #fff; color: transparent'),
           checkMark: '✓',
           toggle: () => this.setState(st => ok
-            ? { approved: st.approved.filter(x => x !== a.id) }
-            : { approved: st.approved.concat([a.id]), rejected: st.rejected.filter(x => x !== a.id) }),
+            ? this.apPatch(st, this.apOk(st).filter(x => x !== a.id), this.apNo(st))
+            : this.apPatch(st, this.apOk(st).concat([a.id]), this.apNo(st).filter(x => x !== a.id))),
           state: ok ? 'approved' : no ? 'rejected' : 'pending',
           setState: e => {
             const v = e.target.value;
-            this.setState(st => ({
-              approved: v === 'approved' ? st.approved.concat([a.id]) : st.approved.filter(x => x !== a.id),
-              rejected: v === 'rejected' ? st.rejected.concat([a.id]) : st.rejected.filter(x => x !== a.id)
-            }));
+            this.setState(st => this.apPatch(st,
+              v === 'approved' ? this.apOk(st).concat([a.id]) : this.apOk(st).filter(x => x !== a.id),
+              v === 'rejected' ? this.apNo(st).concat([a.id]) : this.apNo(st).filter(x => x !== a.id)));
           },
           selectStyle: 'width: 100%; appearance: none; border-radius: 7px; padding: 3px 18px 3px 7px; font-size: 11px; font-weight: 700; font-family: inherit; cursor: pointer; outline: none; '
             + (ok ? 'background: #e9f4ee; color: #3f8460; border: 1px solid #cfe5d9'
@@ -15779,9 +15913,7 @@ class Component extends DCLogic {
               : 'background: #fff; color: #5836c4; border: 1px solid #ded5f2'),
           copyLink: () => this.toast('추적 링크를 복사했습니다 · ' + 'ipbz.to/' + a.handle.replace('@', '')),
           canReject: !no,
-          reject: () => this.setState(st => ({
-            rejected: st.rejected.concat([a.id]), approved: st.approved.filter(x => x !== a.id)
-          })),
+          reject: () => this.setState(st => this.apPatch(st, this.apOk(st).filter(x => x !== a.id), this.apNo(st).concat([a.id]))),
           linkIssued: ok,
           linkTag: 'ipbz.to/' + a.handle.replace('@', ''),
           promoTag: 'PROMO-' + a.id.toUpperCase()
@@ -15827,6 +15959,9 @@ class Component extends DCLogic {
       ncSaveDraft: () => this.saveDraft('campaign', s.ncTitle, (PROFILES.find(x => x.id === s.ncProfile) || {}).name, (Number(s.ncStep || 0) + 1) + ' 단계 · 예치금 충전 대기', { view: 'newcampaign', ncStep: s.ncStep || 0, ncProfile: s.ncProfile }),
       publishCampaign: () => {
         const prof = PROFILES.find(x => x.id === s.ncProfile) || PROFILES[0];
+        if (this.ncBlockedAll(s)) { this.toast(this.ncBlockedMsg(s)); return; }
+        if (!this.ncSubEff(s)) { this.toast('세부 유형을 하나 골라 주세요.'); return; }
+        if (!(s.ncTitle || '').trim()) { this.toast('캠페인 제목을 적어 주세요. 마켓 카드와 인박스에 이 제목이 보입니다.'); this._ncScrollTo(document.querySelector('[data-ncsec="기본 정보"]')); return; }
         if (!this.profileApproved(prof)) {
           this.toast(prof.type === '크리에이터'
             ? '소셜 계정을 연결하면 게시할 수 있습니다. 프로필 › 정보에서 연결해 주세요.'
@@ -15835,6 +15970,11 @@ class Component extends DCLogic {
         }
         if (this.ncBudgetUnset(s)) {
           this.toast(s.ncReward === '고정 + 성과' ? '고정 금액(선지급)을 입력해 주세요.' : '보상 금액을 입력해 주세요.');
+          return;
+        }
+        if (s.ncFlow === '지출 · 제작·홍보 의뢰' && (s.ncSeed || 'paid') !== 'free'
+          && !(parseInt(String(s.ncSlot || '').replace(/[^0-9]/g, '')) > 0) && !(parseInt(String(s.ncBudgetCap || '').replace(/[^0-9]/g, '')) > 0)) {
+          this.toast('모집 인원이 무제한이면 총예산을 직접 입력해 주세요. 예치금은 총예산 기준으로 묶입니다.');
           return;
         }
         const talG = ((PROFILES.find(p => p.id === s.ncProfile) || {}).type) === '크리에이터'
@@ -15880,13 +16020,18 @@ class Component extends DCLogic {
           }
         }
         const need = this.ncNeed(s);
-        if (s.ncFlow === '지출 · 제작·홍보 의뢰' && need > 0) {
-          this.setState(st => ({ deposit: Math.max(0, (st.deposit || 0) - need), depositLocked: (st.depositLocked || 0) + need, ncDone: true, promoOpen: !st.ncEditId, promoSubject: (st.ncTitle || '').trim() || '방금 만든 캠페인', promoDone: false }));
-          this.toast('게시했습니다. ₩' + need.toLocaleString() + '이 이 캠페인에 묶였습니다.');
+        const doneId = this.ncCommit(s);
+        if (s.ncFlow === '지출 · 제작·홍보 의뢰' && need > 0 && !s.ncEditId) {
+          this.setState(st => ({ deposit: Math.max(0, (st.deposit || 0) - need), depositLocked: (st.depositLocked || 0) + need, ncDone: true, ncDoneId: doneId, promoOpen: false, promoSubject: (st.ncTitle || '').trim(), promoDone: false }));
+          this.toast('게시했습니다. ₩' + need.toLocaleString() + '이 이 캠페인에 묶였습니다. 「캠페인 보기」로 확인하세요.');
           return;
         }
-        this.setState({ ncDone: true, promoOpen: !s.ncEditId, promoSubject: (s.ncTitle || '').trim() || '방금 만든 캠페인', promoDone: false });
+        this.setState({ ncDone: true, ncDoneId: doneId, promoOpen: false, promoSubject: (s.ncTitle || '').trim(), promoDone: false });
+        this.toast(s.ncEditId ? '수정 내용을 저장했습니다.' : '캠페인을 게시했습니다. 캠페인 관리와 마켓에서 바로 볼 수 있습니다.');
       },
+      ncOpenDone: () => this.resetTo({ view: 'campaign', campaignId: s.ncDoneId || s.ncEditId, rail: 'my', campTab: 'overview', campTabAuto: '', visitor: false }),
+      ncGoManage: () => this.resetTo({ view: 'hub', accountTab: 'campaigns', rail: 'my', manageFilter: '만든 캠페인', cardMenu: '' }),
+      ncDoneIsSpend: s.ncFlow === '지출 · 제작·홍보 의뢰',
       depositPacks: [300000, 500000, 1000000, 3000000].map(v => ({
         label: '₩' + v.toLocaleString(),
         note: v >= 1000000 ? '대형 캠페인용' : '소규모 캠페인용',
@@ -16180,27 +16325,26 @@ class Component extends DCLogic {
         const ckind = s.ctKind || '전체';
         const unsaved = s.svRemoved || [];
         const SIDE = { sell: '판 것', buy: '산 것' };
-        const stageTint = (st) => st === '진행 중' ? 'background: #e9f4ee; color: #2f6b4d'
-          : st === '검수 중' ? 'background: #fdf3e8; color: #96681a'
-          : st === '정산 대기' ? 'background: #f2eefb; color: #5836c4'
-          : st === '체결 대기' ? 'background: #fdeef2; color: #a33a56'
-          : 'background: #f1eff4; color: #6f6879';
+        // 상태 배지 5계열(UI 가이드): 진행 · 확정 = 초록 / 대기 · 검수 = 노랑 / 실패 · 거절 = 빨강 / 종료 · 취소 = 회색
+        const stageTint = (st) => st === '진행 중' ? 'background: #eef7f1; color: #3f8460'
+          : (st === '검수 중' || st === '정산 대기' || st === '체결 대기') ? 'background: #fdf6e9; color: #96681a'
+          : 'background: #f2f0f6; color: #77727e';
         const badge = (extra) => 'font-size: 11px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; ' + extra;
-        const active = CONTRACTS.filter(c => c.stage !== '종료');
-        const ctFiltered = CONTRACTS.filter(c =>
+        const active = this.allContracts(s).filter(c => c.stage !== '종료');
+        const ctFiltered = this.allContracts(s).filter(c =>
           (side === '전체' || SIDE[c.side] === side) && (ckind === '전체' || c.kind === ckind));
-        const apRows = tab === 'received' ? APPLICATIONS.filter(a => a.dir === 'in') : tab === 'applied' ? APPLICATIONS.filter(a => a.dir === 'out') : [];
+        const apRows = tab === 'received' ? this.allApplications(s).filter(a => a.dir === 'in') : tab === 'applied' ? this.allApplications(s).filter(a => a.dir === 'out') : [];
         const savedRows = SAVED.filter(x => unsaved.indexOf(x.id) < 0);
         const goChat = () => this.resetTo({ view: 'chat', rail: 'chat', chatId: 'dm-0' });
         const TABCOUNT = {
-          active: active.length, contracts: CONTRACTS.length, received: this.workCounts().received, sent: this.workCounts().sent,
+          active: active.length, contracts: this.allContracts(s).length, received: this.workCounts().received, sent: this.workCounts().sent,
           saved: savedRows.length, rights: RIGHTS.length, shared: SHARED.length
         };
         return {
           workLead: '계약 · 진행 중인 일 · 지원 현황 · 저장함을 한곳에서 봅니다. 내가 판 것과 산 것을 같은 목록에서 나란히 봅니다.',
           workTitle: (WORK_TABS.find(t => t.id === tab) || WORK_TABS[0]).label,
           workStats: [
-            { label: '진행 중인 계약', value: active.length + '건', note: CONTRACTS.filter(c => c.side === 'sell' && c.stage !== '종료').length + '건 판 것 · ' + CONTRACTS.filter(c => c.side === 'buy' && c.stage !== '종료').length + '건 산 것' },
+            { label: '진행 중인 계약', value: active.length + '건', note: active.filter(c => c.side === 'sell').length + '건 판 것 · ' + active.filter(c => c.side === 'buy').length + '건 산 것' },
             { label: '참여 승인 대기', value: '10명', note: '내 캠페인 2건에 들어온 지원' },
             { label: '정산 예정', value: '₩5,240,000', note: '10월 중 지급 · 수령 합계' },
             { label: '만료 임박', value: '2건', note: '모닝브루 사용권 D-104 · 권한 재확인 12/01' }
@@ -16228,15 +16372,15 @@ class Component extends DCLogic {
           workSaved: tab === 'saved',
           workRights: tab === 'rights',
           workShared: tab === 'shared',
-          workActiveRows: APPLICATIONS.filter(a => a.dir === 'out' && /승인$|선정/.test(a.status)).map(a => {
+          workActiveRows: this.allApplications(s).filter(a => a.dir === 'out' && /승인$|선정/.test(a.status)).map(a => {
             const cmp = CAMPAIGNS.find(c => c.id === a.campaignId);
             const rec = ((s.deliv || {})[(cmp || {}).id || a.id]) || this.DELIV_SEED[(cmp || {}).id] || { state: 'none' };
             const DL = {
-              none: ['납품 전', 'background: #fbeef0; color: #b0405c', '제출할 결과물이 있습니다 — 납품 탭에서 링크 · 검수본을 올리세요'],
-              submitted: ['검수 중', 'background: #fdf3e8; color: #96681a', '발주자 검수를 기다립니다. 무응답이면 자동 지급 승인됩니다'],
-              revise: ['수정 요청', 'background: #fdf3e8; color: #96681a', '수정 요청을 받았습니다 — 고쳐서 다시 제출하세요'],
-              approved: ['지급 완료', 'background: #e9f4ee; color: #2f6b4d', '지급 승인되었습니다'],
-              rejected: ['거절 · 미지급', 'background: #fdeef2; color: #a33a56', '거절되었습니다 — 사유를 확인하세요']
+              none: ['제출 전', 'background: #fdf6e9; color: #96681a', '제출할 결과물이 있습니다 — 납품 탭에서 링크 · 검수본을 올리세요'],
+              submitted: ['검수 중', 'background: #fdf6e9; color: #96681a', '발주자 검수를 기다립니다. 무응답이면 자동 지급 승인됩니다'],
+              revise: ['수정 요청', 'background: #fdf6e9; color: #96681a', '수정 요청을 받았습니다 — 고쳐서 다시 제출하세요'],
+              approved: ['지급 완료', 'background: #eef7f1; color: #3f8460', '지급 승인되었습니다'],
+              rejected: ['거절 · 미지급', 'background: #fbeef0; color: #b0405c', '거절되었습니다 — 사유를 확인하세요']
             };
             const d = DL[rec.state] || DL.none;
             return {
@@ -16317,12 +16461,12 @@ class Component extends DCLogic {
               pending: o.state === 'pending',
               stateLabel: o.state === 'pending' ? '응답 대기' : o.state === 'accepted' ? '수락' : '거절',
               stateStyle: badge(o.state === 'pending' ? 'color: #96681a; background: #fdf6e9' : o.state === 'accepted' ? 'color: #3f8460; background: #eef7f1' : 'color: #b0405c; background: #fbeef0') + '; flex: none',
-              accept: () => (setSt(o.id, 'accepted'), this.toast(from + ' 요청을 수락했습니다 — 계약이 만들어집니다')),
+              accept: () => { setSt(o.id, 'accepted'); this.addContractFrom(o, from); this.toast(from + ' 요청을 수락했습니다 — 「계약」 탭에 캠페인 참여 계약이 생겼습니다'); },
               decline: () => (setSt(o.id, 'declined'), this.toast(from + ' 요청을 거절했습니다')),
               chat: goChat
             };
           }),
-          outReqRows: tab !== 'sent' ? [] : (s.outExtra || []).map(o => {
+          outReqRows: tab !== 'sent' ? [] : this.sentOutreach(s).map(o => {
             const st = (s.outState || {})[o.id] || o.status || 'pending';
             const sentCamp = o.campId ? CAMPAIGNS.find(c => c.id === o.campId) : null;
             const sentOwner = PROFILES.find(p => p.id === (o.fromId || (sentCamp || {}).ipId)) || null;
@@ -16343,16 +16487,17 @@ class Component extends DCLogic {
               targetType: this.ownerChip('크리에이터'),
               goTarget: () => o.profileId ? this.resetTo({ view: 'profile', visitor: true, rail: s.rail || 'project', profileTab: 'info', profileId: o.profileId }) : this.toast((o.name || '') + ' 님은 공개 프로필이 없습니다'),
               metrics: [{ label: '제안 금액', value: o.rate ? '₩' + Number(o.rate).toLocaleString() : '조건 협의' }, { label: '보낸 날', value: o.sentAt || '방금' }],
-              openCamp: () => sentCamp ? this.resetTo({ view: 'campaign', campaignId: sentCamp.id, rail: s.rail || 'project', campTab: 'inbox', campTabAuto: sentCamp.id }) : this.toast('연결된 캠페인이 없습니다'),
+              openCamp: () => sentCamp ? this.resetTo({ view: 'campaign', campaignId: sentCamp.id, rail: s.rail || 'project', visitor: false, campTab: 'inbox', campTabAuto: sentCamp.id }) : this.toast('연결된 캠페인이 없습니다'),
               imgStyle: this.bg(o.img || 'assets/sky-post.png', TRI + 'width: 46px; height: 46px; flex: none; display: block'),
-              stateLabel: st === 'pending' ? '응답 대기' : st === 'accepted' ? '수락됨' : '거절됨',
-              stateStyle: badge(st === 'pending' ? 'color: #96681a; background: #fdf6e9' : st === 'accepted' ? 'color: #3f8460; background: #eef7f1' : 'color: #b0405c; background: #fbeef0') + '; flex: none',
-              cancel: () => this.setState(stt => ({ outState: Object.assign({}, stt.outState, { [o.id]: 'cancelled' }) }), () => this.toast('섭외 제안을 취소했습니다')),
+              pending: st === 'pending',
+              stateLabel: st === 'pending' ? '응답 대기' : st === 'accepted' ? '참여 확정' : st === 'expired' ? '만료' : st === 'cancelled' ? '취소' : '거절',
+              stateStyle: badge(st === 'pending' ? 'color: #96681a; background: #fdf6e9' : st === 'accepted' ? 'color: #3f8460; background: #eef7f1' : (st === 'expired' || st === 'cancelled') ? 'color: #77727e; background: #f2f0f6' : 'color: #b0405c; background: #fbeef0') + '; flex: none',
+              cancel: () => st === 'pending' ? this.setState(stt => ({ outState: Object.assign({}, stt.outState, { [o.id]: 'cancelled' }) }), () => this.toast('섭외 요청을 취소했습니다')) : this.toast('응답이 끝난 요청은 취소할 수 없습니다'),
               chat: goChat
             };
           }).filter(r => r.stateLabel !== '취소'),
           reqEmpty: (tab === 'received' && apRows.length === 0) || (tab === 'offers' && this.inboxOutreach(s).length === 0)
-            || (tab === 'applied' && apRows.length === 0) || (tab === 'sent' && (s.outExtra || []).length === 0),
+            || (tab === 'applied' && apRows.length === 0) || (tab === 'sent' && this.sentOutreach(s).filter(o => ((s.outState || {})[o.id] || o.status) !== 'cancelled').length === 0),
           reqEmptyText: { received: '들어온 지원이 없습니다. 캠페인을 마켓에 공개하면 지원이 여기에 모입니다.',
             applied: '지원한 캠페인이 없습니다. 마켓에서 캠페인을 찾아 지원해 보세요.',
             offers: '받은 섭외 제안이 없습니다. 크리에이터 프로필을 공개하면 제안이 여기에 모입니다.',
@@ -16362,11 +16507,11 @@ class Component extends DCLogic {
             const rec = ((s.deliv || {})[(cmp || {}).id || a.id]) || this.DELIV_SEED[(cmp || {}).id] || { state: 'none' };
             const approved = /승인$|선정/.test(a.status);
             const DL = {
-              none: ['제출 전', 'background: #f2f0f6; color: #77727e'],
-              submitted: ['검수 중', 'background: #fdf3e8; color: #96681a'],
-              revise: ['수정 요청', 'background: #fdf3e8; color: #96681a'],
-              approved: ['지급 완료', 'background: #e9f4ee; color: #2f6b4d'],
-              rejected: ['거절 · 미지급', 'background: #fdeef2; color: #a33a56']
+              none: ['제출 전', 'background: #fdf6e9; color: #96681a'],
+              submitted: ['검수 중', 'background: #fdf6e9; color: #96681a'],
+              revise: ['수정 요청', 'background: #fdf6e9; color: #96681a'],
+              approved: ['지급 완료', 'background: #eef7f1; color: #3f8460'],
+              rejected: ['거절 · 미지급', 'background: #fbeef0; color: #b0405c']
             };
             const d = DL[rec.state] || DL.none;
             const earnCmp = cmp ? CAMPAIGN_FLOW[cmp.kind] === 'earn' : false;
@@ -16394,14 +16539,14 @@ class Component extends DCLogic {
             goProfile: () => (cmp
               ? this.resetTo({ view: 'profile', visitor: true, rail: s.rail || 'project', profileTab: 'info', profileId: cmp.ipId })
               : this.toast(a.owner + ' 은(는) 공개 프로필이 없습니다')),
-            statusStyle: badge(/승인$|선정/.test(a.status) ? 'background: #e9f4ee; color: #2f6b4d'
-              : /반려/.test(a.status) ? 'background: #fdeef2; color: #a33a56'
+            statusStyle: badge(/승인$|선정/.test(a.status) ? 'background: #eef7f1; color: #3f8460'
+              : /반려/.test(a.status) ? 'background: #fbeef0; color: #b0405c'
               : 'background: #fdf3e8; color: #96681a') + '; flex: none',
             action: a.dir === 'in' ? '지원자 보기' : ((cmp && approved) ? '납품 · 결과' : '캠페인 보기'),
             open: () => (!cmp
               ? this.toast('연결된 캠페인을 찾을 수 없습니다')
               : a.dir === 'in'
-                ? this.resetTo({ view: 'campaign', campaignId: cmp.id, rail: s.rail || 'project', campTab: 'applicants', campTabAuto: cmp.id })
+                ? this.resetTo({ view: 'campaign', campaignId: cmp.id, rail: s.rail || 'project', visitor: false, campTab: 'applicants', campTabAuto: cmp.id })
                 : this.resetTo({ view: 'campaign', campaignId: cmp.id, rail: s.rail || 'project', campTab: approved ? 'deliver' : 'overview', visitor: true }))
             });
           }),
@@ -17140,7 +17285,7 @@ class Component extends DCLogic {
         CAMPAIGNS.push(Object.assign({}, c, { id: id, title: name }));
         if (CAMPAIGN_META[c.id]) CAMPAIGN_META[id] = Object.assign({}, CAMPAIGN_META[c.id], { isNew: true });
         if (typeof MANAGE_SCOPE !== 'undefined') MANAGE_SCOPE[id] = MANAGE_SCOPE[c.id] || '만든 캠페인';
-        this.resetTo({ view: 'campaign', campaignId: id, campTab: 'overview', rail: s.rail || 'my', dupOpen: '', dupSrc: '' });
+        this.resetTo({ view: 'campaign', campaignId: id, campTab: 'overview', rail: s.rail || 'my', visitor: false, dupOpen: '', dupSrc: '' });
         this.toast('「' + name + '」 캠페인을 추가했습니다. 내용을 확인하고 게시하세요.');
       },
       ...(() => {
@@ -17300,7 +17445,7 @@ class Component extends DCLogic {
               flowLabel: earn ? '수익형' : '지출형',
               flowStyle: 'position: absolute; top: 8px; right: 8px; ' + badge(earn ? 'rgba(63,132,96,0.92)' : 'rgba(104,70,219,0.92)', '#fff'),
               statusStyle: badge(c.status === '모집 중' ? '#e9f4ee' : c.status === '마감' ? '#f2f0f6' : '#f8f2e6', c.status === '모집 중' ? '#3f8460' : c.status === '마감' ? '#77727e' : '#96681a'),
-              open: () => this.resetTo({ view: 'campaign', campaignId: c.id, rail: s.rail || 'my' }),
+              open: () => this.resetTo({ view: 'campaign', campaignId: c.id, rail: s.rail || 'my', visitor: false }),
               dup: e => { e.stopPropagation(); this.dupCampaignFrom(c.id); }
             };
           })
@@ -17346,7 +17491,7 @@ class Component extends DCLogic {
         mktout: '예: 신제품 출시 인플루언서 20명 모집',
         svcout: '예: 홍보 영상 편집 · 자막 번역 외주',
         collab: '예: 데몬 차일드 × 캐릭터 IP 크로스오버 굿즈 파트너 모집'
-      })[k] || '캠페인 제목을 입력하세요')(s.ncSubType || (this.ncIsEarn(s) ? 'dist' : 'buy')),
+      })[k] || '캠페인 제목을 입력하세요')(this.ncSubEff(s) || s.ncSubType || (this.ncIsEarn(s) ? 'dist' : 'buy')),
       ncDesc: s.ncDesc,
       setNcDesc: e => this.setState({ ncDesc: e.target.value, ncDone: false }),
       ...(() => {
@@ -17702,6 +17847,7 @@ class Component extends DCLogic {
       ncSubmitStyle: 'min-width: 82px; border-radius: 9px; padding: 8px 14px; font-size: 14px; font-weight: 700; white-space: nowrap; '
         + (this.ncBudgetUnset(s) || this.ncShort(s) > 0 ? 'background: #ece9f2; color: #a49cb1; cursor: not-allowed' : 'background: #6846db; color: #fff'),
       ncDoneMsg: s.ncEditId ? '수정 내용을 저장했습니다.' : '마켓에 캠페인을 게시했습니다.',
+      ncDone: !!s.ncDone,
       ncCanPromote: !!s.ncEditId || !!s.ncDone,
       ncPromote: () => this.setState({
         promoOpen: true, promoDone: false,
@@ -17837,7 +17983,7 @@ class Component extends DCLogic {
         const subSel = this.ncSubList(s).filter(id => allowed.some(x => x.id === id));
         const cur = s.ncSubOff ? ''
           : multiSub ? (subSel[0] || (allowed[0] || SUBS[0]).id)
-          : (s.ncSubType && allowed.some(x => x.id === s.ncSubType) ? s.ncSubType : (allowed[0] || SUBS[0]).id);
+          : (s.ncSubType && allowed.some(x => x.id === s.ncSubType) ? s.ncSubType : (this.ncSubEff(s) || (allowed[0] || SUBS[0]).id)); // 기본값은 프로필 유형의 대표 세부 유형(브랜드 · IP 지출형 = 홍보)
         const curSub = SUBS.find(x => x.id === cur) || SUBS[0];
         const STEP2 = {
           dist: ptype === 'IP'
@@ -19246,7 +19392,11 @@ class Component extends DCLogic {
         };
       })(),
       ncFlow: s.ncFlow,
-      setNcFlow: e => this.setState({ ncFlow: e.target.value }),
+      setNcFlow: e => {
+        const v = e.target.value;
+        if (!this.ncFlowAllowed(s.ncProfile, v)) return this.setState({ ncBlockOpen: v, ncBlockWhy: this.ncBlockedMsg(Object.assign({}, s, { ncFlow: v })) });
+        this.setState({ ncFlow: v, ncFlowOff: false, ncSubType: '', ncSubMulti: [], ncSubOff: false, ncPurpose: '', ncPurposeOff: false, ncDone: false });
+      },
       ...(() => {
         const ptypeIp = ((PROFILES.find(x => x.id === s.ncProfile) || PROFILES[0]) || {}).type;
         const earnFlow = this.ncIsEarn(s);
@@ -19388,8 +19538,8 @@ class Component extends DCLogic {
       goCreate: () => this.resetTo({ view: 'create', rail: 'my', cOpen: 'type', cEditId: '' }),
       goEdit: () => this.resetTo({ view: 'edit', rail: 'my' }),
       goEditProfile: () => this.editProjectProfile(s.profileId),
-      goNewCampaign: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my' }, this.ncBlank(), { ncProfile: s.profileId || s.ncProfile })),
-      goProfCampaign: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my' }, this.ncBlank(), { ncProfile: s.profileId })),
+      goNewCampaign: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my' }, this.ncBlank(s.profileId || s.ncProfile), { ncProfile: s.profileId || s.ncProfile })),
+      goProfCampaign: () => this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my' }, this.ncBlank(s.profileId), { ncProfile: s.profileId })),
       goCatalog: () => this.resetTo({ view: 'catalog', rail: 'my' }),
       backToShowcase: () => this.resetTo({ view: 'hub', rail: 'my', accountTab: 'showcase', catalogDone: false }),
       goAssetUpload: () => this.resetTo({ view: 'assetupload', rail: 'my' }),
@@ -20055,7 +20205,7 @@ class Component extends DCLogic {
             act: e => {
               e.stopPropagation();
               if (m.kind === 'edit') return this.editProjectProfile(p.id, { cardMenu: '' });
-              if (m.kind === 'camp') return this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my', cardMenu: '' }, this.ncBlank(), { ncProfile: p.id }));
+              if (m.kind === 'camp') return this.resetTo(Object.assign({ view: 'newcampaign', rail: 'my', cardMenu: '' }, this.ncBlank(p.id), { ncProfile: p.id }));
               if (m.kind === 'dup') return this.setState({ cardMenu: '', dupOpen: 'profile', dupSrc: p.id, dupName: 'copy ' + p.name });
               this.setState({ cardMenu: '', globalShareOpen: true, shareSubject: p.name });
             }
@@ -20247,8 +20397,8 @@ class Component extends DCLogic {
           canPromote: scope === '만든 캠페인',
           promote: e => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ promoOpen: true, promoSubject: c.title, promoDone: false }); },
           secondaryLabel: scope === '만든 캠페인' ? '지원자' : scope === '참여 캠페인' ? '내 참여' : '조건 보기',
-          open: () => this.resetTo({ view: 'campaign', campaignId: c.id, rail: s.rail, campTab: 'overview' }),
-          secondary: e => { e.stopPropagation(); this.resetTo({ view: 'campaign', campaignId: c.id, rail: s.rail,
+          open: () => this.resetTo({ view: 'campaign', campaignId: c.id, rail: s.rail, campTab: 'overview', visitor: scope !== '만든 캠페인' }),
+          secondary: e => { e.stopPropagation(); this.resetTo({ view: 'campaign', campaignId: c.id, rail: s.rail, visitor: scope !== '만든 캠페인',
             campTab: scope === '만든 캠페인' ? 'applicants' : scope === '참여 캠페인' ? 'mine' : 'overview' }); },
           toggleMenu: e => { e.stopPropagation(); const r = e.currentTarget.getBoundingClientRect(); this.setState(st => ({ cardMenuTop: r.top, cardMenu: open ? '' : 'c-' + c.id, cardMenuX: r.right, cardMenuY: r.bottom })); },
           menuStyle: 'position: absolute; bottom: 36px; left: 0; z-index: 40; width: 186px; background: #fff; border: 1px solid #e2ddeb; border-radius: 11px; padding: 5px; box-shadow: 0 12px 30px rgba(28,20,52,0.22); flex-direction: column; gap: 1px; display: ' + (open ? 'flex' : 'none'),
@@ -20302,7 +20452,7 @@ class Component extends DCLogic {
           imgStyle: this.bg(owner.img, 'position: absolute; inset: 0; display: block'),
           thumbStyle: this.bg(owner.img, 'width: 42px; height: 42px; border-radius: 9px; flex: none; display: block'),
           ownerStyle: this.bg(owner.img, TRI + 'width: 20px; height: 20px; flex: none; display: block'),
-          openCampaign: () => this.resetTo({ view: 'campaign', campaignId: camp.id, rail: s.rail, campTab: 'overview' }),
+          openCampaign: () => this.resetTo({ view: 'campaign', campaignId: camp.id, rail: s.rail, campTab: 'overview', visitor: !!s.visitor }),
           copy: () => this.flashCopy(key),
           copyLabel: s.copiedIssue === key ? '복사됨' : '복사',
           copyStyle: 'flex: none; font-size: 12px; font-weight: 700; border-radius: 8px; padding: 5px 10px; white-space: nowrap; '
@@ -20335,7 +20485,7 @@ class Component extends DCLogic {
           statusStyle: 'font-size: 12px; font-weight: 700; border-radius: 6px; padding: 3px 8px; white-space: nowrap; '
             + (w.status === '판매 중' ? 'background: #e9f4ee; color: #3f8460' : 'background: #f2f0f6; color: #77727e'),
           visit: () => this.setState({ globalToast: w.platform + '로 이동' }),
-          openCampaign: () => this.resetTo({ view: 'campaign', campaignId: camp.id, rail: s.rail, campTab: 'overview' }),
+          openCampaign: () => this.resetTo({ view: 'campaign', campaignId: camp.id, rail: s.rail, campTab: 'overview', visitor: !!s.visitor }),
           copy: () => this.flashCopy(key),
           copyLabel: s.copiedIssue === key ? '복사됨' : '복사',
           copyStyle: 'flex: none; font-size: 12px; font-weight: 700; border-radius: 8px; padding: 5px 10px; white-space: nowrap; '

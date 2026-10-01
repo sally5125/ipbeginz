@@ -121,22 +121,22 @@ const LINK_KINDS = [
 const TRI = "clip-path: polygon(97.8% 70.1%, 80.6% 85.4%, 64.9% 95.3%, 50.5% 100.0%, 37.6% 99.4%, 26.0% 93.4%, 15.9% 82.2%, 7.3% 65.7%, 0.0% 43.9%, 10.1% 81.8%, 5.5% 59.2%, 4.8% 40.6%, 7.9% 25.8%, 14.9% 14.9%, 25.8% 7.9%, 40.6% 4.8%, 59.2% 5.5%, 81.8% 10.1%, 43.9% 0.0%, 65.7% 7.3%, 82.2% 15.9%, 93.4% 26.0%, 99.4% 37.6%, 100.0% 50.5%, 95.3% 64.9%, 85.4% 80.6%, 70.1% 97.8%); ";
 
 const PROFILES = [
-  { id: 'demon-child', name: '데몬 차일드', type: 'IP', verified: true, kind: '웹소설 · 캐릭터', img: 'assets/demon-child.png', subs: '1,284', campaigns: 3,
+  { id: 'demon-child', name: '데몬 차일드', type: 'IP', verified: true, kind: '웹소설 · 캐릭터', img: 'assets/demon-child.png', subs: '1,284', campaigns: 4,
     blurb: '황혼의 성도를 배경으로 한 판타지 웹소설 IP. 캐릭터 5인, 세계관 설정집, 삽화 120컷을 라이선스로 제공합니다.' },
   { id: 'neon-paws', name: '네온 포즈', type: 'IP', verified: true, kind: '애니메이션 · 캐릭터', img: 'assets/neon-paws.png', subs: '742', campaigns: 2,
     blurb: '비 내리는 사이버 도시의 배달 고양이. 숏폼 애니메이션과 굿즈 중심으로 확장 중인 캐릭터 IP입니다.' },
   { id: 'sky-post', name: '스카이 포스트', type: 'IP', verified: false, kind: '게임 · 세계관', img: 'assets/sky-post.png', subs: '318', campaigns: 1,
     blurb: '떠 있는 섬 사이를 오가는 우편 배달 게임 IP. 맵·건축 에셋과 캐릭터 시트를 창작자에게 개방합니다.' },
-  { id: 'seo-harin', name: '서하린', type: 'IP', verified: false, kind: '인물 · 배우', person: true, img: 'assets/sky-post.png', subs: '58.2K', campaigns: 2,
+  { id: 'seo-harin', name: '서하린', type: 'IP', verified: false, kind: '인물 · 배우', person: true, img: 'assets/sky-post.png', subs: '58.2K', campaigns: 0,
     holder: '문라이트 엔터테인먼트', holderRole: '소속사 · 매니지먼트',
     blurb: '드라마 · 광고 중심으로 활동하는 배우. 초상 · 이름 · 목소리 사용 범위를 라이선스로 나누어 엽니다.' },
-  { id: 'moonlight-brand', name: '달빛서고 라이선싱', type: '브랜드', kind: '라이선싱 · 판권 관리', img: 'assets/sky-post.png', subs: '2,010', campaigns: 4,
+  { id: 'moonlight-brand', name: '달빛서고 라이선싱', type: '브랜드', kind: '라이선싱 · 판권 관리', img: 'assets/sky-post.png', subs: '2,010', campaigns: 3,
     blurb: 'IP 판권과 상업 이용 계약을 관리하는 브랜드 프로필. 구독 라이선스 승인과 캠페인 조건 협의를 담당합니다.' },
-  { id: 'momo', name: '모모', type: '크리에이터', kind: '라이브 커머스 · 숏폼', img: 'assets/neon-paws.png', subs: '96.4K', campaigns: 6,
+  { id: 'momo', name: '모모', type: '크리에이터', kind: '라이브 커머스 · 숏폼', img: 'assets/neon-paws.png', subs: '96.4K', campaigns: 1,
     blurb: '주 3회 라이브로 캐릭터 굿즈를 판매하는 라이브 홍보 전문 크리에이터. 라이브 회차 평균 시청 8,200명, 실판매 전환 3.4%.' },
-  { id: 'loop', name: '루프 스튜디오', type: '크리에이터', kind: '영상 제작 · 모션', img: 'assets/sky-post.png', subs: '12.8K', campaigns: 3,
+  { id: 'loop', name: '루프 스튜디오', type: '크리에이터', kind: '영상 제작 · 모션', img: 'assets/sky-post.png', subs: '12.8K', campaigns: 1,
     blurb: '숏폼·광고 영상 제작 크리에이터. IP 캐릭터 리깅과 모션 그래픽이 주력이며 납품 건수 148건.' },
-  { id: 'hanul', name: '하늘리뷰', type: '크리에이터', kind: '웹툰 · 도서 리뷰 · 숏폼', img: 'assets/demon-child.png', subs: '58.1K', campaigns: 2,
+  { id: 'hanul', name: '하늘리뷰', type: '크리에이터', external: true, kind: '웹툰 · 도서 리뷰 · 숏폼', img: 'assets/demon-child.png', subs: '58.1K', campaigns: 1,
     blurb: '웹툰·웹소설 리뷰 숏폼 크리에이터. 신작 소개 영상 평균 조회 14만, 작품 페이지 클릭 전환 6.1%.' }
 ];
 
@@ -262,11 +262,11 @@ const CAMPAIGN_EXT = {
    registered: 저작권 등록 / certified: 권리 증빙 인증 / isNew: 신규 / budget: 총 집행 규모(필터 슬라이더용) */
 const CAMPAIGN_META = {
   'dc-affiliate': { subType: '홍보(마케팅)', owner: 'IP', industry: '게임 · 엔터테인먼트', minor: '웹툰 · 웹소설', seed: 'paid', pay: '성과', registered: true, certified: true, isNew: false, budget: 8000000 },
-  'dc-remix': { subType: '사용권 신청', owner: 'IP', industry: '유통 · 이커머스 · 리테일', minor: '굿즈 · 머천다이즈', seed: 'paid', pay: '고정 + 성과', registered: true, certified: true, isNew: true, budget: 12000000 },
+  'dc-remix': { subType: '퀵오더', owner: 'IP', industry: '유통 · 이커머스 · 리테일', minor: '굿즈 · 머천다이즈', seed: 'paid', pay: '고정 + 성과', registered: true, certified: true, isNew: true, budget: 12000000 },
   'dc-sub': { subType: '사용권 판매', owner: 'IP', industry: '게임 · 엔터테인먼트', minor: '웹툰 · 웹소설', seed: 'paid', pay: '고정', registered: true, certified: true, isNew: false, budget: 470000 },
-  'np-affiliate': { subType: '홍보(마케팅)', owner: '브랜드', industry: '패션', minor: '의류', seed: 'paid', pay: '성과', registered: true, certified: false, isNew: true, budget: 180000 },
+  'np-affiliate': { subType: '홍보(마케팅)', owner: 'IP', industry: '패션', minor: '의류', seed: 'paid', pay: '성과', registered: true, certified: false, isNew: true, budget: 180000 },
   'np-remix': { subType: '퀵오더', owner: 'IP', industry: '게임 · 엔터테인먼트', minor: '영상 · 애니메이션', seed: 'paid', pay: '고정 + 성과', registered: true, certified: true, isNew: false, budget: 3600000 },
-  'sp-affiliate': { subType: '홍보(마케팅)', owner: '브랜드', industry: '게임 · 엔터테인먼트', minor: '게임 타이틀', seed: 'free', pay: '성과', registered: false, certified: true, isNew: false, budget: 1000000 },
+  'sp-affiliate': { subType: '홍보(마케팅)', owner: 'IP', industry: '게임 · 엔터테인먼트', minor: '게임 타이틀', seed: 'free', pay: '성과', registered: false, certified: true, isNew: false, budget: 1000000 },
   'dc-sale': { subType: 'IP판매', owner: 'IP', industry: '게임 · 엔터테인먼트', minor: '웹툰 · 웹소설', seed: 'paid', pay: '고정', registered: true, certified: true, isNew: true, budget: 480000000 },
   'ml-order': { subType: '퀵오더', owner: '브랜드', industry: '게임 · 엔터테인먼트', minor: '웹툰 · 웹소설', seed: 'paid', pay: '고정', registered: false, certified: true, isNew: true, budget: 4800000 },
   'ml-promo': { subType: '홍보(마케팅)', owner: '브랜드', industry: '게임 · 엔터테인먼트', minor: '웹툰 · 웹소설', seed: 'free', pay: '고정 + 성과', registered: false, certified: true, isNew: true, budget: 9000000 },
@@ -588,7 +588,7 @@ const MANAGE_SCOPE = {
   'sp-affiliate': '참여 캠페인',
   'momo-service': '만든 캠페인',
   'loop-service': '만든 캠페인',
-  'hanul-service': '만든 캠페인'
+  'hanul-service': '찜 · 팔로우' // 하늘리뷰는 외부 크리에이터 — 내가 만든 캠페인이 아님
 };
 
 const CAMPAIGN_FLOW = {
@@ -823,16 +823,16 @@ const CONTRACTS = [
 
 /* 지원 현황 — dir: 'out' 내가 지원한 것(viaId = 지원에 쓴 내 프로필) / 'in' 내 캠페인에 온 지원(받은 프로필은 campaignId → CAMPAIGNS.ipId) */
 const APPLICATIONS = [
-  { id: 'ap-1', dir: 'out', viaId: 'momo', campaignId: 'np-affiliate', campaign: '모닝브루 신제품 숏폼 홍보', owner: '모닝브루', img: 'assets/sky-post.png',
+  { id: 'ap-1', dir: 'out', viaId: 'momo', campaignId: 'ml-promo', campaign: '가을 신간 프로모션 — 크리에이터 20명 모집', owner: '달빛서고 라이선싱', img: 'assets/sky-post.png',
     reward: '고정 ₩450,000 + 성과', applied: '2026-09-14', status: '검토 중', note: '평균 응답 2일 · 지원자 38명' },
-  { id: 'ap-2', dir: 'out', viaId: 'loop', campaignId: 'dc-remix', campaign: '베어랩 캐릭터 굿즈 2차 창작', owner: '베어랩', img: 'assets/neon-paws.png',
+  { id: 'ap-2', dir: 'out', viaId: 'loop', campaignId: 'np-remix', campaign: '네온 포즈 숏폼 애니메이션 6컷', owner: '네온 포즈', img: 'assets/neon-paws.png',
     reward: '수익 배분 30%', applied: '2026-09-08', status: '승인', note: '소재 3건 · 추적 링크 발급됨' },
-  { id: 'ap-3', dir: 'out', viaId: 'loop', campaignId: 'ml-order', campaign: '한빛 미디어 예고편 편집 퀵오더', owner: '한빛 미디어', img: 'assets/demon-child.png',
+  { id: 'ap-3', dir: 'out', viaId: 'loop', campaignId: 'ml-order', campaign: '신제품 소개 영상 제작 — 30초 광고 1편 + 숏폼 3편', owner: '달빛서고 라이선싱', img: 'assets/demon-child.png',
     reward: '고정 ₩1,200,000', applied: '2026-08-30', status: '반려', note: '사유 · 포트폴리오 형식 불일치' },
   { id: 'ap-4', dir: 'in', campaignId: 'dc-affiliate', campaign: '데몬 차일드 3권 예약판매 어필리에이트', owner: '데몬 차일드', img: 'assets/demon-child.png',
-    reward: '고정 ₩300,000 + 성과', applied: '오늘 4명', status: '승인 대기 7명', note: '모집 12/20명 · 마감 D-7' },
+    reward: '고정 ₩300,000 + 성과', applied: '오늘 4명', status: '승인 대기', pending: 7, note: '대기 7명 · 모집 12/20명 · 마감 D-7' },
   { id: 'ap-5', dir: 'in', campaignId: 'dc-remix', campaign: '데몬 차일드 포스터 · 아크릴 스탠드 제작', owner: '데몬 차일드', img: 'assets/demon-child.png',
-    reward: '수익 배분 40%', applied: '이번 주 9명', status: '승인 대기 3명', note: '상시 모집 · 승인 28명' },
+    reward: '수익 배분 40%', applied: '이번 주 9명', status: '승인 대기', pending: 3, note: '대기 3명 · 상시 모집 · 승인 28명' },
   { id: 'ap-6', dir: 'in', campaignId: 'np-remix', campaign: '네온 포즈 숏폼 애니메이션 6컷', owner: '네온 포즈', img: 'assets/neon-paws.png',
     reward: '고정 ₩1,200,000', applied: '2026-08-28', status: '선정 완료', note: '3명 선정 · 제작 진행 중' }
 ];
