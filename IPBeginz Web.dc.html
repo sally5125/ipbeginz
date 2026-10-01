@@ -13106,6 +13106,7 @@ class Component extends DCLogic {
     const promoCode = 'DC3-' + tag.toUpperCase() + '-10';
     const slug = str => String(str || '').trim().toLowerCase().replace(/[^a-z0-9가-힣]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'post';
     const lineName = (s.lineDraftName || '').trim();
+    const jm = (typeof JOINED_META !== 'undefined' ? JOINED_META : {})[s.campaignId];
     return {
       lineFormOpen: !!s.lineFormOpen,
       closeLineForm: () => this.setState({ lineFormOpen: false }),
@@ -13164,6 +13165,8 @@ class Component extends DCLogic {
       })),
       ncPickerCreate: () => this.resetTo({ view: 'create', rail: 'my', cOpen: 'type', ncPickerOpen: false }),
 
+      mineApprovedNote: (jm ? ((PROFILES.find(p => p.id === jm.by) || {}).name || '내') + ' 프로필로 ' + jm.approved + ' 승인' : '파트너로 승인됨') + ' · 트래킹 링크 · 프로모 코드 성과가 내 성과로 집계됩니다',
+      mineDeadline: jm ? jm.state + ' · 지원 ' + jm.applied : '진행 중',
       mineLink: 'ipbz.to/' + tag,
       copyLink: () => { this.flashCopy('mine-link'); this.toast('추적 링크를 복사했습니다'); },
       copyLabel: s.copiedIssue === 'mine-link' ? '복사됨' : '복사',
